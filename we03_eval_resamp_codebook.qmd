@@ -150,8 +150,14 @@ cat("Test rows    :", nrow(mail_test), "\n")
 
 ```{r recipe-model}
 mail_rec <- recipe(
-  responded ~ age + income + recency_days + freq_12mo + avg_order_amt +
-    channel + region + loyalty_tier,
+  responded ~ age +
+    income +
+    recency_days +
+    freq_12mo +
+    avg_order_amt +
+    channel +
+    region +
+    loyalty_tier,
   data = mail_train
 ) |>
   step_impute_median(all_numeric_predictors()) |>
@@ -397,16 +403,22 @@ fold_viz <- map_dfr(seq_along(mail_folds$splits), function(i) {
   tibble(
     fold = i,
     row = 1:nrow(mail_train),
-    role = if_else(row %in% split$in_id, "Analysis (train)", "Assessment (validate)")
+    role = if_else(
+      row %in% split$in_id,
+      "Analysis (train)",
+      "Assessment (validate)"
+    )
   )
 })
 
 ggplot(fold_viz, aes(x = row, y = factor(fold), fill = role)) +
   geom_tile() +
-  scale_fill_manual(values = c(
-    "Analysis (train)" = "#A9C0CC",
-    "Assessment (validate)" = "#C0504D"
-  )) +
+  scale_fill_manual(
+    values = c(
+      "Analysis (train)" = "#A9C0CC",
+      "Assessment (validate)" = "#C0504D"
+    )
+  ) +
   labs(
     title = "10-Fold Cross-Validation Structure",
     subtitle = "Each row of the training data is held out exactly once",
