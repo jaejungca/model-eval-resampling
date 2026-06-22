@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Evaluation Toolkit Recap — IBM 6540</title>
+<style>
+  @page {
+    size: Letter;
+    margin: 0;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    width: 8.5in;
+  }
+
+  body {
+    font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    color: #1D2226;
+    margin: 0;
+    padding: 0.5in 0.55in;
+    font-size: 9.8pt;
+    line-height: 1.45;
+  }
+
+  .mono {
+    font-family: "JetBrains Mono", "Courier New", monospace;
+  }
+
+  /* ── Header ─────────────────────────────────────────────────────── */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2.5px solid #16191C;
+    padding-bottom: 6px;
+    margin-bottom: 4px;
+  }
+  .header .title-block h1 {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 19pt;
+    font-weight: 700;
+    margin: 0;
+    color: #16191C;
+    letter-spacing: -0.01em;
+  }
+  .header .title-block .subtitle {
+    font-size: 9.6pt;
+    color: #5A6168;
+    margin-top: 1px;
+  }
+  .header .course-tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8.6pt;
+    color: #E8702A;
+    text-align: right;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .header .course-tag div:last-child {
+    color: #5A6168;
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  /* signature ruler tick strip, echoes the slide deck */
+  .ruler {
+    height: 8px;
+    margin: 5px 0 10px 0;
+    background-image: repeating-linear-gradient(
+      to right, #E8702A 0, #E8702A 1px, transparent 1px, transparent 13px
+    );
+    background-size: 13px 7px;
+    background-repeat: repeat-x;
+    background-position: bottom;
+    opacity: 0.9;
+  }
+
+  .intro {
+    font-size: 9.2pt;
+    color: #3A4046;
+    margin-bottom: 13px;
+    font-style: italic;
+  }
+
+  /* ── Two-column layout ─────────────────────────────────────────── */
+  .columns {
+    display: flex;
+    gap: 22px;
+  }
+  .col {
+    flex: 1;
+    min-width: 0;
+  }
+
+  h2 {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11.5pt;
+    color: #16191C;
+    background: #EDE9E1;
+    border-left: 3.5px solid #E8702A;
+    padding: 5px 9px;
+    margin: 0 0 9px 0;
+    letter-spacing: 0.01em;
+  }
+  h2 .ch-tag {
+    color: #4F8A8B;
+    font-weight: 400;
+    font-size: 8pt;
+  }
+
+  h3 {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.4pt;
+    color: #4F8A8B;
+    margin: 13px 0 4px 0;
+    font-weight: 600;
+  }
+
+  p { margin: 4px 0; }
+
+  ul, ol {
+    margin: 4px 0 10px 0;
+    padding-left: 16px;
+  }
+  li { margin-bottom: 3px; }
+
+  code {
+    font-family: "JetBrains Mono", monospace;
+    background: #EDE9E1;
+    color: #B85C1E;
+    padding: 0.5px 3px;
+    border-radius: 2px;
+    font-size: 8.8pt;
+  }
+
+  pre {
+    font-family: "JetBrains Mono", monospace;
+    background: #16191C;
+    color: #EDE9E1;
+    padding: 6px 8px;
+    border-radius: 3px;
+    font-size: 8.2pt;
+    line-height: 1.5;
+    margin: 5px 0 11px 0;
+    overflow-x: hidden;
+    white-space: pre-wrap;
+  }
+  pre .fn { color: #E8702A; }
+  pre .com { color: #7A8288; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.7pt;
+    margin: 5px 0 12px 0;
+  }
+  th {
+    font-family: "JetBrains Mono", monospace;
+    background: #16191C;
+    color: #E8702A;
+    text-align: left;
+    padding: 4px 6px;
+    font-size: 8.1pt;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  td {
+    padding: 4px 6px;
+    border-bottom: 1px solid #DAD5C9;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td {
+    background: #F5F2EC;
+  }
+
+  .callout {
+    border-left: 3px solid #4F8A8B;
+    background: #EFF4F4;
+    padding: 6px 9px;
+    margin: 8px 0;
+    font-size: 8.8pt;
+  }
+  .callout .label {
+    font-family: "JetBrains Mono", monospace;
+    color: #4F8A8B;
+    font-weight: 700;
+    font-size: 7.4pt;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    display: block;
+    margin-bottom: 1px;
+  }
+
+  .warn {
+    border-left: 3px solid #C97A3C;
+    background: #FBF1E8;
+    padding: 6px 9px;
+    margin: 8px 0;
+    font-size: 8.8pt;
+  }
+  .warn .label {
+    font-family: "JetBrains Mono", monospace;
+    color: #C97A3C;
+    font-weight: 700;
+    font-size: 7.4pt;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    display: block;
+    margin-bottom: 1px;
+  }
+
+  .decision-tree {
+    font-size: 8.7pt;
+    margin: 5px 0 11px 0;
+  }
+  .decision-tree .q {
+    font-weight: 600;
+    color: #16191C;
+  }
+  .decision-tree .a {
+    margin-left: 12px;
+    color: #3A4046;
+  }
+  .decision-tree .a code {
+    background: none;
+    color: #16191C;
+    font-weight: 600;
+  }
+
+  .footer {
+    margin-top: 14px;
+    padding-top: 7px;
+    border-top: 1px solid #DAD5C9;
+    font-size: 7.3pt;
+    color: #8B8378;
+    display: flex;
+    justify-content: space-between;
+    font-family: "JetBrains Mono", monospace;
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="title-block">
+      <h1>Evaluation Toolkit Recap</h1>
+      <div class="subtitle">yardstick + rsample — from Week 3, applied here</div>
+    </div>
+    <div class="course-tag">
+      <div>IBM 6540</div>
+      <div>Applied Machine Learning for Marketing</div>
+    </div>
+  </div>
+  <div class="ruler"></div>
+
+  <p class="intro">
+    You already built this toolkit in Week 3 (TMWR Ch. 9–10). This page is a working reference, not new material —
+    use it to refit the same metrics and resampling workflow to today's model.
+  </p>
+
+  <div class="columns">
+
+    <!-- ───────────────────────── LEFT COLUMN ───────────────────────── -->
+    <div class="col">
+
+      <h2>Metrics <span class="ch-tag">TMWR Ch. 9</span></h2>
+
+      <h3>Regression</h3>
+      <pre><span class="fn">metric_set</span>(rmse, rsq, mae)
+reg_preds |&gt; <span class="fn">reg_metrics</span>(truth = y, estimate = .pred)</pre>
+      <table>
+        <tr><th>Metric</th><th>Reads as</th></tr>
+        <tr><td><strong>RMSE</strong></td><td>typical error, in original units; punishes big misses hardest</td></tr>
+        <tr><td><strong>R²</strong></td><td>% of variance explained; unitless, 0–1</td></tr>
+        <tr><td><strong>MAE</strong></td><td>typical error, robust to outliers</td></tr>
+      </table>
+
+      <h3>Binary Classification</h3>
+      <pre><span class="fn">conf_mat</span>(preds, truth = y, estimate = .pred_class)
+<span class="fn">metric_set</span>(accuracy, sens, spec, precision)</pre>
+      <table>
+        <tr><th>Metric</th><th>Marketing question</th></tr>
+        <tr><td><strong>Sensitivity</strong></td><td>of true responders, how many did we catch?</td></tr>
+        <tr><td><strong>Specificity</strong></td><td>of true non-responders, how many did we skip?</td></tr>
+        <tr><td><strong>Precision</strong></td><td>of who we targeted, how many responded?</td></tr>
+        <tr><td><strong>Accuracy</strong></td><td>overall correct — caution, see below</td></tr>
+      </table>
+
+      <div class="warn">
+        <span class="label">Accuracy trap</span>
+        With a 3–8% response rate, predicting "no" for everyone scores 92–97% accuracy
+        and is useless. Always pair accuracy with sensitivity/specificity.
+      </div>
+
+      <h3>ROC / AUC — Threshold-Free View</h3>
+      <pre><span class="fn">roc_curve</span>(preds, truth = y, .pred_yes)
+<span class="fn">roc_auc</span>(preds,   truth = y, .pred_yes)</pre>
+      <table>
+        <tr><th>AUC</th><th>Read</th></tr>
+        <tr><td>0.50</td><td>coin flip</td></tr>
+        <tr><td>&gt; 0.65</td><td>usable for targeting</td></tr>
+        <tr><td>&gt; 0.75</td><td>quite good</td></tr>
+        <tr><td>1.00</td><td>perfect (rare)</td></tr>
+      </table>
+
+      <h3>Multiclass</h3>
+      <p>Same metrics, computed one-vs-rest per class, then <strong>macro-averaged</strong>
+      by default — every class counts equally, even rare ones (e.g. Platinum tier).</p>
+
+    </div>
+
+    <!-- ───────────────────────── RIGHT COLUMN ───────────────────────── -->
+    <div class="col">
+
+      <h2>Resampling <span class="ch-tag">TMWR Ch. 10</span></h2>
+
+      <div class="callout">
+        <span class="label">Why bother</span>
+        A single test-set number is one draw from a distribution. Resampling
+        gives you the <em>mean and spread</em> of likely performance — and never
+        touches the test set, which is reserved for one final check.
+      </div>
+
+      <h3>Build Folds</h3>
+      <pre><span class="fn">vfold_cv</span>(train, v = 10, strata = y)</pre>
+
+      <h3>Fit + Score Across Folds</h3>
+      <pre><span class="fn">fit_resamples</span>(
+  wf, resamples = folds,
+  metrics = <span class="fn">metric_set</span>(accuracy, roc_auc),
+  control = <span class="fn">control_resamples</span>(save_pred = TRUE)
+)
+<span class="fn">collect_metrics</span>(cv_results)</pre>
+
+      <table>
+        <tr><th>Method</th><th>Use when…</th></tr>
+        <tr><td><strong>V-fold CV</strong></td><td>default choice, most marketing data</td></tr>
+        <tr><td><strong>Repeated CV</strong></td><td>small data, high fold-to-fold noise</td></tr>
+        <tr><td><strong>Bootstrap</strong></td><td>need uncertainty estimates</td></tr>
+        <tr><td><strong>Validation split</strong></td><td>data huge, CV too slow</td></tr>
+        <tr><td><strong>Rolling origin</strong></td><td>time-ordered (monthly cohorts)</td></tr>
+      </table>
+
+      <div class="callout">
+        <span class="label">Resubstitution warning</span>
+        Never trust metrics computed on the same data the model was trained on —
+        they're optimistic. Always score on assessment folds or the held-out test set.
+      </div>
+
+      <h2 style="margin-top:9px;">Quick Decision Guide</h2>
+      <div class="decision-tree">
+        <p class="q">Outcome is continuous (spending, revenue)?</p>
+        <p class="a">→ <code>metric_set(rmse, rsq, mae)</code></p>
+        <p class="q">Outcome is yes/no (response, churn, purchase)?</p>
+        <p class="a">→ <code>metric_set(accuracy, sens, spec, roc_auc)</code></p>
+        <p class="q">Outcome has 3+ categories (tier, segment)?</p>
+        <p class="a">→ same functions; check macro vs. micro averaging</p>
+        <p class="q">Reporting a single trustworthy number?</p>
+        <p class="a">→ <code>fit_resamples()</code> + <code>collect_metrics()</code>, not resubstitution</p>
+        <p class="q">Comparing several models or tuning hyperparameters?</p>
+        <p class="a">→ resample every candidate the same way; save the test set for the very end</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <span>IBM 6540 · Applied Machine Learning for Marketing</span>
+    <span>Full treatment: TMWR Ch. 9–10 (Week 3 notebook)</span>
+  </div>
+
+</body>
+</html>
