@@ -3630,16 +3630,18 @@ window.Quarto = {
   <li><a href="#why-metrics-not-just-it-fit" id="toc-why-metrics-not-just-it-fit" class="nav-link" data-scroll-target="#why-metrics-not-just-it-fit"><span class="header-section-number">4.1</span> Why Metrics, Not Just “It Fit”</a></li>
   <li><a href="#regression-metrics" id="toc-regression-metrics" class="nav-link" data-scroll-target="#regression-metrics"><span class="header-section-number">4.2</span> Regression Metrics</a>
   <ul class="collapse">
-  <li><a href="#regression-metrics-1" id="toc-regression-metrics-1" class="nav-link" data-scroll-target="#regression-metrics-1"><span class="header-section-number">4.2.1</span> Regression Metrics</a>
-  <ul class="collapse">
-  <li><a href="#rmse-root-mean-squared-error" id="toc-rmse-root-mean-squared-error" class="nav-link" data-scroll-target="#rmse-root-mean-squared-error"><span class="header-section-number">4.2.1.1</span> <strong>RMSE</strong> (root mean squared error):</a></li>
-  <li><a href="#r²-rsq" id="toc-r²-rsq" class="nav-link" data-scroll-target="#r²-rsq"><span class="header-section-number">4.2.1.2</span> <strong>R² (rsq)</strong>:</a></li>
-  <li><a href="#mae-mean-absolute-error" id="toc-mae-mean-absolute-error" class="nav-link" data-scroll-target="#mae-mean-absolute-error"><span class="header-section-number">4.2.1.3</span> <strong>MAE</strong> (mean absolute error):</a></li>
-  </ul></li>
+  <li><a href="#rmse-root-mean-squared-error" id="toc-rmse-root-mean-squared-error" class="nav-link" data-scroll-target="#rmse-root-mean-squared-error"><span class="header-section-number">4.2.1</span> <strong>RMSE</strong> (root mean squared error):</a></li>
+  <li><a href="#r²-rsq" id="toc-r²-rsq" class="nav-link" data-scroll-target="#r²-rsq"><span class="header-section-number">4.2.2</span> <strong>R² (rsq)</strong>:</a></li>
+  <li><a href="#mae-mean-absolute-error" id="toc-mae-mean-absolute-error" class="nav-link" data-scroll-target="#mae-mean-absolute-error"><span class="header-section-number">4.2.3</span> <strong>MAE</strong> (mean absolute error):</a></li>
   </ul></li>
   <li><a href="#binary-classification-metrics" id="toc-binary-classification-metrics" class="nav-link" data-scroll-target="#binary-classification-metrics"><span class="header-section-number">4.3</span> Binary Classification Metrics</a>
   <ul class="collapse">
-  <li><a href="#roc-curve-and-auc" id="toc-roc-curve-and-auc" class="nav-link" data-scroll-target="#roc-curve-and-auc"><span class="header-section-number">4.3.1</span> ROC Curve and AUC</a></li>
+  <li><a href="#sensitivity-recall" id="toc-sensitivity-recall" class="nav-link" data-scroll-target="#sensitivity-recall"><span class="header-section-number">4.3.1</span> Sensitivity (Recall)</a></li>
+  <li><a href="#specificity" id="toc-specificity" class="nav-link" data-scroll-target="#specificity"><span class="header-section-number">4.3.2</span> Specificity</a></li>
+  <li><a href="#precision-ppv" id="toc-precision-ppv" class="nav-link" data-scroll-target="#precision-ppv"><span class="header-section-number">4.3.3</span> Precision (PPV)</a></li>
+  <li><a href="#accuracy" id="toc-accuracy" class="nav-link" data-scroll-target="#accuracy"><span class="header-section-number">4.3.4</span> Accuracy</a></li>
+  <li><a href="#f1-score" id="toc-f1-score" class="nav-link" data-scroll-target="#f1-score"><span class="header-section-number">4.3.5</span> F1 Score</a></li>
+  <li><a href="#roc-curve-and-auc" id="toc-roc-curve-and-auc" class="nav-link" data-scroll-target="#roc-curve-and-auc"><span class="header-section-number">4.3.6</span> ROC Curve and AUC</a></li>
   </ul></li>
   <li><a href="#multiclass-classification-metrics" id="toc-multiclass-classification-metrics" class="nav-link" data-scroll-target="#multiclass-classification-metrics"><span class="header-section-number">4.4</span> Multiclass Classification Metrics</a></li>
   </ul></li>
@@ -3717,16 +3719,18 @@ window.Quarto = {
   <li><a href="#why-metrics-not-just-it-fit" id="toc-why-metrics-not-just-it-fit"><span class="header-section-number">4.1</span> Why Metrics, Not Just “It Fit”</a></li>
   <li><a href="#regression-metrics" id="toc-regression-metrics"><span class="header-section-number">4.2</span> Regression Metrics</a>
   <ul>
-  <li><a href="#regression-metrics-1" id="toc-regression-metrics-1"><span class="header-section-number">4.2.1</span> Regression Metrics</a>
-  <ul>
-  <li><a href="#rmse-root-mean-squared-error" id="toc-rmse-root-mean-squared-error"><span class="header-section-number">4.2.1.1</span> <strong>RMSE</strong> (root mean squared error):</a></li>
-  <li><a href="#r²-rsq" id="toc-r²-rsq"><span class="header-section-number">4.2.1.2</span> <strong>R² (rsq)</strong>:</a></li>
-  <li><a href="#mae-mean-absolute-error" id="toc-mae-mean-absolute-error"><span class="header-section-number">4.2.1.3</span> <strong>MAE</strong> (mean absolute error):</a></li>
-  </ul></li>
+  <li><a href="#rmse-root-mean-squared-error" id="toc-rmse-root-mean-squared-error"><span class="header-section-number">4.2.1</span> <strong>RMSE</strong> (root mean squared error):</a></li>
+  <li><a href="#r²-rsq" id="toc-r²-rsq"><span class="header-section-number">4.2.2</span> <strong>R² (rsq)</strong>:</a></li>
+  <li><a href="#mae-mean-absolute-error" id="toc-mae-mean-absolute-error"><span class="header-section-number">4.2.3</span> <strong>MAE</strong> (mean absolute error):</a></li>
   </ul></li>
   <li><a href="#binary-classification-metrics" id="toc-binary-classification-metrics"><span class="header-section-number">4.3</span> Binary Classification Metrics</a>
   <ul>
-  <li><a href="#roc-curve-and-auc" id="toc-roc-curve-and-auc"><span class="header-section-number">4.3.1</span> ROC Curve and AUC</a></li>
+  <li><a href="#sensitivity-recall" id="toc-sensitivity-recall"><span class="header-section-number">4.3.1</span> Sensitivity (Recall)</a></li>
+  <li><a href="#specificity" id="toc-specificity"><span class="header-section-number">4.3.2</span> Specificity</a></li>
+  <li><a href="#precision-ppv" id="toc-precision-ppv"><span class="header-section-number">4.3.3</span> Precision (PPV)</a></li>
+  <li><a href="#accuracy" id="toc-accuracy"><span class="header-section-number">4.3.4</span> Accuracy</a></li>
+  <li><a href="#f1-score" id="toc-f1-score"><span class="header-section-number">4.3.5</span> F1 Score</a></li>
+  <li><a href="#roc-curve-and-auc" id="toc-roc-curve-and-auc"><span class="header-section-number">4.3.6</span> ROC Curve and AUC</a></li>
   </ul></li>
   <li><a href="#multiclass-classification-metrics" id="toc-multiclass-classification-metrics"><span class="header-section-number">4.4</span> Multiclass Classification Metrics</a></li>
   </ul></li>
@@ -4044,10 +4048,8 @@ Important
 </div>
 </div>
 </div>
-<section id="regression-metrics-1" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="regression-metrics-1"><span class="header-section-number">4.2.1</span> Regression Metrics</h3>
-<section id="rmse-root-mean-squared-error" class="level4" data-number="4.2.1.1">
-<h4 data-number="4.2.1.1" class="anchored" data-anchor-id="rmse-root-mean-squared-error"><span class="header-section-number">4.2.1.1</span> <strong>RMSE</strong> (root mean squared error):</h4>
+<section id="rmse-root-mean-squared-error" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="rmse-root-mean-squared-error"><span class="header-section-number">4.2.1</span> <strong>RMSE</strong> (root mean squared error):</h3>
 <p>Average prediction error, in the <em>original units</em> (dollars here). Penalizes large errors more heavily because errors are squared before averaging.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="RMSE Formula">
 <div class="callout-header d-flex align-content-center">
@@ -4075,8 +4077,8 @@ RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}
 </div>
 </div>
 </section>
-<section id="r²-rsq" class="level4" data-number="4.2.1.2">
-<h4 data-number="4.2.1.2" class="anchored" data-anchor-id="r²-rsq"><span class="header-section-number">4.2.1.2</span> <strong>R² (rsq)</strong>:</h4>
+<section id="r²-rsq" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="r²-rsq"><span class="header-section-number">4.2.2</span> <strong>R² (rsq)</strong>:</h3>
 <ul>
 <li><p>Proportion of variance in the outcome explained by the model.</p></li>
 <li><p>Ranges roughly 0–1; higher is better.</p></li>
@@ -4106,8 +4108,8 @@ R^2 = 1 - \frac{\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}{\sum_{i=1}^{n}(y_i - \bar{y})
 </div>
 </div>
 </section>
-<section id="mae-mean-absolute-error" class="level4" data-number="4.2.1.3">
-<h4 data-number="4.2.1.3" class="anchored" data-anchor-id="mae-mean-absolute-error"><span class="header-section-number">4.2.1.3</span> <strong>MAE</strong> (mean absolute error):</h4>
+<section id="mae-mean-absolute-error" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="mae-mean-absolute-error"><span class="header-section-number">4.2.3</span> <strong>MAE</strong> (mean absolute error):</h3>
 <ul>
 <li><p>Average absolute error, less sensitive to outliers than RMSE.</p></li>
 <li><p>If a few extreme spenders are skewing RMSE, compare it against MAE.</p></li>
@@ -4156,7 +4158,6 @@ MAE = \frac{1}{n}\sum_{i=1}^{n}|y_i - \hat{y}_i|
 </div>
 </div>
 </div>
-</section>
 </section>
 </section>
 <section id="binary-classification-metrics" class="level2" data-number="4.3">
@@ -4236,6 +4237,127 @@ Prediction yes  no
 </table>
 </div>
 </div>
+<section id="sensitivity-recall" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="sensitivity-recall"><span class="header-section-number">4.3.1</span> Sensitivity (Recall)</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Details">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Details
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\text{Sensitivity} = \frac{TP}{TP + FN}
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(TP\)</span> = true positives — customers who responded and were correctly predicted to respond</li>
+<li><span class="math inline">\(FN\)</span> = false negatives — customers who responded but were incorrectly predicted not to respond</li>
+<li><span class="math inline">\(TP + FN\)</span> = total number of actual responders</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="specificity" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="specificity"><span class="header-section-number">4.3.2</span> Specificity</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Details">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Details
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\text{Specificity} = \frac{TN}{TN + FP}
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(TN\)</span> = true negatives — customers who did not respond and were correctly predicted not to respond</li>
+<li><span class="math inline">\(FP\)</span> = false positives — customers who did not respond but were incorrectly predicted to respond</li>
+<li><span class="math inline">\(TN + FP\)</span> = total number of actual non-responders</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="precision-ppv" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="precision-ppv"><span class="header-section-number">4.3.3</span> Precision (PPV)</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Details">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Details
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\text{Precision} = \frac{TP}{TP + FP}
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(TP\)</span> = true positives — correctly predicted responders</li>
+<li><span class="math inline">\(FP\)</span> = false positives — non-responders incorrectly predicted as responders</li>
+<li><span class="math inline">\(TP + FP\)</span> = total number of customers predicted to respond</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="accuracy" class="level3" data-number="4.3.4">
+<h3 data-number="4.3.4" class="anchored" data-anchor-id="accuracy"><span class="header-section-number">4.3.4</span> Accuracy</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Details">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Details
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(TP\)</span> = true positives</li>
+<li><span class="math inline">\(TN\)</span> = true negatives</li>
+<li><span class="math inline">\(FP\)</span> = false positives</li>
+<li><span class="math inline">\(FN\)</span> = false negatives</li>
+<li><span class="math inline">\(TP + TN + FP + FN\)</span> = total number of observations</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="f1-score" class="level3" data-number="4.3.5">
+<h3 data-number="4.3.5" class="anchored" data-anchor-id="f1-score"><span class="header-section-number">4.3.5</span> F1 Score</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Details">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Details
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+F_1 = 2 \times \frac{\text{Precision} \times \text{Sensitivity}}{\text{Precision} + \text{Sensitivity}}
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(\text{Precision} = \frac{TP}{TP + FP}\)</span></li>
+<li><span class="math inline">\(\text{Sensitivity} = \frac{TP}{TP + FN}\)</span></li>
+<li><span class="math inline">\(F_1\)</span> is the harmonic mean of precision and sensitivity — useful when both matter equally and the classes are imbalanced</li>
+</ul>
+</div>
+</div>
 <div class="cell">
 <details open class="code-fold">
 <summary>Code</summary>
@@ -4265,8 +4387,9 @@ Warning
 <p><strong>Accuracy is dangerous with imbalanced classes.</strong> Direct-mail response rates are often only 3–8%. A model that predicts “no” for <em>everyone</em> could still score 95%+ accuracy while being completely useless for targeting. Always check sensitivity/specificity alongside accuracy — this is exactly the kind of trap a stakeholder unfamiliar with the data could fall into.</p>
 </div>
 </div>
-<section id="roc-curve-and-auc" class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="roc-curve-and-auc"><span class="header-section-number">4.3.1</span> ROC Curve and AUC</h3>
+</section>
+<section id="roc-curve-and-auc" class="level3" data-number="4.3.6">
+<h3 data-number="4.3.6" class="anchored" data-anchor-id="roc-curve-and-auc"><span class="header-section-number">4.3.6</span> ROC Curve and AUC</h3>
 <p>Sensitivity and specificity above were computed at a single classification threshold (0.5 by default). The <strong>ROC curve</strong> shows the sensitivity/specificity trade-off across <em>every possible</em> threshold, and <strong>AUC</strong> summarizes the whole curve in one number.</p>
 <div class="cell">
 <details open class="code-fold">
@@ -5694,503 +5817,573 @@ loaded via a namespace (and not attached):
 <span id="cb48-228"><a href="#cb48-228" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reg_metrics</span>(<span class="at">truth =</span> order_value_next, <span class="at">estimate =</span> .pred)</span>
 <span id="cb48-229"><a href="#cb48-229" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb48-230"><a href="#cb48-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-231"><a href="#cb48-231" aria-hidden="true" tabindex="-1"></a><span class="fu">### Regression Metrics</span></span>
+<span id="cb48-231"><a href="#cb48-231" aria-hidden="true" tabindex="-1"></a><span class="fu">### **RMSE** (root mean squared error): </span></span>
 <span id="cb48-232"><a href="#cb48-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-233"><a href="#cb48-233" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **RMSE** (root mean squared error): </span></span>
+<span id="cb48-233"><a href="#cb48-233" aria-hidden="true" tabindex="-1"></a>Average prediction error, in the *original units* (dollars here). Penalizes large errors more heavily because errors are squared before averaging.</span>
 <span id="cb48-234"><a href="#cb48-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-235"><a href="#cb48-235" aria-hidden="true" tabindex="-1"></a>Average prediction error, in the *original units* (dollars here). Penalizes large errors more heavily because errors are squared before averaging.</span>
-<span id="cb48-236"><a href="#cb48-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-237"><a href="#cb48-237" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;RMSE Formula&quot;}</span>
+<span id="cb48-235"><a href="#cb48-235" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;RMSE Formula&quot;}</span>
+<span id="cb48-236"><a href="#cb48-236" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb48-237"><a href="#cb48-237" aria-hidden="true" tabindex="-1"></a>RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}</span>
 <span id="cb48-238"><a href="#cb48-238" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb48-239"><a href="#cb48-239" aria-hidden="true" tabindex="-1"></a>RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}</span>
-<span id="cb48-240"><a href="#cb48-240" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb48-239"><a href="#cb48-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-240"><a href="#cb48-240" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Where </span>
 <span id="cb48-241"><a href="#cb48-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-242"><a href="#cb48-242" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Where </span>
-<span id="cb48-243"><a href="#cb48-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-244"><a href="#cb48-244" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>$n$ is the number of observations, </span>
-<span id="cb48-245"><a href="#cb48-245" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>$y_i$ is the actual value, and </span>
-<span id="cb48-246"><a href="#cb48-246" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>$\hat{y}_i$ is the predicted value. </span>
-<span id="cb48-247"><a href="#cb48-247" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>$(y_i - \hat{y}_i)$ = the residual (prediction error) for observation $i$</span>
-<span id="cb48-248"><a href="#cb48-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-249"><a href="#cb48-249" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>RMSE is in the **same units as the outcome variable** — dollars, in our case — making it directly interpretable.</span>
-<span id="cb48-250"><a href="#cb48-250" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb48-242"><a href="#cb48-242" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>$n$ is the number of observations, </span>
+<span id="cb48-243"><a href="#cb48-243" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>$y_i$ is the actual value, and </span>
+<span id="cb48-244"><a href="#cb48-244" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>$\hat{y}_i$ is the predicted value. </span>
+<span id="cb48-245"><a href="#cb48-245" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>$(y_i - \hat{y}_i)$ = the residual (prediction error) for observation $i$</span>
+<span id="cb48-246"><a href="#cb48-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-247"><a href="#cb48-247" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>RMSE is in the **same units as the outcome variable** — dollars, in our case — making it directly interpretable.</span>
+<span id="cb48-248"><a href="#cb48-248" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb48-249"><a href="#cb48-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-250"><a href="#cb48-250" aria-hidden="true" tabindex="-1"></a><span class="fu">### **R² (rsq)**:</span></span>
 <span id="cb48-251"><a href="#cb48-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-252"><a href="#cb48-252" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **R² (rsq)**:</span></span>
+<span id="cb48-252"><a href="#cb48-252" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Proportion of variance in the outcome explained by the model. </span>
 <span id="cb48-253"><a href="#cb48-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-254"><a href="#cb48-254" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Proportion of variance in the outcome explained by the model. </span>
+<span id="cb48-254"><a href="#cb48-254" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ranges roughly 0–1; higher is better. </span>
 <span id="cb48-255"><a href="#cb48-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-256"><a href="#cb48-256" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ranges roughly 0–1; higher is better. </span>
+<span id="cb48-256"><a href="#cb48-256" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Useful for communicating &quot;how much of next-order value our model explains&quot; to stakeholders.</span>
 <span id="cb48-257"><a href="#cb48-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-258"><a href="#cb48-258" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Useful for communicating &quot;how much of next-order value our model explains&quot; to stakeholders.</span>
-<span id="cb48-259"><a href="#cb48-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-260"><a href="#cb48-260" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;R-Squared formula&quot;}</span>
+<span id="cb48-258"><a href="#cb48-258" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;R-Squared formula&quot;}</span>
+<span id="cb48-259"><a href="#cb48-259" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb48-260"><a href="#cb48-260" aria-hidden="true" tabindex="-1"></a>R^2 = 1 - \frac{\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}{\sum_{i=1}^{n}(y_i - \bar{y})^2}</span>
 <span id="cb48-261"><a href="#cb48-261" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb48-262"><a href="#cb48-262" aria-hidden="true" tabindex="-1"></a>R^2 = 1 - \frac{\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}{\sum_{i=1}^{n}(y_i - \bar{y})^2}</span>
-<span id="cb48-263"><a href="#cb48-263" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb48-262"><a href="#cb48-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-263"><a href="#cb48-263" aria-hidden="true" tabindex="-1"></a>Where:</span>
 <span id="cb48-264"><a href="#cb48-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-265"><a href="#cb48-265" aria-hidden="true" tabindex="-1"></a>Where:</span>
-<span id="cb48-266"><a href="#cb48-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-267"><a href="#cb48-267" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$y_i$ = actual value for observation $i$</span>
-<span id="cb48-268"><a href="#cb48-268" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\hat{y}_i$ = predicted value for observation $i$</span>
-<span id="cb48-269"><a href="#cb48-269" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\bar{y}$ = mean of all actual values</span>
-<span id="cb48-270"><a href="#cb48-270" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\sum_{i=1}^{n}(y_i - \hat{y}_i)^2$ = total unexplained variation (residual sum of squares)</span>
-<span id="cb48-271"><a href="#cb48-271" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\sum_{i=1}^{n}(y_i - \bar{y})^2$ = total variation in the outcome (total sum of squares)</span>
-<span id="cb48-272"><a href="#cb48-272" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb48-265"><a href="#cb48-265" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$y_i$ = actual value for observation $i$</span>
+<span id="cb48-266"><a href="#cb48-266" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\hat{y}_i$ = predicted value for observation $i$</span>
+<span id="cb48-267"><a href="#cb48-267" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\bar{y}$ = mean of all actual values</span>
+<span id="cb48-268"><a href="#cb48-268" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\sum_{i=1}^{n}(y_i - \hat{y}_i)^2$ = total unexplained variation (residual sum of squares)</span>
+<span id="cb48-269"><a href="#cb48-269" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\sum_{i=1}^{n}(y_i - \bar{y})^2$ = total variation in the outcome (total sum of squares)</span>
+<span id="cb48-270"><a href="#cb48-270" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb48-271"><a href="#cb48-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-272"><a href="#cb48-272" aria-hidden="true" tabindex="-1"></a><span class="fu">### **MAE** (mean absolute error): </span></span>
 <span id="cb48-273"><a href="#cb48-273" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-274"><a href="#cb48-274" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **MAE** (mean absolute error): </span></span>
+<span id="cb48-274"><a href="#cb48-274" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Average absolute error, less sensitive to outliers than RMSE. </span>
 <span id="cb48-275"><a href="#cb48-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-276"><a href="#cb48-276" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Average absolute error, less sensitive to outliers than RMSE. </span>
+<span id="cb48-276"><a href="#cb48-276" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If a few extreme spenders are skewing RMSE, compare it against MAE.</span>
 <span id="cb48-277"><a href="#cb48-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-278"><a href="#cb48-278" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If a few extreme spenders are skewing RMSE, compare it against MAE.</span>
-<span id="cb48-279"><a href="#cb48-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-280"><a href="#cb48-280" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;MAE Formula&quot;}</span>
+<span id="cb48-278"><a href="#cb48-278" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;MAE Formula&quot;}</span>
+<span id="cb48-279"><a href="#cb48-279" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb48-280"><a href="#cb48-280" aria-hidden="true" tabindex="-1"></a>MAE = \frac{1}{n}\sum_{i=1}^{n}|y_i - \hat{y}_i|</span>
 <span id="cb48-281"><a href="#cb48-281" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb48-282"><a href="#cb48-282" aria-hidden="true" tabindex="-1"></a>MAE = \frac{1}{n}\sum_{i=1}^{n}|y_i - \hat{y}_i|</span>
-<span id="cb48-283"><a href="#cb48-283" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb48-282"><a href="#cb48-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-283"><a href="#cb48-283" aria-hidden="true" tabindex="-1"></a>Where:</span>
 <span id="cb48-284"><a href="#cb48-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-285"><a href="#cb48-285" aria-hidden="true" tabindex="-1"></a>Where:</span>
-<span id="cb48-286"><a href="#cb48-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-287"><a href="#cb48-287" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$n$ = number of observations</span>
-<span id="cb48-288"><a href="#cb48-288" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$y_i$ = actual value for observation $i$</span>
-<span id="cb48-289"><a href="#cb48-289" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\hat{y}_i$ = predicted value for observation $i$</span>
-<span id="cb48-290"><a href="#cb48-290" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$|y_i - \hat{y}_i|$ = absolute prediction error for observation $i$</span>
-<span id="cb48-291"><a href="#cb48-291" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb48-292"><a href="#cb48-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-293"><a href="#cb48-293" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg-plot}</span></span>
-<span id="cb48-294"><a href="#cb48-294" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4.5</span></span>
-<span id="cb48-295"><a href="#cb48-295" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
-<span id="cb48-296"><a href="#cb48-296" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(reg_preds, <span class="fu">aes</span>(<span class="at">x =</span> order_value_next, <span class="at">y =</span> .pred)) <span class="sc">+</span></span>
-<span id="cb48-297"><a href="#cb48-297" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">color =</span> <span class="st">&quot;#2E5266&quot;</span>) <span class="sc">+</span></span>
-<span id="cb48-298"><a href="#cb48-298" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;tomato&quot;</span>) <span class="sc">+</span></span>
-<span id="cb48-299"><a href="#cb48-299" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb48-300"><a href="#cb48-300" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Predicted vs. Actual Next-Order Value&quot;</span>,</span>
-<span id="cb48-301"><a href="#cb48-301" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Dashed line = perfect prediction&quot;</span>,</span>
-<span id="cb48-302"><a href="#cb48-302" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Actual order value ($)&quot;</span>,</span>
-<span id="cb48-303"><a href="#cb48-303" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Predicted order value ($)&quot;</span></span>
-<span id="cb48-304"><a href="#cb48-304" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb48-305"><a href="#cb48-305" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span>
-<span id="cb48-306"><a href="#cb48-306" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-285"><a href="#cb48-285" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$n$ = number of observations</span>
+<span id="cb48-286"><a href="#cb48-286" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$y_i$ = actual value for observation $i$</span>
+<span id="cb48-287"><a href="#cb48-287" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\hat{y}_i$ = predicted value for observation $i$</span>
+<span id="cb48-288"><a href="#cb48-288" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$|y_i - \hat{y}_i|$ = absolute prediction error for observation $i$</span>
+<span id="cb48-289"><a href="#cb48-289" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb48-290"><a href="#cb48-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-291"><a href="#cb48-291" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg-plot}</span></span>
+<span id="cb48-292"><a href="#cb48-292" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4.5</span></span>
+<span id="cb48-293"><a href="#cb48-293" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
+<span id="cb48-294"><a href="#cb48-294" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(reg_preds, <span class="fu">aes</span>(<span class="at">x =</span> order_value_next, <span class="at">y =</span> .pred)) <span class="sc">+</span></span>
+<span id="cb48-295"><a href="#cb48-295" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">color =</span> <span class="st">&quot;#2E5266&quot;</span>) <span class="sc">+</span></span>
+<span id="cb48-296"><a href="#cb48-296" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;tomato&quot;</span>) <span class="sc">+</span></span>
+<span id="cb48-297"><a href="#cb48-297" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb48-298"><a href="#cb48-298" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Predicted vs. Actual Next-Order Value&quot;</span>,</span>
+<span id="cb48-299"><a href="#cb48-299" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Dashed line = perfect prediction&quot;</span>,</span>
+<span id="cb48-300"><a href="#cb48-300" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Actual order value ($)&quot;</span>,</span>
+<span id="cb48-301"><a href="#cb48-301" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Predicted order value ($)&quot;</span></span>
+<span id="cb48-302"><a href="#cb48-302" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb48-303"><a href="#cb48-303" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span>
+<span id="cb48-304"><a href="#cb48-304" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-305"><a href="#cb48-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-306"><a href="#cb48-306" aria-hidden="true" tabindex="-1"></a><span class="fu">## Binary Classification Metrics</span></span>
 <span id="cb48-307"><a href="#cb48-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-308"><a href="#cb48-308" aria-hidden="true" tabindex="-1"></a><span class="fu">## Binary Classification Metrics</span></span>
+<span id="cb48-308"><a href="#cb48-308" aria-hidden="true" tabindex="-1"></a>Back to our <span class="in">`responded`</span> (yes/no) model. The starting point for classification metrics is the **confusion matrix**: a 2×2 table of predicted vs. actual class.</span>
 <span id="cb48-309"><a href="#cb48-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-310"><a href="#cb48-310" aria-hidden="true" tabindex="-1"></a>Back to our <span class="in">`responded`</span> (yes/no) model. The starting point for classification metrics is the **confusion matrix**: a 2×2 table of predicted vs. actual class.</span>
-<span id="cb48-311"><a href="#cb48-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-312"><a href="#cb48-312" aria-hidden="true" tabindex="-1"></a><span class="in">```{r conf-mat}</span></span>
-<span id="cb48-313"><a href="#cb48-313" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(test_preds, <span class="at">truth =</span> responded, <span class="at">estimate =</span> .pred_class)</span>
-<span id="cb48-314"><a href="#cb48-314" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-315"><a href="#cb48-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-316"><a href="#cb48-316" aria-hidden="true" tabindex="-1"></a><span class="in">```{r conf-mat-plot}</span></span>
-<span id="cb48-317"><a href="#cb48-317" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
-<span id="cb48-318"><a href="#cb48-318" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 4.5</span></span>
-<span id="cb48-319"><a href="#cb48-319" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(test_preds, <span class="at">truth =</span> responded, <span class="at">estimate =</span> .pred_class) <span class="sc">|&gt;</span></span>
-<span id="cb48-320"><a href="#cb48-320" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(<span class="at">type =</span> <span class="st">&quot;heatmap&quot;</span>)</span>
-<span id="cb48-321"><a href="#cb48-321" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-322"><a href="#cb48-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-323"><a href="#cb48-323" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;From Confusion Matrix to Metrics&quot;}</span>
-<span id="cb48-324"><a href="#cb48-324" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Metric <span class="pp">|</span> Formula (informal) <span class="pp">|</span> Marketing question it answers <span class="pp">|</span></span>
-<span id="cb48-325"><a href="#cb48-325" aria-hidden="true" tabindex="-1"></a><span class="pp">|----|----|----|</span></span>
-<span id="cb48-326"><a href="#cb48-326" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Sensitivity** (recall) <span class="pp">|</span> TP / (TP + FN) <span class="pp">|</span> Of customers who *would* respond, how many did we catch? <span class="pp">|</span></span>
-<span id="cb48-327"><a href="#cb48-327" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Specificity** <span class="pp">|</span> TN / (TN + FP) <span class="pp">|</span> Of customers who *wouldn&#39;t* respond, how many did we correctly skip? <span class="pp">|</span></span>
-<span id="cb48-328"><a href="#cb48-328" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Precision (PPV)** <span class="pp">|</span> TP / (TP + FP) <span class="pp">|</span> Of customers we targeted, how many actually responded? <span class="pp">|</span></span>
-<span id="cb48-329"><a href="#cb48-329" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Accuracy** <span class="pp">|</span> (TP + TN) / Total <span class="pp">|</span> Overall, how often is the model right? *(misleading with rare classes — see warning below)* <span class="pp">|</span></span>
-<span id="cb48-330"><a href="#cb48-330" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb48-310"><a href="#cb48-310" aria-hidden="true" tabindex="-1"></a><span class="in">```{r conf-mat}</span></span>
+<span id="cb48-311"><a href="#cb48-311" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(test_preds, <span class="at">truth =</span> responded, <span class="at">estimate =</span> .pred_class)</span>
+<span id="cb48-312"><a href="#cb48-312" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-313"><a href="#cb48-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-314"><a href="#cb48-314" aria-hidden="true" tabindex="-1"></a><span class="in">```{r conf-mat-plot}</span></span>
+<span id="cb48-315"><a href="#cb48-315" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
+<span id="cb48-316"><a href="#cb48-316" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 4.5</span></span>
+<span id="cb48-317"><a href="#cb48-317" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(test_preds, <span class="at">truth =</span> responded, <span class="at">estimate =</span> .pred_class) <span class="sc">|&gt;</span></span>
+<span id="cb48-318"><a href="#cb48-318" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(<span class="at">type =</span> <span class="st">&quot;heatmap&quot;</span>)</span>
+<span id="cb48-319"><a href="#cb48-319" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-320"><a href="#cb48-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-321"><a href="#cb48-321" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;From Confusion Matrix to Metrics&quot;}</span>
+<span id="cb48-322"><a href="#cb48-322" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Metric <span class="pp">|</span> Formula (informal) <span class="pp">|</span> Marketing question it answers <span class="pp">|</span></span>
+<span id="cb48-323"><a href="#cb48-323" aria-hidden="true" tabindex="-1"></a><span class="pp">|----|----|----|</span></span>
+<span id="cb48-324"><a href="#cb48-324" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Sensitivity** (recall) <span class="pp">|</span> TP / (TP + FN) <span class="pp">|</span> Of customers who *would* respond, how many did we catch? <span class="pp">|</span></span>
+<span id="cb48-325"><a href="#cb48-325" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Specificity** <span class="pp">|</span> TN / (TN + FP) <span class="pp">|</span> Of customers who *wouldn&#39;t* respond, how many did we correctly skip? <span class="pp">|</span></span>
+<span id="cb48-326"><a href="#cb48-326" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Precision (PPV)** <span class="pp">|</span> TP / (TP + FP) <span class="pp">|</span> Of customers we targeted, how many actually responded? <span class="pp">|</span></span>
+<span id="cb48-327"><a href="#cb48-327" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Accuracy** <span class="pp">|</span> (TP + TN) / Total <span class="pp">|</span> Overall, how often is the model right? *(misleading with rare classes — see warning below)* <span class="pp">|</span></span>
+<span id="cb48-328"><a href="#cb48-328" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb48-329"><a href="#cb48-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-330"><a href="#cb48-330" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sensitivity (Recall)</span></span>
 <span id="cb48-331"><a href="#cb48-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-332"><a href="#cb48-332" aria-hidden="true" tabindex="-1"></a><span class="in">```{r class-metrics}</span></span>
-<span id="cb48-333"><a href="#cb48-333" aria-hidden="true" tabindex="-1"></a>class_metrics <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(accuracy, sens, spec, precision, f_meas)</span>
-<span id="cb48-334"><a href="#cb48-334" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-335"><a href="#cb48-335" aria-hidden="true" tabindex="-1"></a>test_preds <span class="sc">|&gt;</span></span>
-<span id="cb48-336"><a href="#cb48-336" aria-hidden="true" tabindex="-1"></a>  <span class="fu">class_metrics</span>(<span class="at">truth =</span> responded, <span class="at">estimate =</span> .pred_class)</span>
-<span id="cb48-337"><a href="#cb48-337" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-332"><a href="#cb48-332" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;Details&quot;}</span>
+<span id="cb48-333"><a href="#cb48-333" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb48-334"><a href="#cb48-334" aria-hidden="true" tabindex="-1"></a>\text{Sensitivity} = \frac{TP}{TP + FN}</span>
+<span id="cb48-335"><a href="#cb48-335" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb48-336"><a href="#cb48-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-337"><a href="#cb48-337" aria-hidden="true" tabindex="-1"></a>Where:</span>
 <span id="cb48-338"><a href="#cb48-338" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-339"><a href="#cb48-339" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
-<span id="cb48-340"><a href="#cb48-340" aria-hidden="true" tabindex="-1"></a>**Accuracy is dangerous with imbalanced classes.** Direct-mail response rates are often only 3–8%. A model that predicts &quot;no&quot; for *everyone* could still score 95%+ accuracy while being completely useless for targeting. Always check sensitivity/specificity alongside accuracy — this is exactly the kind of trap a stakeholder unfamiliar with the data could fall into.</span>
-<span id="cb48-341"><a href="#cb48-341" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb48-342"><a href="#cb48-342" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-343"><a href="#cb48-343" aria-hidden="true" tabindex="-1"></a><span class="fu">### ROC Curve and AUC</span></span>
-<span id="cb48-344"><a href="#cb48-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-345"><a href="#cb48-345" aria-hidden="true" tabindex="-1"></a>Sensitivity and specificity above were computed at a single classification threshold (0.5 by default). The **ROC curve** shows the sensitivity/specificity trade-off across *every possible* threshold, and **AUC** summarizes the whole curve in one number.</span>
-<span id="cb48-346"><a href="#cb48-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-347"><a href="#cb48-347" aria-hidden="true" tabindex="-1"></a><span class="in">```{r roc-curve}</span></span>
-<span id="cb48-348"><a href="#cb48-348" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4.5</span></span>
-<span id="cb48-349"><a href="#cb48-349" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 5</span></span>
-<span id="cb48-350"><a href="#cb48-350" aria-hidden="true" tabindex="-1"></a>roc_data <span class="ot">&lt;-</span> test_preds <span class="sc">|&gt;</span></span>
-<span id="cb48-351"><a href="#cb48-351" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_curve</span>(<span class="at">truth =</span> responded, .pred_yes)</span>
+<span id="cb48-339"><a href="#cb48-339" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$TP$ = true positives — customers who responded and were correctly predicted to respond</span>
+<span id="cb48-340"><a href="#cb48-340" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$FN$ = false negatives — customers who responded but were incorrectly predicted not to respond</span>
+<span id="cb48-341"><a href="#cb48-341" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$TP + FN$ = total number of actual responders</span>
+<span id="cb48-342"><a href="#cb48-342" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb48-343"><a href="#cb48-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-344"><a href="#cb48-344" aria-hidden="true" tabindex="-1"></a><span class="fu">### Specificity</span></span>
+<span id="cb48-345"><a href="#cb48-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-346"><a href="#cb48-346" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;Details&quot;}</span>
+<span id="cb48-347"><a href="#cb48-347" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb48-348"><a href="#cb48-348" aria-hidden="true" tabindex="-1"></a>\text{Specificity} = \frac{TN}{TN + FP}</span>
+<span id="cb48-349"><a href="#cb48-349" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb48-350"><a href="#cb48-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-351"><a href="#cb48-351" aria-hidden="true" tabindex="-1"></a>Where:</span>
 <span id="cb48-352"><a href="#cb48-352" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-353"><a href="#cb48-353" aria-hidden="true" tabindex="-1"></a>auc_val <span class="ot">&lt;-</span> test_preds <span class="sc">|&gt;</span></span>
-<span id="cb48-354"><a href="#cb48-354" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_auc</span>(<span class="at">truth =</span> responded, .pred_yes) <span class="sc">|&gt;</span></span>
-<span id="cb48-355"><a href="#cb48-355" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(.estimate)</span>
-<span id="cb48-356"><a href="#cb48-356" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-357"><a href="#cb48-357" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(roc_data) <span class="sc">+</span></span>
-<span id="cb48-358"><a href="#cb48-358" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
-<span id="cb48-359"><a href="#cb48-359" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;text&quot;</span>,</span>
-<span id="cb48-360"><a href="#cb48-360" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">0.6</span>,</span>
-<span id="cb48-361"><a href="#cb48-361" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fl">0.2</span>,</span>
-<span id="cb48-362"><a href="#cb48-362" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;AUC = &quot;</span>, <span class="fu">round</span>(auc_val, <span class="dv">3</span>)),</span>
-<span id="cb48-363"><a href="#cb48-363" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">5</span>,</span>
-<span id="cb48-364"><a href="#cb48-364" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;#2E5266&quot;</span>,</span>
-<span id="cb48-365"><a href="#cb48-365" aria-hidden="true" tabindex="-1"></a>    <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span></span>
-<span id="cb48-366"><a href="#cb48-366" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb48-367"><a href="#cb48-367" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb48-368"><a href="#cb48-368" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;ROC Curve — Direct-Mail Response Model&quot;</span>,</span>
-<span id="cb48-369"><a href="#cb48-369" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Closer to the top-left corner = better discrimination&quot;</span></span>
-<span id="cb48-370"><a href="#cb48-370" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb48-371"><a href="#cb48-371" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span>
-<span id="cb48-372"><a href="#cb48-372" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-353"><a href="#cb48-353" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$TN$ = true negatives — customers who did not respond and were correctly predicted not to respond</span>
+<span id="cb48-354"><a href="#cb48-354" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$FP$ = false positives — customers who did not respond but were incorrectly predicted to respond</span>
+<span id="cb48-355"><a href="#cb48-355" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$TN + FP$ = total number of actual non-responders</span>
+<span id="cb48-356"><a href="#cb48-356" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb48-357"><a href="#cb48-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-358"><a href="#cb48-358" aria-hidden="true" tabindex="-1"></a><span class="fu">### Precision (PPV)</span></span>
+<span id="cb48-359"><a href="#cb48-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-360"><a href="#cb48-360" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;Details&quot;}</span>
+<span id="cb48-361"><a href="#cb48-361" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb48-362"><a href="#cb48-362" aria-hidden="true" tabindex="-1"></a>\text{Precision} = \frac{TP}{TP + FP}</span>
+<span id="cb48-363"><a href="#cb48-363" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb48-364"><a href="#cb48-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-365"><a href="#cb48-365" aria-hidden="true" tabindex="-1"></a>Where:</span>
+<span id="cb48-366"><a href="#cb48-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-367"><a href="#cb48-367" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$TP$ = true positives — correctly predicted responders</span>
+<span id="cb48-368"><a href="#cb48-368" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$FP$ = false positives — non-responders incorrectly predicted as responders</span>
+<span id="cb48-369"><a href="#cb48-369" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$TP + FP$ = total number of customers predicted to respond</span>
+<span id="cb48-370"><a href="#cb48-370" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb48-371"><a href="#cb48-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-372"><a href="#cb48-372" aria-hidden="true" tabindex="-1"></a><span class="fu">### Accuracy</span></span>
 <span id="cb48-373"><a href="#cb48-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-374"><a href="#cb48-374" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb48-375"><a href="#cb48-375" aria-hidden="true" tabindex="-1"></a>**Rule of thumb.** AUC = 0.5 means the model is no better than a coin flip. AUC = 1.0 is a perfect classifier (rare in practice). For direct-mail targeting, AUC <span class="sc">\&gt;</span> 0.65 is often usable; <span class="sc">\&gt;</span> 0.75 is quite good.</span>
-<span id="cb48-376"><a href="#cb48-376" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb48-377"><a href="#cb48-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-378"><a href="#cb48-378" aria-hidden="true" tabindex="-1"></a><span class="fu">## Multiclass Classification Metrics</span></span>
-<span id="cb48-379"><a href="#cb48-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-380"><a href="#cb48-380" aria-hidden="true" tabindex="-1"></a><span class="in">`loyalty_tier`</span> (Bronze/Silver/Gold/Platinum) is a 4-level outcome. While we won&#39;t build a full multiclass model here, it&#39;s worth knowing how the binary metrics above generalize.</span>
-<span id="cb48-381"><a href="#cb48-381" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-382"><a href="#cb48-382" aria-hidden="true" tabindex="-1"></a><span class="in">```{r multiclass-demo}</span></span>
-<span id="cb48-383"><a href="#cb48-383" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstration only: predict loyalty_tier from age + income as a toy multiclass model</span></span>
-<span id="cb48-384"><a href="#cb48-384" aria-hidden="true" tabindex="-1"></a>multi_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(loyalty_tier <span class="sc">~</span> age <span class="sc">+</span> income, <span class="at">data =</span> mail_train) <span class="sc">|&gt;</span></span>
-<span id="cb48-385"><a href="#cb48-385" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_impute_median</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb48-386"><a href="#cb48-386" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>())</span>
+<span id="cb48-374"><a href="#cb48-374" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;Details&quot;}</span>
+<span id="cb48-375"><a href="#cb48-375" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb48-376"><a href="#cb48-376" aria-hidden="true" tabindex="-1"></a>\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}</span>
+<span id="cb48-377"><a href="#cb48-377" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb48-378"><a href="#cb48-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-379"><a href="#cb48-379" aria-hidden="true" tabindex="-1"></a>Where:</span>
+<span id="cb48-380"><a href="#cb48-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-381"><a href="#cb48-381" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$TP$ = true positives</span>
+<span id="cb48-382"><a href="#cb48-382" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$TN$ = true negatives</span>
+<span id="cb48-383"><a href="#cb48-383" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$FP$ = false positives</span>
+<span id="cb48-384"><a href="#cb48-384" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$FN$ = false negatives</span>
+<span id="cb48-385"><a href="#cb48-385" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$TP + TN + FP + FN$ = total number of observations</span>
+<span id="cb48-386"><a href="#cb48-386" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb48-387"><a href="#cb48-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-388"><a href="#cb48-388" aria-hidden="true" tabindex="-1"></a>multi_spec <span class="ot">&lt;-</span> <span class="fu">multinom_reg</span>() <span class="sc">|&gt;</span> <span class="fu">set_engine</span>(<span class="st">&quot;nnet&quot;</span>)</span>
+<span id="cb48-388"><a href="#cb48-388" aria-hidden="true" tabindex="-1"></a><span class="fu">### F1 Score</span></span>
 <span id="cb48-389"><a href="#cb48-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-390"><a href="#cb48-390" aria-hidden="true" tabindex="-1"></a>multi_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span> <span class="fu">add_recipe</span>(multi_rec) <span class="sc">|&gt;</span> <span class="fu">add_model</span>(multi_spec)</span>
-<span id="cb48-391"><a href="#cb48-391" aria-hidden="true" tabindex="-1"></a>multi_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(multi_wf, <span class="at">data =</span> mail_train)</span>
-<span id="cb48-392"><a href="#cb48-392" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-393"><a href="#cb48-393" aria-hidden="true" tabindex="-1"></a>multi_preds <span class="ot">&lt;-</span> <span class="fu">augment</span>(multi_fit, <span class="at">new_data =</span> mail_test)</span>
+<span id="cb48-390"><a href="#cb48-390" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;Details&quot;}</span>
+<span id="cb48-391"><a href="#cb48-391" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb48-392"><a href="#cb48-392" aria-hidden="true" tabindex="-1"></a>F_1 = 2 \times \frac{\text{Precision} \times \text{Sensitivity}}{\text{Precision} + \text{Sensitivity}}</span>
+<span id="cb48-393"><a href="#cb48-393" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb48-394"><a href="#cb48-394" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-395"><a href="#cb48-395" aria-hidden="true" tabindex="-1"></a>multi_preds <span class="sc">|&gt;</span></span>
-<span id="cb48-396"><a href="#cb48-396" aria-hidden="true" tabindex="-1"></a>  <span class="fu">metric_set</span>(accuracy, sens)(<span class="at">truth =</span> loyalty_tier, <span class="at">estimate =</span> .pred_class)</span>
-<span id="cb48-397"><a href="#cb48-397" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-398"><a href="#cb48-398" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-399"><a href="#cb48-399" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;How Binary Metrics Generalize to Multiclass&quot;}</span>
-<span id="cb48-400"><a href="#cb48-400" aria-hidden="true" tabindex="-1"></a>With more than two classes, <span class="in">`yardstick`</span> computes a metric *per class* (treating each as &quot;this class&quot; vs. &quot;all others&quot;), then **averages** across classes. The default is **macro-averaging** — each class counts equally, regardless of how many observations it has. This matters for <span class="in">`loyalty_tier`</span>: Platinum customers are rare, but macro-averaging keeps them from being drowned out by the much larger Bronze group.</span>
-<span id="cb48-401"><a href="#cb48-401" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb48-402"><a href="#cb48-402" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-403"><a href="#cb48-403" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb48-395"><a href="#cb48-395" aria-hidden="true" tabindex="-1"></a>Where:</span>
+<span id="cb48-396"><a href="#cb48-396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-397"><a href="#cb48-397" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\text{Precision} = \frac{TP}{TP + FP}$</span>
+<span id="cb48-398"><a href="#cb48-398" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\text{Sensitivity} = \frac{TP}{TP + FN}$</span>
+<span id="cb48-399"><a href="#cb48-399" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$F_1$ is the harmonic mean of precision and sensitivity — useful when both matter equally and the classes are imbalanced</span>
+<span id="cb48-400"><a href="#cb48-400" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb48-401"><a href="#cb48-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-402"><a href="#cb48-402" aria-hidden="true" tabindex="-1"></a><span class="in">```{r class-metrics}</span></span>
+<span id="cb48-403"><a href="#cb48-403" aria-hidden="true" tabindex="-1"></a>class_metrics <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(accuracy, sens, spec, precision, f_meas)</span>
 <span id="cb48-404"><a href="#cb48-404" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-405"><a href="#cb48-405" aria-hidden="true" tabindex="-1"></a><span class="fu"># Part 2 — Resampling for Evaluating Performance (TMWR Ch. 10)</span></span>
-<span id="cb48-406"><a href="#cb48-406" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-407"><a href="#cb48-407" aria-hidden="true" tabindex="-1"></a>The metrics above were all computed on a **single** test set. That gives us *a* number — but how much would that number change if we&#39;d happened to split the data differently? Resampling answers this question.</span>
+<span id="cb48-405"><a href="#cb48-405" aria-hidden="true" tabindex="-1"></a>test_preds <span class="sc">|&gt;</span></span>
+<span id="cb48-406"><a href="#cb48-406" aria-hidden="true" tabindex="-1"></a>  <span class="fu">class_metrics</span>(<span class="at">truth =</span> responded, <span class="at">estimate =</span> .pred_class)</span>
+<span id="cb48-407"><a href="#cb48-407" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb48-408"><a href="#cb48-408" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-409"><a href="#cb48-409" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Resubstitution Problem</span></span>
-<span id="cb48-410"><a href="#cb48-410" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-411"><a href="#cb48-411" aria-hidden="true" tabindex="-1"></a>What happens if we evaluate the model on the **same data it was trained on**?</span>
+<span id="cb48-409"><a href="#cb48-409" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
+<span id="cb48-410"><a href="#cb48-410" aria-hidden="true" tabindex="-1"></a>**Accuracy is dangerous with imbalanced classes.** Direct-mail response rates are often only 3–8%. A model that predicts &quot;no&quot; for *everyone* could still score 95%+ accuracy while being completely useless for targeting. Always check sensitivity/specificity alongside accuracy — this is exactly the kind of trap a stakeholder unfamiliar with the data could fall into.</span>
+<span id="cb48-411"><a href="#cb48-411" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb48-412"><a href="#cb48-412" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-413"><a href="#cb48-413" aria-hidden="true" tabindex="-1"></a><span class="in">```{r resubstitution}</span></span>
-<span id="cb48-414"><a href="#cb48-414" aria-hidden="true" tabindex="-1"></a>train_preds <span class="ot">&lt;-</span> <span class="fu">augment</span>(mail_fit, <span class="at">new_data =</span> mail_train)</span>
-<span id="cb48-415"><a href="#cb48-415" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-416"><a href="#cb48-416" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
-<span id="cb48-417"><a href="#cb48-417" aria-hidden="true" tabindex="-1"></a>  train_preds <span class="sc">|&gt;</span></span>
-<span id="cb48-418"><a href="#cb48-418" aria-hidden="true" tabindex="-1"></a>    <span class="fu">class_metrics</span>(<span class="at">truth =</span> responded, <span class="at">estimate =</span> .pred_class) <span class="sc">|&gt;</span></span>
-<span id="cb48-419"><a href="#cb48-419" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">data =</span> <span class="st">&quot;training (resubstitution)&quot;</span>),</span>
-<span id="cb48-420"><a href="#cb48-420" aria-hidden="true" tabindex="-1"></a>  test_preds <span class="sc">|&gt;</span></span>
-<span id="cb48-421"><a href="#cb48-421" aria-hidden="true" tabindex="-1"></a>    <span class="fu">class_metrics</span>(<span class="at">truth =</span> responded, <span class="at">estimate =</span> .pred_class) <span class="sc">|&gt;</span></span>
-<span id="cb48-422"><a href="#cb48-422" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">data =</span> <span class="st">&quot;test (held out)&quot;</span>)</span>
-<span id="cb48-423"><a href="#cb48-423" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb48-424"><a href="#cb48-424" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(data, .metric, .estimate) <span class="sc">|&gt;</span></span>
-<span id="cb48-425"><a href="#cb48-425" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> data, <span class="at">values_from =</span> .estimate)</span>
-<span id="cb48-426"><a href="#cb48-426" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-427"><a href="#cb48-427" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-428"><a href="#cb48-428" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
-<span id="cb48-429"><a href="#cb48-429" aria-hidden="true" tabindex="-1"></a>**Resubstitution is optimistic.** The model has already &quot;seen&quot; the training data and partially memorized its noise, so performance measured there is inflated relative to how the model will do on genuinely new prospects. This gap is usually small for simple models like regularized logistic regression, but it can be large for flexible models (deep trees, boosted ensembles) — which is exactly why we need a principled way to estimate out-of-sample performance *without* permanently sacrificing data to a single test set.</span>
-<span id="cb48-430"><a href="#cb48-430" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb48-431"><a href="#cb48-431" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-432"><a href="#cb48-432" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why Not Just Use the Test Set Repeatedly?</span></span>
-<span id="cb48-433"><a href="#cb48-433" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-434"><a href="#cb48-434" aria-hidden="true" tabindex="-1"></a>The test set should be touched **once**, at the very end, to report final performance. If we use it over and over while comparing models or tuning hyperparameters, we implicitly start fitting to it — defeating its purpose. Resampling lets us get reliable performance estimates **using only the training data**, keeping the test set untouched until final evaluation.</span>
-<span id="cb48-435"><a href="#cb48-435" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-436"><a href="#cb48-436" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cross-Validation</span></span>
-<span id="cb48-437"><a href="#cb48-437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-438"><a href="#cb48-438" aria-hidden="true" tabindex="-1"></a>The most common resampling scheme is **v-fold (k-fold) cross-validation**: split the training data into *v* roughly equal folds, train on *v − 1* of them, evaluate on the held-out fold, and rotate until every fold has served as the validation set exactly once.</span>
-<span id="cb48-439"><a href="#cb48-439" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-440"><a href="#cb48-440" aria-hidden="true" tabindex="-1"></a><span class="in">```{r vfold}</span></span>
-<span id="cb48-441"><a href="#cb48-441" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2024</span>)</span>
-<span id="cb48-442"><a href="#cb48-442" aria-hidden="true" tabindex="-1"></a>mail_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(mail_train, <span class="at">v =</span> <span class="dv">10</span>, <span class="at">strata =</span> responded)</span>
-<span id="cb48-443"><a href="#cb48-443" aria-hidden="true" tabindex="-1"></a>mail_folds</span>
-<span id="cb48-444"><a href="#cb48-444" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-445"><a href="#cb48-445" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-446"><a href="#cb48-446" aria-hidden="true" tabindex="-1"></a><span class="in">```{r vfold-inspect}</span></span>
-<span id="cb48-447"><a href="#cb48-447" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at one fold up close</span></span>
-<span id="cb48-448"><a href="#cb48-448" aria-hidden="true" tabindex="-1"></a>mail_folds<span class="sc">$</span>splits[[<span class="dv">1</span>]]</span>
-<span id="cb48-449"><a href="#cb48-449" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-450"><a href="#cb48-450" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-451"><a href="#cb48-451" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;What <span class="in">`vfold_cv()`</span> Just Built&quot;}</span>
-<span id="cb48-452"><a href="#cb48-452" aria-hidden="true" tabindex="-1"></a><span class="in">`mail_folds`</span> is a tibble of 10 <span class="in">`rsplit`</span> objects. Each one knows which rows of <span class="in">`mail_train`</span> are the analysis set (≈ 90%, used for fitting) and which are the assessment set (≈ 10%, used for scoring) for that fold. <span class="in">`strata = responded`</span> keeps the response rate roughly constant across folds — same logic as stratifying the original train/test split in Week 2.</span>
-<span id="cb48-453"><a href="#cb48-453" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb48-454"><a href="#cb48-454" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-455"><a href="#cb48-455" aria-hidden="true" tabindex="-1"></a><span class="fu">### Visualizing the Fold Structure</span></span>
-<span id="cb48-456"><a href="#cb48-456" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-457"><a href="#cb48-457" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fold-viz}</span></span>
-<span id="cb48-458"><a href="#cb48-458" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
-<span id="cb48-459"><a href="#cb48-459" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb48-460"><a href="#cb48-460" aria-hidden="true" tabindex="-1"></a>fold_viz <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(<span class="fu">seq_along</span>(mail_folds<span class="sc">$</span>splits), <span class="cf">function</span>(i) {</span>
-<span id="cb48-461"><a href="#cb48-461" aria-hidden="true" tabindex="-1"></a>  split <span class="ot">&lt;-</span> mail_folds<span class="sc">$</span>splits[[i]]</span>
-<span id="cb48-462"><a href="#cb48-462" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
-<span id="cb48-463"><a href="#cb48-463" aria-hidden="true" tabindex="-1"></a>    <span class="at">fold =</span> i,</span>
-<span id="cb48-464"><a href="#cb48-464" aria-hidden="true" tabindex="-1"></a>    <span class="at">row =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(mail_train),</span>
-<span id="cb48-465"><a href="#cb48-465" aria-hidden="true" tabindex="-1"></a>    <span class="at">role =</span> <span class="fu">if_else</span>(</span>
-<span id="cb48-466"><a href="#cb48-466" aria-hidden="true" tabindex="-1"></a>      row <span class="sc">%in%</span> split<span class="sc">$</span>in_id,</span>
-<span id="cb48-467"><a href="#cb48-467" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;Analysis (train)&quot;</span>,</span>
-<span id="cb48-468"><a href="#cb48-468" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;Assessment (validate)&quot;</span></span>
-<span id="cb48-469"><a href="#cb48-469" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb48-470"><a href="#cb48-470" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb48-471"><a href="#cb48-471" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb48-413"><a href="#cb48-413" aria-hidden="true" tabindex="-1"></a><span class="fu">### ROC Curve and AUC</span></span>
+<span id="cb48-414"><a href="#cb48-414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-415"><a href="#cb48-415" aria-hidden="true" tabindex="-1"></a>Sensitivity and specificity above were computed at a single classification threshold (0.5 by default). The **ROC curve** shows the sensitivity/specificity trade-off across *every possible* threshold, and **AUC** summarizes the whole curve in one number.</span>
+<span id="cb48-416"><a href="#cb48-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-417"><a href="#cb48-417" aria-hidden="true" tabindex="-1"></a><span class="in">```{r roc-curve}</span></span>
+<span id="cb48-418"><a href="#cb48-418" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4.5</span></span>
+<span id="cb48-419"><a href="#cb48-419" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 5</span></span>
+<span id="cb48-420"><a href="#cb48-420" aria-hidden="true" tabindex="-1"></a>roc_data <span class="ot">&lt;-</span> test_preds <span class="sc">|&gt;</span></span>
+<span id="cb48-421"><a href="#cb48-421" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_curve</span>(<span class="at">truth =</span> responded, .pred_yes)</span>
+<span id="cb48-422"><a href="#cb48-422" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-423"><a href="#cb48-423" aria-hidden="true" tabindex="-1"></a>auc_val <span class="ot">&lt;-</span> test_preds <span class="sc">|&gt;</span></span>
+<span id="cb48-424"><a href="#cb48-424" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_auc</span>(<span class="at">truth =</span> responded, .pred_yes) <span class="sc">|&gt;</span></span>
+<span id="cb48-425"><a href="#cb48-425" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(.estimate)</span>
+<span id="cb48-426"><a href="#cb48-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-427"><a href="#cb48-427" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(roc_data) <span class="sc">+</span></span>
+<span id="cb48-428"><a href="#cb48-428" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb48-429"><a href="#cb48-429" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;text&quot;</span>,</span>
+<span id="cb48-430"><a href="#cb48-430" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">0.6</span>,</span>
+<span id="cb48-431"><a href="#cb48-431" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fl">0.2</span>,</span>
+<span id="cb48-432"><a href="#cb48-432" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;AUC = &quot;</span>, <span class="fu">round</span>(auc_val, <span class="dv">3</span>)),</span>
+<span id="cb48-433"><a href="#cb48-433" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">5</span>,</span>
+<span id="cb48-434"><a href="#cb48-434" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;#2E5266&quot;</span>,</span>
+<span id="cb48-435"><a href="#cb48-435" aria-hidden="true" tabindex="-1"></a>    <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span></span>
+<span id="cb48-436"><a href="#cb48-436" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb48-437"><a href="#cb48-437" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb48-438"><a href="#cb48-438" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;ROC Curve — Direct-Mail Response Model&quot;</span>,</span>
+<span id="cb48-439"><a href="#cb48-439" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Closer to the top-left corner = better discrimination&quot;</span></span>
+<span id="cb48-440"><a href="#cb48-440" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb48-441"><a href="#cb48-441" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span>
+<span id="cb48-442"><a href="#cb48-442" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-443"><a href="#cb48-443" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-444"><a href="#cb48-444" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb48-445"><a href="#cb48-445" aria-hidden="true" tabindex="-1"></a>**Rule of thumb.** AUC = 0.5 means the model is no better than a coin flip. AUC = 1.0 is a perfect classifier (rare in practice). For direct-mail targeting, AUC <span class="sc">\&gt;</span> 0.65 is often usable; <span class="sc">\&gt;</span> 0.75 is quite good.</span>
+<span id="cb48-446"><a href="#cb48-446" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb48-447"><a href="#cb48-447" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-448"><a href="#cb48-448" aria-hidden="true" tabindex="-1"></a><span class="fu">## Multiclass Classification Metrics</span></span>
+<span id="cb48-449"><a href="#cb48-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-450"><a href="#cb48-450" aria-hidden="true" tabindex="-1"></a><span class="in">`loyalty_tier`</span> (Bronze/Silver/Gold/Platinum) is a 4-level outcome. While we won&#39;t build a full multiclass model here, it&#39;s worth knowing how the binary metrics above generalize.</span>
+<span id="cb48-451"><a href="#cb48-451" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-452"><a href="#cb48-452" aria-hidden="true" tabindex="-1"></a><span class="in">```{r multiclass-demo}</span></span>
+<span id="cb48-453"><a href="#cb48-453" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstration only: predict loyalty_tier from age + income as a toy multiclass model</span></span>
+<span id="cb48-454"><a href="#cb48-454" aria-hidden="true" tabindex="-1"></a>multi_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(loyalty_tier <span class="sc">~</span> age <span class="sc">+</span> income, <span class="at">data =</span> mail_train) <span class="sc">|&gt;</span></span>
+<span id="cb48-455"><a href="#cb48-455" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_impute_median</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb48-456"><a href="#cb48-456" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>())</span>
+<span id="cb48-457"><a href="#cb48-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-458"><a href="#cb48-458" aria-hidden="true" tabindex="-1"></a>multi_spec <span class="ot">&lt;-</span> <span class="fu">multinom_reg</span>() <span class="sc">|&gt;</span> <span class="fu">set_engine</span>(<span class="st">&quot;nnet&quot;</span>)</span>
+<span id="cb48-459"><a href="#cb48-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-460"><a href="#cb48-460" aria-hidden="true" tabindex="-1"></a>multi_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span> <span class="fu">add_recipe</span>(multi_rec) <span class="sc">|&gt;</span> <span class="fu">add_model</span>(multi_spec)</span>
+<span id="cb48-461"><a href="#cb48-461" aria-hidden="true" tabindex="-1"></a>multi_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(multi_wf, <span class="at">data =</span> mail_train)</span>
+<span id="cb48-462"><a href="#cb48-462" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-463"><a href="#cb48-463" aria-hidden="true" tabindex="-1"></a>multi_preds <span class="ot">&lt;-</span> <span class="fu">augment</span>(multi_fit, <span class="at">new_data =</span> mail_test)</span>
+<span id="cb48-464"><a href="#cb48-464" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-465"><a href="#cb48-465" aria-hidden="true" tabindex="-1"></a>multi_preds <span class="sc">|&gt;</span></span>
+<span id="cb48-466"><a href="#cb48-466" aria-hidden="true" tabindex="-1"></a>  <span class="fu">metric_set</span>(accuracy, sens)(<span class="at">truth =</span> loyalty_tier, <span class="at">estimate =</span> .pred_class)</span>
+<span id="cb48-467"><a href="#cb48-467" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-468"><a href="#cb48-468" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-469"><a href="#cb48-469" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;How Binary Metrics Generalize to Multiclass&quot;}</span>
+<span id="cb48-470"><a href="#cb48-470" aria-hidden="true" tabindex="-1"></a>With more than two classes, <span class="in">`yardstick`</span> computes a metric *per class* (treating each as &quot;this class&quot; vs. &quot;all others&quot;), then **averages** across classes. The default is **macro-averaging** — each class counts equally, regardless of how many observations it has. This matters for <span class="in">`loyalty_tier`</span>: Platinum customers are rare, but macro-averaging keeps them from being drowned out by the much larger Bronze group.</span>
+<span id="cb48-471"><a href="#cb48-471" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb48-472"><a href="#cb48-472" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-473"><a href="#cb48-473" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fold_viz, <span class="fu">aes</span>(<span class="at">x =</span> row, <span class="at">y =</span> <span class="fu">factor</span>(fold), <span class="at">fill =</span> role)) <span class="sc">+</span></span>
-<span id="cb48-474"><a href="#cb48-474" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
-<span id="cb48-475"><a href="#cb48-475" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
-<span id="cb48-476"><a href="#cb48-476" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb48-477"><a href="#cb48-477" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;Analysis (train)&quot;</span> <span class="ot">=</span> <span class="st">&quot;#A9C0CC&quot;</span>,</span>
-<span id="cb48-478"><a href="#cb48-478" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;Assessment (validate)&quot;</span> <span class="ot">=</span> <span class="st">&quot;#C0504D&quot;</span></span>
-<span id="cb48-479"><a href="#cb48-479" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb48-480"><a href="#cb48-480" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb48-481"><a href="#cb48-481" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb48-482"><a href="#cb48-482" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;10-Fold Cross-Validation Structure&quot;</span>,</span>
-<span id="cb48-483"><a href="#cb48-483" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Each row of the training data is held out exactly once&quot;</span>,</span>
-<span id="cb48-484"><a href="#cb48-484" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Training set row index&quot;</span>,</span>
-<span id="cb48-485"><a href="#cb48-485" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Fold&quot;</span>,</span>
-<span id="cb48-486"><a href="#cb48-486" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="cn">NULL</span></span>
-<span id="cb48-487"><a href="#cb48-487" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb48-488"><a href="#cb48-488" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>) <span class="sc">+</span></span>
-<span id="cb48-489"><a href="#cb48-489" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
-<span id="cb48-490"><a href="#cb48-490" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-491"><a href="#cb48-491" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-492"><a href="#cb48-492" aria-hidden="true" tabindex="-1"></a><span class="fu">## Other Resampling Methods (Brief Tour)</span></span>
-<span id="cb48-493"><a href="#cb48-493" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-494"><a href="#cb48-494" aria-hidden="true" tabindex="-1"></a><span class="in">```{r other-resampling}</span></span>
-<span id="cb48-495"><a href="#cb48-495" aria-hidden="true" tabindex="-1"></a><span class="co"># Repeated CV: run 10-fold CV five times with different random splits</span></span>
-<span id="cb48-496"><a href="#cb48-496" aria-hidden="true" tabindex="-1"></a>repeated_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(mail_train, <span class="at">v =</span> <span class="dv">10</span>, <span class="at">repeats =</span> <span class="dv">5</span>, <span class="at">strata =</span> responded)</span>
-<span id="cb48-497"><a href="#cb48-497" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Repeated CV total resamples:&quot;</span>, <span class="fu">nrow</span>(repeated_folds), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb48-498"><a href="#cb48-498" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-499"><a href="#cb48-499" aria-hidden="true" tabindex="-1"></a><span class="co"># Bootstrap: sample WITH replacement, same size as training data</span></span>
-<span id="cb48-500"><a href="#cb48-500" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2024</span>)</span>
-<span id="cb48-501"><a href="#cb48-501" aria-hidden="true" tabindex="-1"></a>boot_resamples <span class="ot">&lt;-</span> <span class="fu">bootstraps</span>(mail_train, <span class="at">times =</span> <span class="dv">25</span>, <span class="at">strata =</span> responded)</span>
-<span id="cb48-502"><a href="#cb48-502" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Bootstrap resamples:&quot;</span>, <span class="fu">nrow</span>(boot_resamples), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb48-473"><a href="#cb48-473" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb48-474"><a href="#cb48-474" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-475"><a href="#cb48-475" aria-hidden="true" tabindex="-1"></a><span class="fu"># Part 2 — Resampling for Evaluating Performance (TMWR Ch. 10)</span></span>
+<span id="cb48-476"><a href="#cb48-476" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-477"><a href="#cb48-477" aria-hidden="true" tabindex="-1"></a>The metrics above were all computed on a **single** test set. That gives us *a* number — but how much would that number change if we&#39;d happened to split the data differently? Resampling answers this question.</span>
+<span id="cb48-478"><a href="#cb48-478" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-479"><a href="#cb48-479" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Resubstitution Problem</span></span>
+<span id="cb48-480"><a href="#cb48-480" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-481"><a href="#cb48-481" aria-hidden="true" tabindex="-1"></a>What happens if we evaluate the model on the **same data it was trained on**?</span>
+<span id="cb48-482"><a href="#cb48-482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-483"><a href="#cb48-483" aria-hidden="true" tabindex="-1"></a><span class="in">```{r resubstitution}</span></span>
+<span id="cb48-484"><a href="#cb48-484" aria-hidden="true" tabindex="-1"></a>train_preds <span class="ot">&lt;-</span> <span class="fu">augment</span>(mail_fit, <span class="at">new_data =</span> mail_train)</span>
+<span id="cb48-485"><a href="#cb48-485" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-486"><a href="#cb48-486" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
+<span id="cb48-487"><a href="#cb48-487" aria-hidden="true" tabindex="-1"></a>  train_preds <span class="sc">|&gt;</span></span>
+<span id="cb48-488"><a href="#cb48-488" aria-hidden="true" tabindex="-1"></a>    <span class="fu">class_metrics</span>(<span class="at">truth =</span> responded, <span class="at">estimate =</span> .pred_class) <span class="sc">|&gt;</span></span>
+<span id="cb48-489"><a href="#cb48-489" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">data =</span> <span class="st">&quot;training (resubstitution)&quot;</span>),</span>
+<span id="cb48-490"><a href="#cb48-490" aria-hidden="true" tabindex="-1"></a>  test_preds <span class="sc">|&gt;</span></span>
+<span id="cb48-491"><a href="#cb48-491" aria-hidden="true" tabindex="-1"></a>    <span class="fu">class_metrics</span>(<span class="at">truth =</span> responded, <span class="at">estimate =</span> .pred_class) <span class="sc">|&gt;</span></span>
+<span id="cb48-492"><a href="#cb48-492" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">data =</span> <span class="st">&quot;test (held out)&quot;</span>)</span>
+<span id="cb48-493"><a href="#cb48-493" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb48-494"><a href="#cb48-494" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(data, .metric, .estimate) <span class="sc">|&gt;</span></span>
+<span id="cb48-495"><a href="#cb48-495" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> data, <span class="at">values_from =</span> .estimate)</span>
+<span id="cb48-496"><a href="#cb48-496" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-497"><a href="#cb48-497" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-498"><a href="#cb48-498" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
+<span id="cb48-499"><a href="#cb48-499" aria-hidden="true" tabindex="-1"></a>**Resubstitution is optimistic.** The model has already &quot;seen&quot; the training data and partially memorized its noise, so performance measured there is inflated relative to how the model will do on genuinely new prospects. This gap is usually small for simple models like regularized logistic regression, but it can be large for flexible models (deep trees, boosted ensembles) — which is exactly why we need a principled way to estimate out-of-sample performance *without* permanently sacrificing data to a single test set.</span>
+<span id="cb48-500"><a href="#cb48-500" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb48-501"><a href="#cb48-501" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-502"><a href="#cb48-502" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why Not Just Use the Test Set Repeatedly?</span></span>
 <span id="cb48-503"><a href="#cb48-503" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-504"><a href="#cb48-504" aria-hidden="true" tabindex="-1"></a><span class="co"># Validation set: a single held-out chunk carved from the training data</span></span>
-<span id="cb48-505"><a href="#cb48-505" aria-hidden="true" tabindex="-1"></a>val_set <span class="ot">&lt;-</span> <span class="fu">validation_split</span>(mail_train, <span class="at">prop =</span> <span class="fl">0.80</span>, <span class="at">strata =</span> responded)</span>
-<span id="cb48-506"><a href="#cb48-506" aria-hidden="true" tabindex="-1"></a>val_set</span>
-<span id="cb48-507"><a href="#cb48-507" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-508"><a href="#cb48-508" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-509"><a href="#cb48-509" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;Which Resampling Method When?&quot;}</span>
-<span id="cb48-510"><a href="#cb48-510" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Method <span class="pp">|</span> When to use it <span class="pp">|</span> Tradeoff <span class="pp">|</span></span>
-<span id="cb48-511"><a href="#cb48-511" aria-hidden="true" tabindex="-1"></a><span class="pp">|----|----|----|</span></span>
-<span id="cb48-512"><a href="#cb48-512" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **V-fold CV** <span class="pp">|</span> Default choice for most marketing datasets <span class="pp">|</span> Good balance of bias and computation <span class="pp">|</span></span>
-<span id="cb48-513"><a href="#cb48-513" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Repeated CV** <span class="pp">|</span> Smaller datasets where fold-to-fold variability is high <span class="pp">|</span> More stable estimates, *v* × *repeats* the compute <span class="pp">|</span></span>
-<span id="cb48-514"><a href="#cb48-514" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Bootstrap** <span class="pp">|</span> Want a measure of estimate *uncertainty*, or very small data <span class="pp">|</span> Some observations never appear in assessment sets <span class="pp">|</span></span>
-<span id="cb48-515"><a href="#cb48-515" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Validation set** <span class="pp">|</span> Very large data where CV is too slow <span class="pp">|</span> Only one estimate — less stable than CV <span class="pp">|</span></span>
-<span id="cb48-516"><a href="#cb48-516" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Rolling origin** <span class="pp">|</span> Time-ordered data (e.g., monthly campaign cohorts) <span class="pp">|</span> Respects temporal order; no shuffling allowed <span class="pp">|</span></span>
-<span id="cb48-517"><a href="#cb48-517" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb48-518"><a href="#cb48-518" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-519"><a href="#cb48-519" aria-hidden="true" tabindex="-1"></a><span class="fu">## Estimating Performance with `fit_resamples()`</span></span>
+<span id="cb48-504"><a href="#cb48-504" aria-hidden="true" tabindex="-1"></a>The test set should be touched **once**, at the very end, to report final performance. If we use it over and over while comparing models or tuning hyperparameters, we implicitly start fitting to it — defeating its purpose. Resampling lets us get reliable performance estimates **using only the training data**, keeping the test set untouched until final evaluation.</span>
+<span id="cb48-505"><a href="#cb48-505" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-506"><a href="#cb48-506" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cross-Validation</span></span>
+<span id="cb48-507"><a href="#cb48-507" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-508"><a href="#cb48-508" aria-hidden="true" tabindex="-1"></a>The most common resampling scheme is **v-fold (k-fold) cross-validation**: split the training data into *v* roughly equal folds, train on *v − 1* of them, evaluate on the held-out fold, and rotate until every fold has served as the validation set exactly once.</span>
+<span id="cb48-509"><a href="#cb48-509" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-510"><a href="#cb48-510" aria-hidden="true" tabindex="-1"></a><span class="in">```{r vfold}</span></span>
+<span id="cb48-511"><a href="#cb48-511" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2024</span>)</span>
+<span id="cb48-512"><a href="#cb48-512" aria-hidden="true" tabindex="-1"></a>mail_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(mail_train, <span class="at">v =</span> <span class="dv">10</span>, <span class="at">strata =</span> responded)</span>
+<span id="cb48-513"><a href="#cb48-513" aria-hidden="true" tabindex="-1"></a>mail_folds</span>
+<span id="cb48-514"><a href="#cb48-514" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-515"><a href="#cb48-515" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-516"><a href="#cb48-516" aria-hidden="true" tabindex="-1"></a><span class="in">```{r vfold-inspect}</span></span>
+<span id="cb48-517"><a href="#cb48-517" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at one fold up close</span></span>
+<span id="cb48-518"><a href="#cb48-518" aria-hidden="true" tabindex="-1"></a>mail_folds<span class="sc">$</span>splits[[<span class="dv">1</span>]]</span>
+<span id="cb48-519"><a href="#cb48-519" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb48-520"><a href="#cb48-520" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-521"><a href="#cb48-521" aria-hidden="true" tabindex="-1"></a>This is where it all comes together: fit the workflow on each fold&#39;s analysis set, score it on the assessment set, and average the results.</span>
-<span id="cb48-522"><a href="#cb48-522" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-523"><a href="#cb48-523" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fit-resamples}</span></span>
-<span id="cb48-524"><a href="#cb48-524" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2024</span>)</span>
-<span id="cb48-525"><a href="#cb48-525" aria-hidden="true" tabindex="-1"></a>cv_results <span class="ot">&lt;-</span> <span class="fu">fit_resamples</span>(</span>
-<span id="cb48-526"><a href="#cb48-526" aria-hidden="true" tabindex="-1"></a>  mail_wf,</span>
-<span id="cb48-527"><a href="#cb48-527" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> mail_folds,</span>
-<span id="cb48-528"><a href="#cb48-528" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="fu">metric_set</span>(accuracy, roc_auc, sens, spec),</span>
-<span id="cb48-529"><a href="#cb48-529" aria-hidden="true" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">control_resamples</span>(<span class="at">save_pred =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb48-530"><a href="#cb48-530" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb48-531"><a href="#cb48-531" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-532"><a href="#cb48-532" aria-hidden="true" tabindex="-1"></a>cv_results</span>
-<span id="cb48-533"><a href="#cb48-533" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-534"><a href="#cb48-534" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-535"><a href="#cb48-535" aria-hidden="true" tabindex="-1"></a><span class="in">```{r collect-metrics}</span></span>
-<span id="cb48-536"><a href="#cb48-536" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(cv_results)</span>
-<span id="cb48-537"><a href="#cb48-537" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-538"><a href="#cb48-538" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-539"><a href="#cb48-539" aria-hidden="true" tabindex="-1"></a>::: {.callout-important title=&quot;Comparing the Single Test Set vs. Cross-Validated Estimate&quot;}</span>
-<span id="cb48-540"><a href="#cb48-540" aria-hidden="true" tabindex="-1"></a><span class="in">```{r compare-estimates}</span></span>
-<span id="cb48-541"><a href="#cb48-541" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
-<span id="cb48-542"><a href="#cb48-542" aria-hidden="true" tabindex="-1"></a>  test_preds <span class="sc">|&gt;</span></span>
-<span id="cb48-543"><a href="#cb48-543" aria-hidden="true" tabindex="-1"></a>    <span class="fu">metric_set</span>(accuracy, roc_auc)(</span>
-<span id="cb48-544"><a href="#cb48-544" aria-hidden="true" tabindex="-1"></a>      <span class="at">truth =</span> responded,</span>
-<span id="cb48-545"><a href="#cb48-545" aria-hidden="true" tabindex="-1"></a>      <span class="at">estimate =</span> .pred_class,</span>
-<span id="cb48-546"><a href="#cb48-546" aria-hidden="true" tabindex="-1"></a>      .pred_yes</span>
-<span id="cb48-547"><a href="#cb48-547" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb48-548"><a href="#cb48-548" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">source =</span> <span class="st">&quot;Single test set&quot;</span>),</span>
-<span id="cb48-549"><a href="#cb48-549" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>(cv_results) <span class="sc">|&gt;</span></span>
-<span id="cb48-550"><a href="#cb48-550" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(.metric <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;accuracy&quot;</span>, <span class="st">&quot;roc_auc&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb48-551"><a href="#cb48-551" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(.metric, <span class="at">.estimate =</span> mean) <span class="sc">|&gt;</span></span>
-<span id="cb48-552"><a href="#cb48-552" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">source =</span> <span class="st">&quot;10-fold CV mean&quot;</span>)</span>
-<span id="cb48-553"><a href="#cb48-553" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb48-554"><a href="#cb48-554" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(source, .metric, .estimate) <span class="sc">|&gt;</span></span>
-<span id="cb48-555"><a href="#cb48-555" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> source, <span class="at">values_from =</span> .estimate)</span>
-<span id="cb48-556"><a href="#cb48-556" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-557"><a href="#cb48-557" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-558"><a href="#cb48-558" aria-hidden="true" tabindex="-1"></a>The single test-set number is **one draw** from a distribution of possible performance estimates. The cross-validated mean averages over 10 different draws, giving a more stable — and more honest — picture of how the model is likely to perform on new prospects. The standard error reported by <span class="in">`collect_metrics()`</span> tells us how much that estimate might wobble.</span>
-<span id="cb48-559"><a href="#cb48-559" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb48-560"><a href="#cb48-560" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-561"><a href="#cb48-561" aria-hidden="true" tabindex="-1"></a><span class="in">```{r per-fold-metrics}</span></span>
-<span id="cb48-562"><a href="#cb48-562" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(cv_results, <span class="at">summarize =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb48-563"><a href="#cb48-563" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">&quot;roc_auc&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb48-564"><a href="#cb48-564" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">y =</span> .estimate)) <span class="sc">+</span></span>
-<span id="cb48-565"><a href="#cb48-565" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#2E5266&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.85</span>) <span class="sc">+</span></span>
-<span id="cb48-566"><a href="#cb48-566" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(</span>
-<span id="cb48-567"><a href="#cb48-567" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(.estimate)),</span>
-<span id="cb48-568"><a href="#cb48-568" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
-<span id="cb48-569"><a href="#cb48-569" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;tomato&quot;</span></span>
-<span id="cb48-570"><a href="#cb48-570" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb48-571"><a href="#cb48-571" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb48-572"><a href="#cb48-572" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;ROC AUC by Fold&quot;</span>,</span>
-<span id="cb48-573"><a href="#cb48-573" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Dashed line = mean across all 10 folds&quot;</span>,</span>
-<span id="cb48-574"><a href="#cb48-574" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Fold&quot;</span>,</span>
-<span id="cb48-575"><a href="#cb48-575" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;ROC AUC&quot;</span></span>
-<span id="cb48-576"><a href="#cb48-576" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb48-577"><a href="#cb48-577" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb48-578"><a href="#cb48-578" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
-<span id="cb48-579"><a href="#cb48-579" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-580"><a href="#cb48-580" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-581"><a href="#cb48-581" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parallel Processing (Conceptual Note)</span></span>
-<span id="cb48-582"><a href="#cb48-582" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-583"><a href="#cb48-583" aria-hidden="true" tabindex="-1"></a><span class="in">```{r parallel-note, eval=FALSE}</span></span>
-<span id="cb48-584"><a href="#cb48-584" aria-hidden="true" tabindex="-1"></a><span class="co"># Resampling fits the same workflow many times — an embarrassingly parallel task.</span></span>
-<span id="cb48-585"><a href="#cb48-585" aria-hidden="true" tabindex="-1"></a><span class="co"># On a multi-core machine, register a parallel backend before fit_resamples():</span></span>
-<span id="cb48-586"><a href="#cb48-586" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-587"><a href="#cb48-587" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doParallel)</span>
-<span id="cb48-588"><a href="#cb48-588" aria-hidden="true" tabindex="-1"></a>cl <span class="ot">&lt;-</span> <span class="fu">makePSOCKcluster</span>(parallel<span class="sc">::</span><span class="fu">detectCores</span>() <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb48-589"><a href="#cb48-589" aria-hidden="true" tabindex="-1"></a><span class="fu">registerDoParallel</span>(cl)</span>
+<span id="cb48-521"><a href="#cb48-521" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;What <span class="in">`vfold_cv()`</span> Just Built&quot;}</span>
+<span id="cb48-522"><a href="#cb48-522" aria-hidden="true" tabindex="-1"></a><span class="in">`mail_folds`</span> is a tibble of 10 <span class="in">`rsplit`</span> objects. Each one knows which rows of <span class="in">`mail_train`</span> are the analysis set (≈ 90%, used for fitting) and which are the assessment set (≈ 10%, used for scoring) for that fold. <span class="in">`strata = responded`</span> keeps the response rate roughly constant across folds — same logic as stratifying the original train/test split in Week 2.</span>
+<span id="cb48-523"><a href="#cb48-523" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb48-524"><a href="#cb48-524" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-525"><a href="#cb48-525" aria-hidden="true" tabindex="-1"></a><span class="fu">### Visualizing the Fold Structure</span></span>
+<span id="cb48-526"><a href="#cb48-526" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-527"><a href="#cb48-527" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fold-viz}</span></span>
+<span id="cb48-528"><a href="#cb48-528" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
+<span id="cb48-529"><a href="#cb48-529" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb48-530"><a href="#cb48-530" aria-hidden="true" tabindex="-1"></a>fold_viz <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(<span class="fu">seq_along</span>(mail_folds<span class="sc">$</span>splits), <span class="cf">function</span>(i) {</span>
+<span id="cb48-531"><a href="#cb48-531" aria-hidden="true" tabindex="-1"></a>  split <span class="ot">&lt;-</span> mail_folds<span class="sc">$</span>splits[[i]]</span>
+<span id="cb48-532"><a href="#cb48-532" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb48-533"><a href="#cb48-533" aria-hidden="true" tabindex="-1"></a>    <span class="at">fold =</span> i,</span>
+<span id="cb48-534"><a href="#cb48-534" aria-hidden="true" tabindex="-1"></a>    <span class="at">row =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(mail_train),</span>
+<span id="cb48-535"><a href="#cb48-535" aria-hidden="true" tabindex="-1"></a>    <span class="at">role =</span> <span class="fu">if_else</span>(</span>
+<span id="cb48-536"><a href="#cb48-536" aria-hidden="true" tabindex="-1"></a>      row <span class="sc">%in%</span> split<span class="sc">$</span>in_id,</span>
+<span id="cb48-537"><a href="#cb48-537" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;Analysis (train)&quot;</span>,</span>
+<span id="cb48-538"><a href="#cb48-538" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;Assessment (validate)&quot;</span></span>
+<span id="cb48-539"><a href="#cb48-539" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb48-540"><a href="#cb48-540" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb48-541"><a href="#cb48-541" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb48-542"><a href="#cb48-542" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-543"><a href="#cb48-543" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fold_viz, <span class="fu">aes</span>(<span class="at">x =</span> row, <span class="at">y =</span> <span class="fu">factor</span>(fold), <span class="at">fill =</span> role)) <span class="sc">+</span></span>
+<span id="cb48-544"><a href="#cb48-544" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb48-545"><a href="#cb48-545" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb48-546"><a href="#cb48-546" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb48-547"><a href="#cb48-547" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;Analysis (train)&quot;</span> <span class="ot">=</span> <span class="st">&quot;#A9C0CC&quot;</span>,</span>
+<span id="cb48-548"><a href="#cb48-548" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;Assessment (validate)&quot;</span> <span class="ot">=</span> <span class="st">&quot;#C0504D&quot;</span></span>
+<span id="cb48-549"><a href="#cb48-549" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb48-550"><a href="#cb48-550" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb48-551"><a href="#cb48-551" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb48-552"><a href="#cb48-552" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;10-Fold Cross-Validation Structure&quot;</span>,</span>
+<span id="cb48-553"><a href="#cb48-553" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Each row of the training data is held out exactly once&quot;</span>,</span>
+<span id="cb48-554"><a href="#cb48-554" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Training set row index&quot;</span>,</span>
+<span id="cb48-555"><a href="#cb48-555" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Fold&quot;</span>,</span>
+<span id="cb48-556"><a href="#cb48-556" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="cn">NULL</span></span>
+<span id="cb48-557"><a href="#cb48-557" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb48-558"><a href="#cb48-558" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>) <span class="sc">+</span></span>
+<span id="cb48-559"><a href="#cb48-559" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
+<span id="cb48-560"><a href="#cb48-560" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-561"><a href="#cb48-561" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-562"><a href="#cb48-562" aria-hidden="true" tabindex="-1"></a><span class="fu">## Other Resampling Methods (Brief Tour)</span></span>
+<span id="cb48-563"><a href="#cb48-563" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-564"><a href="#cb48-564" aria-hidden="true" tabindex="-1"></a><span class="in">```{r other-resampling}</span></span>
+<span id="cb48-565"><a href="#cb48-565" aria-hidden="true" tabindex="-1"></a><span class="co"># Repeated CV: run 10-fold CV five times with different random splits</span></span>
+<span id="cb48-566"><a href="#cb48-566" aria-hidden="true" tabindex="-1"></a>repeated_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(mail_train, <span class="at">v =</span> <span class="dv">10</span>, <span class="at">repeats =</span> <span class="dv">5</span>, <span class="at">strata =</span> responded)</span>
+<span id="cb48-567"><a href="#cb48-567" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Repeated CV total resamples:&quot;</span>, <span class="fu">nrow</span>(repeated_folds), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb48-568"><a href="#cb48-568" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-569"><a href="#cb48-569" aria-hidden="true" tabindex="-1"></a><span class="co"># Bootstrap: sample WITH replacement, same size as training data</span></span>
+<span id="cb48-570"><a href="#cb48-570" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2024</span>)</span>
+<span id="cb48-571"><a href="#cb48-571" aria-hidden="true" tabindex="-1"></a>boot_resamples <span class="ot">&lt;-</span> <span class="fu">bootstraps</span>(mail_train, <span class="at">times =</span> <span class="dv">25</span>, <span class="at">strata =</span> responded)</span>
+<span id="cb48-572"><a href="#cb48-572" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Bootstrap resamples:&quot;</span>, <span class="fu">nrow</span>(boot_resamples), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb48-573"><a href="#cb48-573" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-574"><a href="#cb48-574" aria-hidden="true" tabindex="-1"></a><span class="co"># Validation set: a single held-out chunk carved from the training data</span></span>
+<span id="cb48-575"><a href="#cb48-575" aria-hidden="true" tabindex="-1"></a>val_set <span class="ot">&lt;-</span> <span class="fu">validation_split</span>(mail_train, <span class="at">prop =</span> <span class="fl">0.80</span>, <span class="at">strata =</span> responded)</span>
+<span id="cb48-576"><a href="#cb48-576" aria-hidden="true" tabindex="-1"></a>val_set</span>
+<span id="cb48-577"><a href="#cb48-577" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-578"><a href="#cb48-578" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-579"><a href="#cb48-579" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;Which Resampling Method When?&quot;}</span>
+<span id="cb48-580"><a href="#cb48-580" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Method <span class="pp">|</span> When to use it <span class="pp">|</span> Tradeoff <span class="pp">|</span></span>
+<span id="cb48-581"><a href="#cb48-581" aria-hidden="true" tabindex="-1"></a><span class="pp">|----|----|----|</span></span>
+<span id="cb48-582"><a href="#cb48-582" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **V-fold CV** <span class="pp">|</span> Default choice for most marketing datasets <span class="pp">|</span> Good balance of bias and computation <span class="pp">|</span></span>
+<span id="cb48-583"><a href="#cb48-583" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Repeated CV** <span class="pp">|</span> Smaller datasets where fold-to-fold variability is high <span class="pp">|</span> More stable estimates, *v* × *repeats* the compute <span class="pp">|</span></span>
+<span id="cb48-584"><a href="#cb48-584" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Bootstrap** <span class="pp">|</span> Want a measure of estimate *uncertainty*, or very small data <span class="pp">|</span> Some observations never appear in assessment sets <span class="pp">|</span></span>
+<span id="cb48-585"><a href="#cb48-585" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Validation set** <span class="pp">|</span> Very large data where CV is too slow <span class="pp">|</span> Only one estimate — less stable than CV <span class="pp">|</span></span>
+<span id="cb48-586"><a href="#cb48-586" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Rolling origin** <span class="pp">|</span> Time-ordered data (e.g., monthly campaign cohorts) <span class="pp">|</span> Respects temporal order; no shuffling allowed <span class="pp">|</span></span>
+<span id="cb48-587"><a href="#cb48-587" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb48-588"><a href="#cb48-588" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-589"><a href="#cb48-589" aria-hidden="true" tabindex="-1"></a><span class="fu">## Estimating Performance with `fit_resamples()`</span></span>
 <span id="cb48-590"><a href="#cb48-590" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-591"><a href="#cb48-591" aria-hidden="true" tabindex="-1"></a>cv_results <span class="ot">&lt;-</span> <span class="fu">fit_resamples</span>(mail_wf, <span class="at">resamples =</span> mail_folds)</span>
+<span id="cb48-591"><a href="#cb48-591" aria-hidden="true" tabindex="-1"></a>This is where it all comes together: fit the workflow on each fold&#39;s analysis set, score it on the assessment set, and average the results.</span>
 <span id="cb48-592"><a href="#cb48-592" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-593"><a href="#cb48-593" aria-hidden="true" tabindex="-1"></a><span class="fu">stopCluster</span>(cl)</span>
-<span id="cb48-594"><a href="#cb48-594" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-595"><a href="#cb48-595" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-596"><a href="#cb48-596" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb48-597"><a href="#cb48-597" aria-hidden="true" tabindex="-1"></a>We don&#39;t run this chunk live in class (it depends on your machine&#39;s core count), but know that <span class="in">`fit_resamples()`</span>, <span class="in">`tune_grid()`</span>, and friends all parallelize automatically once a backend is registered — useful once your resampling scheme + grid search gets large later in the course.</span>
-<span id="cb48-598"><a href="#cb48-598" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb48-599"><a href="#cb48-599" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-600"><a href="#cb48-600" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saving Resampled Objects</span></span>
+<span id="cb48-593"><a href="#cb48-593" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fit-resamples}</span></span>
+<span id="cb48-594"><a href="#cb48-594" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2024</span>)</span>
+<span id="cb48-595"><a href="#cb48-595" aria-hidden="true" tabindex="-1"></a>cv_results <span class="ot">&lt;-</span> <span class="fu">fit_resamples</span>(</span>
+<span id="cb48-596"><a href="#cb48-596" aria-hidden="true" tabindex="-1"></a>  mail_wf,</span>
+<span id="cb48-597"><a href="#cb48-597" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> mail_folds,</span>
+<span id="cb48-598"><a href="#cb48-598" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="fu">metric_set</span>(accuracy, roc_auc, sens, spec),</span>
+<span id="cb48-599"><a href="#cb48-599" aria-hidden="true" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">control_resamples</span>(<span class="at">save_pred =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb48-600"><a href="#cb48-600" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb48-601"><a href="#cb48-601" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-602"><a href="#cb48-602" aria-hidden="true" tabindex="-1"></a><span class="in">```{r save-predictions}</span></span>
-<span id="cb48-603"><a href="#cb48-603" aria-hidden="true" tabindex="-1"></a><span class="co"># Because we set save_pred = TRUE above, we can pull out every held-out prediction</span></span>
-<span id="cb48-604"><a href="#cb48-604" aria-hidden="true" tabindex="-1"></a>cv_preds <span class="ot">&lt;-</span> <span class="fu">collect_predictions</span>(cv_results)</span>
-<span id="cb48-605"><a href="#cb48-605" aria-hidden="true" tabindex="-1"></a>cv_preds <span class="sc">|&gt;</span> <span class="fu">select</span>(id, .row, responded, .pred_class, .pred_yes) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
-<span id="cb48-606"><a href="#cb48-606" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-607"><a href="#cb48-607" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-608"><a href="#cb48-608" aria-hidden="true" tabindex="-1"></a><span class="in">```{r cv-roc}</span></span>
-<span id="cb48-609"><a href="#cb48-609" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4.5</span></span>
-<span id="cb48-610"><a href="#cb48-610" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 5</span></span>
-<span id="cb48-611"><a href="#cb48-611" aria-hidden="true" tabindex="-1"></a>cv_preds <span class="sc">|&gt;</span></span>
-<span id="cb48-612"><a href="#cb48-612" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id) <span class="sc">|&gt;</span></span>
-<span id="cb48-613"><a href="#cb48-613" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_curve</span>(<span class="at">truth =</span> responded, .pred_yes) <span class="sc">|&gt;</span></span>
-<span id="cb48-614"><a href="#cb48-614" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span> <span class="sc">-</span> specificity, <span class="at">y =</span> sensitivity, <span class="at">color =</span> id)) <span class="sc">+</span></span>
-<span id="cb48-615"><a href="#cb48-615" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb48-616"><a href="#cb48-616" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;gray60&quot;</span>) <span class="sc">+</span></span>
-<span id="cb48-617"><a href="#cb48-617" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb48-618"><a href="#cb48-618" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;ROC Curves Across All 10 Folds&quot;</span>,</span>
-<span id="cb48-619"><a href="#cb48-619" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Spread between lines = fold-to-fold variability&quot;</span>,</span>
-<span id="cb48-620"><a href="#cb48-620" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;Fold&quot;</span></span>
-<span id="cb48-621"><a href="#cb48-621" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb48-622"><a href="#cb48-622" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>) <span class="sc">+</span></span>
-<span id="cb48-623"><a href="#cb48-623" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb48-624"><a href="#cb48-624" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-625"><a href="#cb48-625" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-626"><a href="#cb48-626" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
-<span id="cb48-627"><a href="#cb48-627" aria-hidden="true" tabindex="-1"></a>**Why save predictions?** With <span class="in">`save_pred = TRUE`</span>, we get every out-of-fold prediction back, which lets us build diagnostic plots like the multi-fold ROC curve above, inspect specific misclassified prospects, or build custom metrics — all without ever touching the test set.</span>
-<span id="cb48-628"><a href="#cb48-628" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb48-629"><a href="#cb48-629" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-630"><a href="#cb48-630" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb48-631"><a href="#cb48-631" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-632"><a href="#cb48-632" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercises</span></span>
-<span id="cb48-633"><a href="#cb48-633" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-634"><a href="#cb48-634" aria-hidden="true" tabindex="-1"></a><span class="fu">## ✏️ Exercise 9.1 — Precision vs. Sensitivity Tradeoff</span></span>
-<span id="cb48-635"><a href="#cb48-635" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-636"><a href="#cb48-636" aria-hidden="true" tabindex="-1"></a>Using <span class="in">`test_preds`</span>, compute <span class="in">`precision`</span> and <span class="in">`sens`</span> at the default 0.5 threshold. Now manually create a new <span class="in">`.pred_class`</span> column using a threshold of 0.3 instead (classify as &quot;yes&quot; if <span class="in">`.pred_yes &gt; 0.3`</span>). Recompute both metrics. Which one increased, and why does lowering the threshold have that effect?</span>
-<span id="cb48-637"><a href="#cb48-637" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-638"><a href="#cb48-638" aria-hidden="true" tabindex="-1"></a><span class="in">```{r ex9-1, eval=FALSE}</span></span>
-<span id="cb48-639"><a href="#cb48-639" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
-<span id="cb48-640"><a href="#cb48-640" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-641"><a href="#cb48-641" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-642"><a href="#cb48-642" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-643"><a href="#cb48-643" aria-hidden="true" tabindex="-1"></a><span class="fu">## ✏️ Exercise 9.2 — Build a Custom `metric_set()`</span></span>
-<span id="cb48-644"><a href="#cb48-644" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-645"><a href="#cb48-645" aria-hidden="true" tabindex="-1"></a>Create a <span class="in">`metric_set()`</span> containing <span class="in">`accuracy`</span>, <span class="in">`roc_auc`</span>, <span class="in">`sens`</span>, <span class="in">`spec`</span>, and <span class="in">`f_meas`</span>. Apply it to <span class="in">`test_preds`</span>. If you had to report just **two** of these five numbers to a VP of Marketing, which would you choose and why?</span>
-<span id="cb48-646"><a href="#cb48-646" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-647"><a href="#cb48-647" aria-hidden="true" tabindex="-1"></a><span class="in">```{r ex9-2, eval=FALSE}</span></span>
-<span id="cb48-648"><a href="#cb48-648" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
-<span id="cb48-649"><a href="#cb48-649" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-650"><a href="#cb48-650" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-651"><a href="#cb48-651" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-652"><a href="#cb48-652" aria-hidden="true" tabindex="-1"></a><span class="fu">## ✏️ Exercise 9.3 — Regression Metric Sensitivity to Outliers</span></span>
-<span id="cb48-653"><a href="#cb48-653" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-654"><a href="#cb48-654" aria-hidden="true" tabindex="-1"></a>Add one synthetic &quot;whale&quot; customer to <span class="in">`reg_preds`</span> with <span class="in">`order_value_next = 5000`</span> and <span class="in">`.pred = 200`</span> (a badly missed prediction). Recompute <span class="in">`rmse`</span> and <span class="in">`mae`</span>. Which metric moved more in percentage terms? What does this tell you about choosing RMSE vs. MAE for marketing data with occasional huge orders?</span>
-<span id="cb48-655"><a href="#cb48-655" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-656"><a href="#cb48-656" aria-hidden="true" tabindex="-1"></a><span class="in">```{r ex9-3, eval=FALSE}</span></span>
-<span id="cb48-657"><a href="#cb48-657" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
-<span id="cb48-658"><a href="#cb48-658" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-659"><a href="#cb48-659" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-602"><a href="#cb48-602" aria-hidden="true" tabindex="-1"></a>cv_results</span>
+<span id="cb48-603"><a href="#cb48-603" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-604"><a href="#cb48-604" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-605"><a href="#cb48-605" aria-hidden="true" tabindex="-1"></a><span class="in">```{r collect-metrics}</span></span>
+<span id="cb48-606"><a href="#cb48-606" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(cv_results)</span>
+<span id="cb48-607"><a href="#cb48-607" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-608"><a href="#cb48-608" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-609"><a href="#cb48-609" aria-hidden="true" tabindex="-1"></a>::: {.callout-important title=&quot;Comparing the Single Test Set vs. Cross-Validated Estimate&quot;}</span>
+<span id="cb48-610"><a href="#cb48-610" aria-hidden="true" tabindex="-1"></a><span class="in">```{r compare-estimates}</span></span>
+<span id="cb48-611"><a href="#cb48-611" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
+<span id="cb48-612"><a href="#cb48-612" aria-hidden="true" tabindex="-1"></a>  test_preds <span class="sc">|&gt;</span></span>
+<span id="cb48-613"><a href="#cb48-613" aria-hidden="true" tabindex="-1"></a>    <span class="fu">metric_set</span>(accuracy, roc_auc)(</span>
+<span id="cb48-614"><a href="#cb48-614" aria-hidden="true" tabindex="-1"></a>      <span class="at">truth =</span> responded,</span>
+<span id="cb48-615"><a href="#cb48-615" aria-hidden="true" tabindex="-1"></a>      <span class="at">estimate =</span> .pred_class,</span>
+<span id="cb48-616"><a href="#cb48-616" aria-hidden="true" tabindex="-1"></a>      .pred_yes</span>
+<span id="cb48-617"><a href="#cb48-617" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb48-618"><a href="#cb48-618" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">source =</span> <span class="st">&quot;Single test set&quot;</span>),</span>
+<span id="cb48-619"><a href="#cb48-619" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>(cv_results) <span class="sc">|&gt;</span></span>
+<span id="cb48-620"><a href="#cb48-620" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(.metric <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;accuracy&quot;</span>, <span class="st">&quot;roc_auc&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb48-621"><a href="#cb48-621" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(.metric, <span class="at">.estimate =</span> mean) <span class="sc">|&gt;</span></span>
+<span id="cb48-622"><a href="#cb48-622" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">source =</span> <span class="st">&quot;10-fold CV mean&quot;</span>)</span>
+<span id="cb48-623"><a href="#cb48-623" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb48-624"><a href="#cb48-624" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(source, .metric, .estimate) <span class="sc">|&gt;</span></span>
+<span id="cb48-625"><a href="#cb48-625" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> source, <span class="at">values_from =</span> .estimate)</span>
+<span id="cb48-626"><a href="#cb48-626" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-627"><a href="#cb48-627" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-628"><a href="#cb48-628" aria-hidden="true" tabindex="-1"></a>The single test-set number is **one draw** from a distribution of possible performance estimates. The cross-validated mean averages over 10 different draws, giving a more stable — and more honest — picture of how the model is likely to perform on new prospects. The standard error reported by <span class="in">`collect_metrics()`</span> tells us how much that estimate might wobble.</span>
+<span id="cb48-629"><a href="#cb48-629" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb48-630"><a href="#cb48-630" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-631"><a href="#cb48-631" aria-hidden="true" tabindex="-1"></a><span class="in">```{r per-fold-metrics}</span></span>
+<span id="cb48-632"><a href="#cb48-632" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(cv_results, <span class="at">summarize =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb48-633"><a href="#cb48-633" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">&quot;roc_auc&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb48-634"><a href="#cb48-634" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">y =</span> .estimate)) <span class="sc">+</span></span>
+<span id="cb48-635"><a href="#cb48-635" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#2E5266&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.85</span>) <span class="sc">+</span></span>
+<span id="cb48-636"><a href="#cb48-636" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(</span>
+<span id="cb48-637"><a href="#cb48-637" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(.estimate)),</span>
+<span id="cb48-638"><a href="#cb48-638" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
+<span id="cb48-639"><a href="#cb48-639" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;tomato&quot;</span></span>
+<span id="cb48-640"><a href="#cb48-640" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb48-641"><a href="#cb48-641" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb48-642"><a href="#cb48-642" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;ROC AUC by Fold&quot;</span>,</span>
+<span id="cb48-643"><a href="#cb48-643" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Dashed line = mean across all 10 folds&quot;</span>,</span>
+<span id="cb48-644"><a href="#cb48-644" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Fold&quot;</span>,</span>
+<span id="cb48-645"><a href="#cb48-645" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;ROC AUC&quot;</span></span>
+<span id="cb48-646"><a href="#cb48-646" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb48-647"><a href="#cb48-647" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb48-648"><a href="#cb48-648" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb48-649"><a href="#cb48-649" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-650"><a href="#cb48-650" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-651"><a href="#cb48-651" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parallel Processing (Conceptual Note)</span></span>
+<span id="cb48-652"><a href="#cb48-652" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-653"><a href="#cb48-653" aria-hidden="true" tabindex="-1"></a><span class="in">```{r parallel-note, eval=FALSE}</span></span>
+<span id="cb48-654"><a href="#cb48-654" aria-hidden="true" tabindex="-1"></a><span class="co"># Resampling fits the same workflow many times — an embarrassingly parallel task.</span></span>
+<span id="cb48-655"><a href="#cb48-655" aria-hidden="true" tabindex="-1"></a><span class="co"># On a multi-core machine, register a parallel backend before fit_resamples():</span></span>
+<span id="cb48-656"><a href="#cb48-656" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-657"><a href="#cb48-657" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doParallel)</span>
+<span id="cb48-658"><a href="#cb48-658" aria-hidden="true" tabindex="-1"></a>cl <span class="ot">&lt;-</span> <span class="fu">makePSOCKcluster</span>(parallel<span class="sc">::</span><span class="fu">detectCores</span>() <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb48-659"><a href="#cb48-659" aria-hidden="true" tabindex="-1"></a><span class="fu">registerDoParallel</span>(cl)</span>
 <span id="cb48-660"><a href="#cb48-660" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-661"><a href="#cb48-661" aria-hidden="true" tabindex="-1"></a><span class="fu">## ✏️ Exercise 9.4 — Multiclass Averaging</span></span>
+<span id="cb48-661"><a href="#cb48-661" aria-hidden="true" tabindex="-1"></a>cv_results <span class="ot">&lt;-</span> <span class="fu">fit_resamples</span>(mail_wf, <span class="at">resamples =</span> mail_folds)</span>
 <span id="cb48-662"><a href="#cb48-662" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-663"><a href="#cb48-663" aria-hidden="true" tabindex="-1"></a>Re-run the multiclass <span class="in">`loyalty_tier`</span> example using <span class="in">`estimator = &quot;micro&quot;`</span> instead of the default macro averaging for <span class="in">`sens`</span>. Compare the two numbers. Why might micro-averaging look more favorable when one class (Bronze) is much larger than the others?</span>
-<span id="cb48-664"><a href="#cb48-664" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-665"><a href="#cb48-665" aria-hidden="true" tabindex="-1"></a><span class="in">```{r ex9-4, eval=FALSE}</span></span>
-<span id="cb48-666"><a href="#cb48-666" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
-<span id="cb48-667"><a href="#cb48-667" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-668"><a href="#cb48-668" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-663"><a href="#cb48-663" aria-hidden="true" tabindex="-1"></a><span class="fu">stopCluster</span>(cl)</span>
+<span id="cb48-664"><a href="#cb48-664" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-665"><a href="#cb48-665" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-666"><a href="#cb48-666" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb48-667"><a href="#cb48-667" aria-hidden="true" tabindex="-1"></a>We don&#39;t run this chunk live in class (it depends on your machine&#39;s core count), but know that <span class="in">`fit_resamples()`</span>, <span class="in">`tune_grid()`</span>, and friends all parallelize automatically once a backend is registered — useful once your resampling scheme + grid search gets large later in the course.</span>
+<span id="cb48-668"><a href="#cb48-668" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb48-669"><a href="#cb48-669" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-670"><a href="#cb48-670" aria-hidden="true" tabindex="-1"></a><span class="fu">## ✏️ Exercise 10.1 — Change the Number of Folds</span></span>
+<span id="cb48-670"><a href="#cb48-670" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saving Resampled Objects</span></span>
 <span id="cb48-671"><a href="#cb48-671" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-672"><a href="#cb48-672" aria-hidden="true" tabindex="-1"></a>Re-run <span class="in">`vfold_cv()`</span> with <span class="in">`v = 5`</span> instead of <span class="in">`v = 10`</span>. Re-fit with <span class="in">`fit_resamples()`</span> and compare the mean <span class="in">`roc_auc`</span> and its standard error to the 10-fold result. What happens to the standard error as *v* decreases, and why?</span>
-<span id="cb48-673"><a href="#cb48-673" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-674"><a href="#cb48-674" aria-hidden="true" tabindex="-1"></a><span class="in">```{r ex10-1, eval=FALSE}</span></span>
-<span id="cb48-675"><a href="#cb48-675" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
-<span id="cb48-676"><a href="#cb48-676" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-677"><a href="#cb48-677" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-678"><a href="#cb48-678" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-679"><a href="#cb48-679" aria-hidden="true" tabindex="-1"></a><span class="fu">## ✏️ Exercise 10.2 — Bootstrap vs. Cross-Validation</span></span>
-<span id="cb48-680"><a href="#cb48-680" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-681"><a href="#cb48-681" aria-hidden="true" tabindex="-1"></a>Run <span class="in">`fit_resamples()`</span> using <span class="in">`boot_resamples`</span> (already created above) instead of <span class="in">`mail_folds`</span>. Compare the mean <span class="in">`roc_auc`</span> to the 10-fold CV result. Are they close? Which method gave a smaller standard error, and what about the bootstrap&#39;s sampling scheme might explain that?</span>
-<span id="cb48-682"><a href="#cb48-682" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-683"><a href="#cb48-683" aria-hidden="true" tabindex="-1"></a><span class="in">```{r ex10-2, eval=FALSE}</span></span>
-<span id="cb48-684"><a href="#cb48-684" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
-<span id="cb48-685"><a href="#cb48-685" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-686"><a href="#cb48-686" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-687"><a href="#cb48-687" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-688"><a href="#cb48-688" aria-hidden="true" tabindex="-1"></a><span class="fu">## ✏️ Exercise 10.3 — Diagnose a High-Variance Fold</span></span>
-<span id="cb48-689"><a href="#cb48-689" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-690"><a href="#cb48-690" aria-hidden="true" tabindex="-1"></a>Looking at the &quot;ROC AUC by Fold&quot; plot above, identify the fold with the lowest AUC. Pull its assessment-set predictions from <span class="in">`cv_preds`</span> and compute a confusion matrix just for that fold. Does anything about that fold&#39;s predictions look different from the others?</span>
-<span id="cb48-691"><a href="#cb48-691" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-692"><a href="#cb48-692" aria-hidden="true" tabindex="-1"></a><span class="in">```{r ex10-3, eval=FALSE}</span></span>
-<span id="cb48-693"><a href="#cb48-693" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
-<span id="cb48-694"><a href="#cb48-694" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-695"><a href="#cb48-695" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb48-696"><a href="#cb48-696" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-697"><a href="#cb48-697" aria-hidden="true" tabindex="-1"></a><span class="fu">## ✏️ Exercise 10.4 — Resubstitution Gap with a More Flexible Model</span></span>
-<span id="cb48-698"><a href="#cb48-698" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-699"><a href="#cb48-699" aria-hidden="true" tabindex="-1"></a>Refit <span class="in">`mail_wf`</span> after changing <span class="in">`lr_spec`</span> to a random forest (<span class="in">`rand_forest() |&gt; set_engine(&quot;ranger&quot;) |&gt; set_mode(&quot;classification&quot;)`</span>). Compare resubstitution accuracy (on <span class="in">`mail_train`</span>) to held-out accuracy (on <span class="in">`mail_test`</span>). Is the gap larger or smaller than it was for the Lasso logistic regression? Why might that be?</span>
-<span id="cb48-700"><a href="#cb48-700" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-701"><a href="#cb48-701" aria-hidden="true" tabindex="-1"></a><span class="in">```{r ex10-4, eval=FALSE}</span></span>
-<span id="cb48-702"><a href="#cb48-702" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb48-672"><a href="#cb48-672" aria-hidden="true" tabindex="-1"></a><span class="in">```{r save-predictions}</span></span>
+<span id="cb48-673"><a href="#cb48-673" aria-hidden="true" tabindex="-1"></a><span class="co"># Because we set save_pred = TRUE above, we can pull out every held-out prediction</span></span>
+<span id="cb48-674"><a href="#cb48-674" aria-hidden="true" tabindex="-1"></a>cv_preds <span class="ot">&lt;-</span> <span class="fu">collect_predictions</span>(cv_results)</span>
+<span id="cb48-675"><a href="#cb48-675" aria-hidden="true" tabindex="-1"></a>cv_preds <span class="sc">|&gt;</span> <span class="fu">select</span>(id, .row, responded, .pred_class, .pred_yes) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
+<span id="cb48-676"><a href="#cb48-676" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-677"><a href="#cb48-677" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-678"><a href="#cb48-678" aria-hidden="true" tabindex="-1"></a><span class="in">```{r cv-roc}</span></span>
+<span id="cb48-679"><a href="#cb48-679" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4.5</span></span>
+<span id="cb48-680"><a href="#cb48-680" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 5</span></span>
+<span id="cb48-681"><a href="#cb48-681" aria-hidden="true" tabindex="-1"></a>cv_preds <span class="sc">|&gt;</span></span>
+<span id="cb48-682"><a href="#cb48-682" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id) <span class="sc">|&gt;</span></span>
+<span id="cb48-683"><a href="#cb48-683" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_curve</span>(<span class="at">truth =</span> responded, .pred_yes) <span class="sc">|&gt;</span></span>
+<span id="cb48-684"><a href="#cb48-684" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span> <span class="sc">-</span> specificity, <span class="at">y =</span> sensitivity, <span class="at">color =</span> id)) <span class="sc">+</span></span>
+<span id="cb48-685"><a href="#cb48-685" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb48-686"><a href="#cb48-686" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;gray60&quot;</span>) <span class="sc">+</span></span>
+<span id="cb48-687"><a href="#cb48-687" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb48-688"><a href="#cb48-688" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;ROC Curves Across All 10 Folds&quot;</span>,</span>
+<span id="cb48-689"><a href="#cb48-689" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Spread between lines = fold-to-fold variability&quot;</span>,</span>
+<span id="cb48-690"><a href="#cb48-690" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;Fold&quot;</span></span>
+<span id="cb48-691"><a href="#cb48-691" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb48-692"><a href="#cb48-692" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>) <span class="sc">+</span></span>
+<span id="cb48-693"><a href="#cb48-693" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb48-694"><a href="#cb48-694" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-695"><a href="#cb48-695" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-696"><a href="#cb48-696" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb48-697"><a href="#cb48-697" aria-hidden="true" tabindex="-1"></a>**Why save predictions?** With <span class="in">`save_pred = TRUE`</span>, we get every out-of-fold prediction back, which lets us build diagnostic plots like the multi-fold ROC curve above, inspect specific misclassified prospects, or build custom metrics — all without ever touching the test set.</span>
+<span id="cb48-698"><a href="#cb48-698" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb48-699"><a href="#cb48-699" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-700"><a href="#cb48-700" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb48-701"><a href="#cb48-701" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-702"><a href="#cb48-702" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercises</span></span>
 <span id="cb48-703"><a href="#cb48-703" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-704"><a href="#cb48-704" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-704"><a href="#cb48-704" aria-hidden="true" tabindex="-1"></a><span class="fu">## ✏️ Exercise 9.1 — Precision vs. Sensitivity Tradeoff</span></span>
 <span id="cb48-705"><a href="#cb48-705" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-706"><a href="#cb48-706" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb48-706"><a href="#cb48-706" aria-hidden="true" tabindex="-1"></a>Using <span class="in">`test_preds`</span>, compute <span class="in">`precision`</span> and <span class="in">`sens`</span> at the default 0.5 threshold. Now manually create a new <span class="in">`.pred_class`</span> column using a threshold of 0.3 instead (classify as &quot;yes&quot; if <span class="in">`.pred_yes &gt; 0.3`</span>). Recompute both metrics. Which one increased, and why does lowering the threshold have that effect?</span>
 <span id="cb48-707"><a href="#cb48-707" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-708"><a href="#cb48-708" aria-hidden="true" tabindex="-1"></a><span class="fu"># Summary</span></span>
-<span id="cb48-709"><a href="#cb48-709" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-710"><a href="#cb48-710" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Concept <span class="pp">|</span> Function <span class="pp">|</span> Key Argument <span class="pp">|</span></span>
-<span id="cb48-711"><a href="#cb48-711" aria-hidden="true" tabindex="-1"></a><span class="pp">|----|----|----|</span></span>
-<span id="cb48-712"><a href="#cb48-712" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Regression metrics <span class="pp">|</span> <span class="in">`rmse()`</span>, <span class="in">`rsq()`</span>, <span class="in">`mae()`</span> <span class="pp">|</span> <span class="in">`truth`</span>, <span class="in">`estimate`</span> <span class="pp">|</span></span>
-<span id="cb48-713"><a href="#cb48-713" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Confusion matrix <span class="pp">|</span> <span class="in">`conf_mat()`</span> <span class="pp">|</span> <span class="in">`truth`</span>, <span class="in">`estimate`</span> <span class="pp">|</span></span>
-<span id="cb48-714"><a href="#cb48-714" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Binary classification metrics <span class="pp">|</span> <span class="in">`sens()`</span>, <span class="in">`spec()`</span>, <span class="in">`precision()`</span> <span class="pp">|</span> <span class="in">`truth`</span>, <span class="in">`estimate`</span> <span class="pp">|</span></span>
-<span id="cb48-715"><a href="#cb48-715" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Bundle multiple metrics <span class="pp">|</span> <span class="in">`metric_set()`</span> <span class="pp">|</span> list of metric functions <span class="pp">|</span></span>
-<span id="cb48-716"><a href="#cb48-716" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ROC curve / AUC <span class="pp">|</span> <span class="in">`roc_curve()`</span>, <span class="in">`roc_auc()`</span> <span class="pp">|</span> <span class="in">`truth`</span>, probability column <span class="pp">|</span></span>
-<span id="cb48-717"><a href="#cb48-717" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> V-fold cross-validation <span class="pp">|</span> <span class="in">`vfold_cv()`</span> <span class="pp">|</span> <span class="in">`v`</span>, <span class="in">`strata`</span> <span class="pp">|</span></span>
-<span id="cb48-718"><a href="#cb48-718" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Repeated cross-validation <span class="pp">|</span> <span class="in">`vfold_cv()`</span> <span class="pp">|</span> <span class="in">`repeats`</span> <span class="pp">|</span></span>
-<span id="cb48-719"><a href="#cb48-719" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Bootstrap resampling <span class="pp">|</span> <span class="in">`bootstraps()`</span> <span class="pp">|</span> <span class="in">`times`</span>, <span class="in">`strata`</span> <span class="pp">|</span></span>
-<span id="cb48-720"><a href="#cb48-720" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Validation split <span class="pp">|</span> <span class="in">`validation_split()`</span> <span class="pp">|</span> <span class="in">`prop`</span>, <span class="in">`strata`</span> <span class="pp">|</span></span>
-<span id="cb48-721"><a href="#cb48-721" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Fit + score across resamples <span class="pp">|</span> <span class="in">`fit_resamples()`</span> <span class="pp">|</span> <span class="in">`resamples`</span>, <span class="in">`metrics`</span> <span class="pp">|</span></span>
-<span id="cb48-722"><a href="#cb48-722" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Pull averaged results <span class="pp">|</span> <span class="in">`collect_metrics()`</span> <span class="pp">|</span> <span class="in">`summarize`</span> <span class="pp">|</span></span>
-<span id="cb48-723"><a href="#cb48-723" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Pull raw out-of-fold predictions <span class="pp">|</span> <span class="in">`collect_predictions()`</span> <span class="pp">|</span> requires <span class="in">`save_pred = TRUE`</span> <span class="pp">|</span></span>
-<span id="cb48-724"><a href="#cb48-724" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-725"><a href="#cb48-725" aria-hidden="true" tabindex="-1"></a><span class="in">```{r session-info}</span></span>
-<span id="cb48-726"><a href="#cb48-726" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span>
-<span id="cb48-727"><a href="#cb48-727" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></div>
+<span id="cb48-708"><a href="#cb48-708" aria-hidden="true" tabindex="-1"></a><span class="in">```{r ex9-1, eval=FALSE}</span></span>
+<span id="cb48-709"><a href="#cb48-709" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb48-710"><a href="#cb48-710" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-711"><a href="#cb48-711" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-712"><a href="#cb48-712" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-713"><a href="#cb48-713" aria-hidden="true" tabindex="-1"></a><span class="fu">## ✏️ Exercise 9.2 — Build a Custom `metric_set()`</span></span>
+<span id="cb48-714"><a href="#cb48-714" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-715"><a href="#cb48-715" aria-hidden="true" tabindex="-1"></a>Create a <span class="in">`metric_set()`</span> containing <span class="in">`accuracy`</span>, <span class="in">`roc_auc`</span>, <span class="in">`sens`</span>, <span class="in">`spec`</span>, and <span class="in">`f_meas`</span>. Apply it to <span class="in">`test_preds`</span>. If you had to report just **two** of these five numbers to a VP of Marketing, which would you choose and why?</span>
+<span id="cb48-716"><a href="#cb48-716" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-717"><a href="#cb48-717" aria-hidden="true" tabindex="-1"></a><span class="in">```{r ex9-2, eval=FALSE}</span></span>
+<span id="cb48-718"><a href="#cb48-718" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb48-719"><a href="#cb48-719" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-720"><a href="#cb48-720" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-721"><a href="#cb48-721" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-722"><a href="#cb48-722" aria-hidden="true" tabindex="-1"></a><span class="fu">## ✏️ Exercise 9.3 — Regression Metric Sensitivity to Outliers</span></span>
+<span id="cb48-723"><a href="#cb48-723" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-724"><a href="#cb48-724" aria-hidden="true" tabindex="-1"></a>Add one synthetic &quot;whale&quot; customer to <span class="in">`reg_preds`</span> with <span class="in">`order_value_next = 5000`</span> and <span class="in">`.pred = 200`</span> (a badly missed prediction). Recompute <span class="in">`rmse`</span> and <span class="in">`mae`</span>. Which metric moved more in percentage terms? What does this tell you about choosing RMSE vs. MAE for marketing data with occasional huge orders?</span>
+<span id="cb48-725"><a href="#cb48-725" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-726"><a href="#cb48-726" aria-hidden="true" tabindex="-1"></a><span class="in">```{r ex9-3, eval=FALSE}</span></span>
+<span id="cb48-727"><a href="#cb48-727" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb48-728"><a href="#cb48-728" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-729"><a href="#cb48-729" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-730"><a href="#cb48-730" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-731"><a href="#cb48-731" aria-hidden="true" tabindex="-1"></a><span class="fu">## ✏️ Exercise 9.4 — Multiclass Averaging</span></span>
+<span id="cb48-732"><a href="#cb48-732" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-733"><a href="#cb48-733" aria-hidden="true" tabindex="-1"></a>Re-run the multiclass <span class="in">`loyalty_tier`</span> example using <span class="in">`estimator = &quot;micro&quot;`</span> instead of the default macro averaging for <span class="in">`sens`</span>. Compare the two numbers. Why might micro-averaging look more favorable when one class (Bronze) is much larger than the others?</span>
+<span id="cb48-734"><a href="#cb48-734" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-735"><a href="#cb48-735" aria-hidden="true" tabindex="-1"></a><span class="in">```{r ex9-4, eval=FALSE}</span></span>
+<span id="cb48-736"><a href="#cb48-736" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb48-737"><a href="#cb48-737" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-738"><a href="#cb48-738" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-739"><a href="#cb48-739" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-740"><a href="#cb48-740" aria-hidden="true" tabindex="-1"></a><span class="fu">## ✏️ Exercise 10.1 — Change the Number of Folds</span></span>
+<span id="cb48-741"><a href="#cb48-741" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-742"><a href="#cb48-742" aria-hidden="true" tabindex="-1"></a>Re-run <span class="in">`vfold_cv()`</span> with <span class="in">`v = 5`</span> instead of <span class="in">`v = 10`</span>. Re-fit with <span class="in">`fit_resamples()`</span> and compare the mean <span class="in">`roc_auc`</span> and its standard error to the 10-fold result. What happens to the standard error as *v* decreases, and why?</span>
+<span id="cb48-743"><a href="#cb48-743" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-744"><a href="#cb48-744" aria-hidden="true" tabindex="-1"></a><span class="in">```{r ex10-1, eval=FALSE}</span></span>
+<span id="cb48-745"><a href="#cb48-745" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb48-746"><a href="#cb48-746" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-747"><a href="#cb48-747" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-748"><a href="#cb48-748" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-749"><a href="#cb48-749" aria-hidden="true" tabindex="-1"></a><span class="fu">## ✏️ Exercise 10.2 — Bootstrap vs. Cross-Validation</span></span>
+<span id="cb48-750"><a href="#cb48-750" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-751"><a href="#cb48-751" aria-hidden="true" tabindex="-1"></a>Run <span class="in">`fit_resamples()`</span> using <span class="in">`boot_resamples`</span> (already created above) instead of <span class="in">`mail_folds`</span>. Compare the mean <span class="in">`roc_auc`</span> to the 10-fold CV result. Are they close? Which method gave a smaller standard error, and what about the bootstrap&#39;s sampling scheme might explain that?</span>
+<span id="cb48-752"><a href="#cb48-752" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-753"><a href="#cb48-753" aria-hidden="true" tabindex="-1"></a><span class="in">```{r ex10-2, eval=FALSE}</span></span>
+<span id="cb48-754"><a href="#cb48-754" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb48-755"><a href="#cb48-755" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-756"><a href="#cb48-756" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-757"><a href="#cb48-757" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-758"><a href="#cb48-758" aria-hidden="true" tabindex="-1"></a><span class="fu">## ✏️ Exercise 10.3 — Diagnose a High-Variance Fold</span></span>
+<span id="cb48-759"><a href="#cb48-759" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-760"><a href="#cb48-760" aria-hidden="true" tabindex="-1"></a>Looking at the &quot;ROC AUC by Fold&quot; plot above, identify the fold with the lowest AUC. Pull its assessment-set predictions from <span class="in">`cv_preds`</span> and compute a confusion matrix just for that fold. Does anything about that fold&#39;s predictions look different from the others?</span>
+<span id="cb48-761"><a href="#cb48-761" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-762"><a href="#cb48-762" aria-hidden="true" tabindex="-1"></a><span class="in">```{r ex10-3, eval=FALSE}</span></span>
+<span id="cb48-763"><a href="#cb48-763" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb48-764"><a href="#cb48-764" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-765"><a href="#cb48-765" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-766"><a href="#cb48-766" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-767"><a href="#cb48-767" aria-hidden="true" tabindex="-1"></a><span class="fu">## ✏️ Exercise 10.4 — Resubstitution Gap with a More Flexible Model</span></span>
+<span id="cb48-768"><a href="#cb48-768" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-769"><a href="#cb48-769" aria-hidden="true" tabindex="-1"></a>Refit <span class="in">`mail_wf`</span> after changing <span class="in">`lr_spec`</span> to a random forest (<span class="in">`rand_forest() |&gt; set_engine(&quot;ranger&quot;) |&gt; set_mode(&quot;classification&quot;)`</span>). Compare resubstitution accuracy (on <span class="in">`mail_train`</span>) to held-out accuracy (on <span class="in">`mail_test`</span>). Is the gap larger or smaller than it was for the Lasso logistic regression? Why might that be?</span>
+<span id="cb48-770"><a href="#cb48-770" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-771"><a href="#cb48-771" aria-hidden="true" tabindex="-1"></a><span class="in">```{r ex10-4, eval=FALSE}</span></span>
+<span id="cb48-772"><a href="#cb48-772" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb48-773"><a href="#cb48-773" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-774"><a href="#cb48-774" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-775"><a href="#cb48-775" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-776"><a href="#cb48-776" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb48-777"><a href="#cb48-777" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-778"><a href="#cb48-778" aria-hidden="true" tabindex="-1"></a><span class="fu"># Summary</span></span>
+<span id="cb48-779"><a href="#cb48-779" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-780"><a href="#cb48-780" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Concept <span class="pp">|</span> Function <span class="pp">|</span> Key Argument <span class="pp">|</span></span>
+<span id="cb48-781"><a href="#cb48-781" aria-hidden="true" tabindex="-1"></a><span class="pp">|----|----|----|</span></span>
+<span id="cb48-782"><a href="#cb48-782" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Regression metrics <span class="pp">|</span> <span class="in">`rmse()`</span>, <span class="in">`rsq()`</span>, <span class="in">`mae()`</span> <span class="pp">|</span> <span class="in">`truth`</span>, <span class="in">`estimate`</span> <span class="pp">|</span></span>
+<span id="cb48-783"><a href="#cb48-783" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Confusion matrix <span class="pp">|</span> <span class="in">`conf_mat()`</span> <span class="pp">|</span> <span class="in">`truth`</span>, <span class="in">`estimate`</span> <span class="pp">|</span></span>
+<span id="cb48-784"><a href="#cb48-784" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Binary classification metrics <span class="pp">|</span> <span class="in">`sens()`</span>, <span class="in">`spec()`</span>, <span class="in">`precision()`</span> <span class="pp">|</span> <span class="in">`truth`</span>, <span class="in">`estimate`</span> <span class="pp">|</span></span>
+<span id="cb48-785"><a href="#cb48-785" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Bundle multiple metrics <span class="pp">|</span> <span class="in">`metric_set()`</span> <span class="pp">|</span> list of metric functions <span class="pp">|</span></span>
+<span id="cb48-786"><a href="#cb48-786" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ROC curve / AUC <span class="pp">|</span> <span class="in">`roc_curve()`</span>, <span class="in">`roc_auc()`</span> <span class="pp">|</span> <span class="in">`truth`</span>, probability column <span class="pp">|</span></span>
+<span id="cb48-787"><a href="#cb48-787" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> V-fold cross-validation <span class="pp">|</span> <span class="in">`vfold_cv()`</span> <span class="pp">|</span> <span class="in">`v`</span>, <span class="in">`strata`</span> <span class="pp">|</span></span>
+<span id="cb48-788"><a href="#cb48-788" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Repeated cross-validation <span class="pp">|</span> <span class="in">`vfold_cv()`</span> <span class="pp">|</span> <span class="in">`repeats`</span> <span class="pp">|</span></span>
+<span id="cb48-789"><a href="#cb48-789" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Bootstrap resampling <span class="pp">|</span> <span class="in">`bootstraps()`</span> <span class="pp">|</span> <span class="in">`times`</span>, <span class="in">`strata`</span> <span class="pp">|</span></span>
+<span id="cb48-790"><a href="#cb48-790" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Validation split <span class="pp">|</span> <span class="in">`validation_split()`</span> <span class="pp">|</span> <span class="in">`prop`</span>, <span class="in">`strata`</span> <span class="pp">|</span></span>
+<span id="cb48-791"><a href="#cb48-791" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Fit + score across resamples <span class="pp">|</span> <span class="in">`fit_resamples()`</span> <span class="pp">|</span> <span class="in">`resamples`</span>, <span class="in">`metrics`</span> <span class="pp">|</span></span>
+<span id="cb48-792"><a href="#cb48-792" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Pull averaged results <span class="pp">|</span> <span class="in">`collect_metrics()`</span> <span class="pp">|</span> <span class="in">`summarize`</span> <span class="pp">|</span></span>
+<span id="cb48-793"><a href="#cb48-793" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Pull raw out-of-fold predictions <span class="pp">|</span> <span class="in">`collect_predictions()`</span> <span class="pp">|</span> requires <span class="in">`save_pred = TRUE`</span> <span class="pp">|</span></span>
+<span id="cb48-794"><a href="#cb48-794" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-795"><a href="#cb48-795" aria-hidden="true" tabindex="-1"></a><span class="in">```{r session-info}</span></span>
+<span id="cb48-796"><a href="#cb48-796" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span>
+<span id="cb48-797"><a href="#cb48-797" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
