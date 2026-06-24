@@ -21,7 +21,7 @@ execute:
   warning: false
   message: false
   freeze: true
-  error: true
+  #error: true
 ---
 
 # Learning Objectives {.unnumbered}
@@ -80,11 +80,14 @@ mail_data <- tibble(
     n,
     replace = TRUE
   ),
-  loyalty_tier = sample(
-    c("Bronze", "Silver", "Gold", "Platinum"),
-    n,
-    replace = TRUE,
-    prob = c(0.4, 0.3, 0.2, 0.1)
+  loyalty_tier = factor(
+    sample(
+      c("Bronze", "Silver", "Gold", "Platinum"),
+      n,
+      replace = TRUE,
+      prob = c(0.4, 0.3, 0.2, 0.1)
+    ),
+    levels = c("Bronze", "Silver", "Gold", "Platinum")
   ),
   responded = rbinom(
     n,
@@ -187,7 +190,7 @@ test_preds |>
 
 ------------------------------------------------------------------------
 
-# Part 1 — Judging Model Effectiveness (TMWR Ch. 9)
+# **Part 1** — Judging Model Effectiveness (TMWR Ch. 9)
 
 -   A fitted model is only useful if we can say, in concrete numeric terms, *how good* its predictions are. 
 
@@ -423,7 +426,9 @@ roc_data <- test_preds |>
 auc_val <- test_preds |>
   roc_auc(truth = responded, .pred_yes) |>
   pull(.estimate)
+```
 
+```{r roc-curve-plot}
 autoplot(roc_data) +
   annotate(
     "text",
@@ -464,15 +469,61 @@ multi_preds <- augment(multi_fit, new_data = mail_test)
 
 multi_preds |>
   metric_set(accuracy, sens)(truth = loyalty_tier, estimate = .pred_class)
+
+multi_preds |>
+  roc_auc(
+    truth = loyalty_tier,
+    .pred_Bronze,
+    .pred_Silver,
+    .pred_Gold,
+    .pred_Platinum
+  ) |>
+  pull(.estimate)
 ```
 
 ::: {.callout-note title="How Binary Metrics Generalize to Multiclass"}
 With more than two classes, `yardstick` computes a metric *per class* (treating each as "this class" vs. "all others"), then **averages** across classes. The default is **macro-averaging** — each class counts equally, regardless of how many observations it has. This matters for `loyalty_tier`: Platinum customers are rare, but macro-averaging keeps them from being drowned out by the much larger Bronze group.
 :::
 
+### Estimator Argument (Optional)
+
+> Refer to Chapter 10
+```{r multiclass-estimaor}
+multi_preds |>
+  metric_set(accuracy, sens)(
+    truth = loyalty_tier,
+    estimate = .pred_class,
+    estimator = "macro"
+  )
+
+multi_preds |>
+  metric_set(accuracy, sens)(
+    truth = loyalty_tier,
+    estimate = .pred_class,
+    estimator = "macro_weighted"
+  )
+
+multi_preds |>
+  metric_set(accuracy, sens)(
+    truth = loyalty_tier,
+    estimate = .pred_class,
+    estimator = "micro"
+  )
+
+multi_preds |>
+  roc_auc(
+    truth = loyalty_tier,
+    .pred_Bronze,
+    .pred_Silver,
+    .pred_Gold,
+    .pred_Platinum,
+    estimator = "macro_weighted"
+  )
+```
+
 ------------------------------------------------------------------------
 
-# Part 2 — Resampling for Evaluating Performance (TMWR Ch. 10)
+# **Part 2** — Resampling for Evaluating Performance (TMWR Ch. 10)
 
 The metrics above were all computed on a **single** test set. That gives us *a* number — but how much would that number change if we'd happened to split the data differently? Resampling answers this question.
 
@@ -496,7 +547,7 @@ bind_rows(
 ```
 
 ::: callout-important
-**Resubstitution is optimistic.** The model has already "seen" the training data and partially memorized its noise, so performance measured there is inflated relative to how the model will do on genuinely new prospects. This gap is usually small for simple models like regularized logistic regression, but it can be large for flexible models (deep trees, boosted ensembles) — which is exactly why we need a principled way to estimate out-of-sample performance *without* permanently sacrificing data to a single test set.
+**Resubstitution is optimistic.** The model has already "seen" the training data and partially memorized its noise, so performance measured there is inflated relative to how the model will do on genuinely new prospects. This gap is usually small for simple models like **regularized logistic regression**, but it can be large for flexible models (deep trees, boosted ensembles) — which is exactly why we need a principled way to estimate out-of-sample performance *without* permanently sacrificing data to a single test set.
 :::
 
 ## Why Not Just Use the Test Set Repeatedly?
@@ -654,6 +705,7 @@ collect_metrics(cv_results, summarize = FALSE) |>
 # Resampling fits the same workflow many times — an embarrassingly parallel task.
 # On a multi-core machine, register a parallel backend before fit_resamples():
 
+# install.packages("doParallel")
 library(doParallel)
 cl <- makePSOCKcluster(parallel::detectCores() - 1)
 registerDoParallel(cl)
