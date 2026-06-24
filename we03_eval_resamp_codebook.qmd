@@ -228,9 +228,7 @@ reg_preds |>
   reg_metrics(truth = order_value_next, estimate = .pred)
 ```
 
-### Regression Metrics
-
-#### **RMSE** (root mean squared error): 
+### **RMSE** (root mean squared error): 
 
 Average prediction error, in the *original units* (dollars here). Penalizes large errors more heavily because errors are squared before averaging.
 
@@ -249,7 +247,7 @@ $$
 - RMSE is in the **same units as the outcome variable** — dollars, in our case — making it directly interpretable.
 :::
 
-#### **R² (rsq)**:
+### **R² (rsq)**:
 
 - Proportion of variance in the outcome explained by the model. 
 
@@ -271,7 +269,7 @@ Where:
 - $\sum_{i=1}^{n}(y_i - \bar{y})^2$ = total variation in the outcome (total sum of squares)
 :::
 
-#### **MAE** (mean absolute error): 
+### **MAE** (mean absolute error): 
 
 - Average absolute error, less sensitive to outliers than RMSE. 
 
@@ -327,6 +325,78 @@ conf_mat(test_preds, truth = responded, estimate = .pred_class) |>
 | **Specificity** | TN / (TN + FP) | Of customers who *wouldn't* respond, how many did we correctly skip? |
 | **Precision (PPV)** | TP / (TP + FP) | Of customers we targeted, how many actually responded? |
 | **Accuracy** | (TP + TN) / Total | Overall, how often is the model right? *(misleading with rare classes — see warning below)* |
+:::
+
+### Sensitivity (Recall)
+
+::: {.callout-note title="Details"}
+$$
+\text{Sensitivity} = \frac{TP}{TP + FN}
+$$
+
+Where:
+
+- $TP$ = true positives — customers who responded and were correctly predicted to respond
+- $FN$ = false negatives — customers who responded but were incorrectly predicted not to respond
+- $TP + FN$ = total number of actual responders
+:::
+
+### Specificity
+
+::: {.callout-note title="Details"}
+$$
+\text{Specificity} = \frac{TN}{TN + FP}
+$$
+
+Where:
+
+- $TN$ = true negatives — customers who did not respond and were correctly predicted not to respond
+- $FP$ = false positives — customers who did not respond but were incorrectly predicted to respond
+- $TN + FP$ = total number of actual non-responders
+:::
+
+### Precision (PPV)
+
+::: {.callout-note title="Details"}
+$$
+\text{Precision} = \frac{TP}{TP + FP}
+$$
+
+Where:
+
+- $TP$ = true positives — correctly predicted responders
+- $FP$ = false positives — non-responders incorrectly predicted as responders
+- $TP + FP$ = total number of customers predicted to respond
+:::
+
+### Accuracy
+
+::: {.callout-note title="Details"}
+$$
+\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
+$$
+
+Where:
+
+- $TP$ = true positives
+- $TN$ = true negatives
+- $FP$ = false positives
+- $FN$ = false negatives
+- $TP + TN + FP + FN$ = total number of observations
+:::
+
+### F1 Score
+
+::: {.callout-note title="Details"}
+$$
+F_1 = 2 \times \frac{\text{Precision} \times \text{Sensitivity}}{\text{Precision} + \text{Sensitivity}}
+$$
+
+Where:
+
+- $\text{Precision} = \frac{TP}{TP + FP}$
+- $\text{Sensitivity} = \frac{TP}{TP + FN}$
+- $F_1$ is the harmonic mean of precision and sensitivity — useful when both matter equally and the classes are imbalanced
 :::
 
 ```{r class-metrics}
