@@ -21,6 +21,7 @@ execute:
   warning: false
   message: false
   freeze: true
+  error: true
 ---
 
 # Learning Objectives {.unnumbered}
@@ -47,7 +48,7 @@ library(gt) # pretty tables
 library(patchwork) # combine plots
 
 tidymodels_prefer() # resolve function-name conflicts
-set.seed(2024)
+set.seed(2026)
 ```
 
 ------------------------------------------------------------------------
@@ -188,7 +189,9 @@ test_preds |>
 
 # Part 1 — Judging Model Effectiveness (TMWR Ch. 9)
 
-A fitted model is only useful if we can say, in concrete numeric terms, *how good* its predictions are. `yardstick` is the tidymodels package for this — every metric function takes `truth` and an `estimate`/probability column and returns a tidy one-row tibble.
+-   A fitted model is only useful if we can say, in concrete numeric terms, *how good* its predictions are. 
+
+-   `yardstick` is the tidymodels package for this — every metric function takes `truth` and an `estimate`/probability column and returns a tidy one-row tibble.
 
 ## Why Metrics, Not Just "It Fit"
 
@@ -215,7 +218,7 @@ reg_wf <- workflow() |> add_recipe(reg_rec) |> add_model(reg_spec)
 reg_fit <- fit(reg_wf, data = mail_train)
 
 reg_preds <- augment(reg_fit, new_data = mail_test)
-reg_preds |> select(customer_id, order_value_next, .pred) |> head()
+reg_preds |> select(customer_id, order_value_next, .pred, .resid) |> head()
 ```
 
 ```{r reg-metrics}
@@ -225,10 +228,66 @@ reg_preds |>
   reg_metrics(truth = order_value_next, estimate = .pred)
 ```
 
-::: {.callout-note title="Reading Regression Metrics"}
-- **RMSE** (root mean squared error): average prediction error, in the *original units* (dollars here). Penalizes large errors more heavily because errors are squared before averaging.
-- **R² (rsq)**: proportion of variance in the outcome explained by the model. Ranges roughly 0–1; higher is better. Useful for communicating "how much of next-order value our model explains" to stakeholders.
-- **MAE** (mean absolute error): average absolute error, less sensitive to outliers than RMSE. If a few extreme spenders are skewing RMSE, compare it against MAE.
+### Regression Metrics
+
+#### **RMSE** (root mean squared error): 
+
+Average prediction error, in the *original units* (dollars here). Penalizes large errors more heavily because errors are squared before averaging.
+
+::: {.callout-note title="RMSE Formula"}
+$$
+RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}
+$$
+
+- Where 
+
+  - $n$ is the number of observations, 
+  - $y_i$ is the actual value, and 
+  - $\hat{y}_i$ is the predicted value. 
+  - $(y_i - \hat{y}_i)$ = the residual (prediction error) for observation $i$
+
+- RMSE is in the **same units as the outcome variable** — dollars, in our case — making it directly interpretable.
+:::
+
+#### **R² (rsq)**:
+
+- Proportion of variance in the outcome explained by the model. 
+
+- Ranges roughly 0–1; higher is better. 
+
+- Useful for communicating "how much of next-order value our model explains" to stakeholders.
+
+::: {.callout-note title="R-Squared formula"}
+$$
+R^2 = 1 - \frac{\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}{\sum_{i=1}^{n}(y_i - \bar{y})^2}
+$$
+
+Where:
+
+- $y_i$ = actual value for observation $i$
+- $\hat{y}_i$ = predicted value for observation $i$
+- $\bar{y}$ = mean of all actual values
+- $\sum_{i=1}^{n}(y_i - \hat{y}_i)^2$ = total unexplained variation (residual sum of squares)
+- $\sum_{i=1}^{n}(y_i - \bar{y})^2$ = total variation in the outcome (total sum of squares)
+:::
+
+#### **MAE** (mean absolute error): 
+
+- Average absolute error, less sensitive to outliers than RMSE. 
+
+- If a few extreme spenders are skewing RMSE, compare it against MAE.
+
+::: {.callout-note title="MAE Formula"}
+$$
+MAE = \frac{1}{n}\sum_{i=1}^{n}|y_i - \hat{y}_i|
+$$
+
+Where:
+
+- $n$ = number of observations
+- $y_i$ = actual value for observation $i$
+- $\hat{y}_i$ = predicted value for observation $i$
+- $|y_i - \hat{y}_i|$ = absolute prediction error for observation $i$
 :::
 
 ```{r reg-plot}
