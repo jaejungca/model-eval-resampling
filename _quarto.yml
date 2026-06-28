@@ -1,0 +1,40 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Machine Learning Model Evaluation and Resampling"
+  description: "Module 3 — Metrics, cross-validation, and model performance"
+  page-footer:
+    left: "Cal Poly Pomona · Applied Machine Learning"
+    right: "Built with [Quarto](https://quarto.org)"
+  navbar:
+    background: dark
+    foreground: light
+    title: "M03 — Evaluation & Resampling"
+    left:
+      - href: index.qmd
+        text: Home
+      - href: we03_eval_resamp_slides.qmd
+        text: Slides
+      - href: we03_eval_resamp_codebook.qmd
+        text: Codebook
+
+format:
+  html:
+    theme:
+      light: [flatly]
+    toc: true
+    toc-location: right-body
+    toc-expand: 1
+    code-fold: show
+    code-tools: true
+    highlight-style: github
+    df-print: paged
+    link-external-newwindow: true
+    embed-resources: false
+
+execute:
+  warning: false
+  message: false
+  freeze: true

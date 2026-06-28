@@ -1,0 +1,31 @@
+---
+title: "Machine Learning Model Evaluation and Resampling"
+subtitle: "Module 3 — Cal Poly Pomona · Applied Machine Learning"
+listing:
+  contents:
+    - we03_eval_resamp_slides.qmd
+    - we03_eval_resamp_codebook.qmd
+  type: grid
+  sort: false
+  grid-columns: 2
+  fields: [title, description, reading-time]
+  field-display-names:
+    reading-time: "Estimated time"
+page-layout: full
+title-block-banner: true
+---
+
+This module covers the two essential questions every machine learning
+model must answer: *how good is it?* and *how do we know that estimate
+is trustworthy?*
+
+**Chapter 9** gives you the measurement instruments — regression metrics
+(RMSE, R², MAE) and classification metrics (confusion matrix, sensitivity,
+specificity, ROC/AUC) — using the `yardstick` package.
+
+**Chapter 10** explains why a single measurement isn't enough, and
+introduces resampling (cross-validation, bootstrap) via the `rsample`
+package to get stable, honest performance estimates from the training
+data alone.
+
+Work through the materials in the order listed below.

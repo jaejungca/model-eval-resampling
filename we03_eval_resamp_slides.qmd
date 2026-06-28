@@ -1,7 +1,8 @@
 ---
-title: "Model Evaluation & Resampling"
+title: "Module 3 Slides — Model Evaluation & Resampling"
 subtitle: "Measuring what actually generalizes"
-author: "Jae Jung · IBM 6540"
+description: "A visual overview of Ch. 9–10 — metrics, cross-validation, and why resampling gives more trustworthy performance estimates than a single test set."
+author: "Jae Jung"
 date: today
 format:
   revealjs:

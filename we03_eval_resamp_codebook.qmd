@@ -1,6 +1,7 @@
 ---
-title: "Week 3: Model Evaluation and Resampling"
-subtitle: "IBM 6540 — Applied Machine Learning for Marketing"
+title: "Module 3 Codebook — Model Evaluation and Resampling"
+subtitle: "Applied Machine Learning for Marketing"
+description: "Hands-on R notebook covering regression and classification metrics with yardstick, cross-validation with rsample, and fit_resamples() for trustworthy model performance estimates. Includes eight exercises."
 author: "Jae Jung"
 date: today
 format:
