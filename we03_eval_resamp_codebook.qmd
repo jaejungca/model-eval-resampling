@@ -753,24 +753,73 @@ cv_preds |>
 
 # Exercises
 
-## ✏️ Exercise 9.1 — Precision vs. Sensitivity Tradeoff
+## ✏️ Exercise 9.1 — Confusion Matrix and Threshold Tradeoff
 
-Using `test_preds`, compute `precision` and `sens` at the default 0.5 threshold. Now manually create a new `.pred_class` column using a threshold of 0.3 instead (classify as "yes" if `.pred_yes > 0.3`). Recompute both metrics. Which one increased, and why does lowering the threshold have that effect?
+**Part A — Reading the Confusion Matrix**
 
-```{r ex9-1, eval=FALSE}
+Run `conf_mat(test_preds, truth = responded, estimate = .pred_class)` and
+use the output to answer:
+
+1. How many customers actually responded ("yes") and were correctly
+   predicted to respond? What is this cell called?
+2. How many customers actually responded but were predicted "no"?
+   What is this cell called, and what does it cost a marketer?
+3. How many customers did not respond but were predicted "yes"?
+   What is this cell called, and what does it cost a marketer?
+4. In plain English, which type of error is more costly for a
+   direct-mail campaign with a $5 mailing cost and $50 average order
+   value — a false positive or a false negative? Explain your reasoning.
+
+```{r ex9-1a, eval=FALSE}
 # Your code here
 
 ```
 
-## ✏️ Exercise 9.2 — Build a Custom `metric_set()`
+**Part B — Threshold Tradeoff**
 
-Create a `metric_set()` containing `accuracy`, `roc_auc`, `sens`, `spec`, and `f_meas`. Apply it to `test_preds`. If you had to report just **two** of these five numbers to a VP of Marketing, which would you choose and why?
+Using `test_preds`, compute `precision` and `sens` at the default 0.5
+threshold. Now manually create a new `.pred_class` column using a threshold
+of 0.3 instead (classify as "yes" if `.pred_yes > 0.3`). Recompute both
+metrics. Which one increased, and why does lowering the threshold have
+that effect?
 
-```{r ex9-2, eval=FALSE}
+```{r ex9-1b, eval=FALSE}
 # Your code here
 
 ```
 
+## ✏️ Exercise 9.2 — ROC/AUC Interpretation and Custom `metric_set()`
+
+**Part A — Interpreting AUC**
+
+The notebook computed `roc_auc` for the direct-mail response model.
+
+1. Look up the AUC value from the `roc-curve` chunk. Is it above or
+   below 0.65 (the "usable for targeting" threshold from the callout)?
+2. In plain English, what does an AUC of that value mean? Complete
+   this sentence: "If we randomly pick one customer who responded and
+   one who did not, the model assigns a higher predicted probability
+   to the responder \_\_\_\_% of the time."
+3. The ROC curve plot shows the sensitivity/specificity tradeoff across
+   all thresholds. At what point on the curve would you operate if your
+   campaign budget only allows you to mail the top 10% of prospects?
+
+```{r ex9-2a, eval=FALSE}
+# Your code here
+
+```
+
+**Part B — Custom `metric_set()`**
+
+Create a `metric_set()` containing `accuracy`, `roc_auc`, `sens`, `spec`,
+and `f_meas`. Apply it to `test_preds`. If you had to report just **two**
+of these five numbers to a VP of Marketing who is unfamiliar with
+machine learning metrics, which would you choose and why?
+
+```{r ex9-2b, eval=FALSE}
+# Your code here
+
+```
 ## ✏️ Exercise 9.3 — Regression Metric Sensitivity to Outliers
 
 Add one synthetic "whale" customer to `reg_preds` with `order_value_next = 5000` and `.pred = 200` (a badly missed prediction). Recompute `rmse` and `mae`. Which metric moved more in percentage terms? What does this tell you about choosing RMSE vs. MAE for marketing data with occasional huge orders?
@@ -782,19 +831,57 @@ Add one synthetic "whale" customer to `reg_preds` with `order_value_next = 5000`
 
 ## ✏️ Exercise 9.4 — Multiclass Averaging
 
-Re-run the multiclass `loyalty_tier` example using `estimator = "micro"` instead of the default macro averaging for `sens`. Compare the two numbers. Why might micro-averaging look more favorable when one class (Bronze) is much larger than the others?
+Re-run the multiclass `loyalty_tier` example using `estimator = "micro"`
+instead of the default macro averaging for `sens`. Also run it with
+`estimator = "macro_weighted"`. Compare all three numbers.
+
+1. Why might micro-averaging look more favorable when one class (Bronze)
+   is much larger than the others?
+2. Which estimator would you choose if you wanted to ensure that
+   **Platinum** customers — the rarest and most valuable tier — are
+   not underrepresented in the metric? Explain your reasoning.
+3. In a marketing context, which averaging method is most likely to give
+   a misleadingly optimistic picture of model performance? Why?
 
 ```{r ex9-4, eval=FALSE}
 # Your code here
 
 ```
 
-## ✏️ Exercise 10.1 — Change the Number of Folds
+## ✏️ Exercise 10.1 — Fold Count and Connecting Back to Part 1
 
-Re-run `vfold_cv()` with `v = 5` instead of `v = 10`. Re-fit with `fit_resamples()` and compare the mean `roc_auc` and its standard error to the 10-fold result. What happens to the standard error as *v* decreases, and why?
+**Part A — Change the Number of Folds**
 
-```{r ex10-1, eval=FALSE}
+Re-run `vfold_cv()` with `v = 5` instead of `v = 10`. Re-fit with
+`fit_resamples()` and compare the mean `roc_auc` and its standard error
+to the 10-fold result from the notebook. What happens to the standard
+error as *v* decreases, and why?
+
+```{r ex10-1a, eval=FALSE}
 # Your code here
+
+```
+
+**Part B — Bridge to Part 1**
+
+Now compare your 5-fold CV mean `roc_auc` to the single test-set
+`roc_auc` you computed in Part 1 (Section 4 of the notebook).
+
+1. Are the two numbers close or far apart? What does that tell you?
+2. The single test-set number came from one particular 80/20 split.
+   The CV number came from five different splits of the training data.
+   Which is a more trustworthy estimate of how the model will perform
+   on new prospects — and why?
+3. The CV result comes with a standard error. What does that standard
+   error represent, and why does the single test-set estimate not have
+   one?
+
+```{r ex10-1b, eval=FALSE}
+# Retrieve the single test-set roc_auc from Part 1
+test_preds |>
+  roc_auc(truth = responded, .pred_yes)
+
+# Your 5-fold CV result here
 
 ```
 
@@ -816,12 +903,61 @@ Looking at the "ROC AUC by Fold" plot above, identify the fold with the lowest A
 
 ```
 
-## ✏️ Exercise 10.4 — Resubstitution Gap with a More Flexible Model
+## ✏️ Exercise 10.4 — Resubstitution Gap and Model Flexibility
 
-Refit `mail_wf` after changing `lr_spec` to a random forest (`rand_forest() |> set_engine("ranger") |> set_mode("classification")`). Compare resubstitution accuracy (on `mail_train`) to held-out accuracy (on `mail_test`). Is the gap larger or smaller than it was for the Lasso logistic regression? Why might that be?
+**Part A — Observe the Gap**
 
-```{r ex10-4, eval=FALSE}
-# Your code here
+Refit `mail_wf` after changing `lr_spec` to a random forest:
+
+```{r ex10-4a, eval=FALSE}
+rf_spec <- rand_forest() |>
+  set_engine("ranger") |>
+  set_mode("classification")
+
+rf_wf <- mail_wf |> update_model(rf_spec)
+
+rf_fit <- fit(rf_wf, data = mail_train)
+```
+
+Compare resubstitution accuracy (on `mail_train`) to held-out accuracy
+(on `mail_test`) for the random forest. Then do the same for the original
+Lasso logistic regression from the notebook.
+
+```{r ex10-4b, eval=FALSE}
+# Random forest: resubstitution vs. held-out
+rf_train_preds <- augment(rf_fit, new_data = mail_train)
+rf_test_preds  <- augment(rf_fit, new_data = mail_test)
+
+bind_rows(
+  rf_train_preds |> accuracy(truth = responded, estimate = .pred_class) |>
+    mutate(model = "Random Forest", data = "train (resubstitution)"),
+  rf_test_preds  |> accuracy(truth = responded, estimate = .pred_class) |>
+    mutate(model = "Random Forest", data = "test (held out)"),
+  train_preds    |> accuracy(truth = responded, estimate = .pred_class) |>
+    mutate(model = "Lasso LR",      data = "train (resubstitution)"),
+  test_preds     |> accuracy(truth = responded, estimate = .pred_class) |>
+    mutate(model = "Lasso LR",      data = "test (held out)")
+) |>
+  select(model, data, .estimate) |>
+  pivot_wider(names_from = data, values_from = .estimate) |>
+  mutate(gap = `train (resubstitution)` - `test (held out)`)
+```
+
+**Part B — Explain the Gap**
+
+Answer the following in 3–5 sentences:
+
+1. Is the resubstitution gap larger or smaller for the random forest
+   compared to the Lasso logistic regression?
+2. Why does model **flexibility** affect the size of the resubstitution
+   gap? What is the random forest doing during training that the Lasso
+   is not?
+3. Given what you know about resubstitution, why is it dangerous to
+   use training-set performance to select between a Lasso model and a
+   random forest — and what should you use instead?
+
+```{r ex10-4c, eval=FALSE}
+# Use this space for any supporting calculations
 
 ```
 
