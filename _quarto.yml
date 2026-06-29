@@ -12,7 +12,7 @@ website:
     background: "#B8860B"
     foreground: "white"
     title: "M03 — Evaluation & Resampling"
-    left:
+    right:
       - href: index.qmd
         text: Home
       - href: slides.qmd
