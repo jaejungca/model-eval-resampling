@@ -9,8 +9,8 @@ website:
     left: "Cal Poly Pomona · Applied Machine Learning"
     right: "Built with [Quarto](https://quarto.org)"
   navbar:
-    background: dark
-    foreground: light
+    background: "#B8860B"
+    foreground: "white"
     title: "M03 — Evaluation & Resampling"
     left:
       - href: index.qmd
@@ -22,8 +22,7 @@ website:
 
 format:
   html:
-    theme:
-      light: [flatly]
+    theme: [flatly, custom-navbar.scss]
     toc: true
     toc-location: right-body
     toc-expand: 1

@@ -1,0 +1,41 @@
+/*-- scss:rules --*/
+
+/* Force consistent gold navbar across all pages including
+   title-block-banner pages (index.qmd) and regular pages */
+
+.navbar {
+  background-color: #B8860B !important;
+  min-height: 56px !important;
+}
+
+.navbar-brand,
+.navbar-brand:hover {
+  color: white !important;
+}
+
+.navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: white !important;
+}
+
+/* Normalize navbar height — title-block-banner pages can
+   inflate the navbar; this locks it to a consistent size */
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* title-block-banner overrides — keeps banner color separate
+   from navbar so they don't bleed into each other */
+.quarto-title-banner {
+  background: #1a1a2e !important;
+  color: white !important;
+}
+
+.quarto-title-banner .title,
+.quarto-title-banner .subtitle {
+  color: white !important;
+}

@@ -3,7 +3,7 @@ title: "Machine Learning Model Evaluation and Resampling"
 subtitle: "Module 3 — Cal Poly Pomona · Applied Machine Learning"
 listing:
   contents:
-    - we03_eval_resamp_slides.qmd
+    - slides.qmd
     - we03_eval_resamp_codebook.qmd
   type: grid
   sort: false
@@ -11,8 +11,6 @@ listing:
   fields: [title, description, reading-time]
   field-display-names:
     reading-time: "Estimated time"
-page-layout: full
-title-block-banner: true
 ---
 
 This module covers the two essential questions every machine learning

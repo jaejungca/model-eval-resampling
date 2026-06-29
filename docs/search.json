@@ -1,75 +1,5 @@
 [
   {
-    "objectID": "answers/module3_answer_keys.html",
-    "href": "answers/module3_answer_keys.html",
-    "title": "Module 3 - Exercise Answer Keys",
-    "section": "",
-    "text": "Overview\n  1 Setup\n  2 Chapter 9 Exercises — Judging Model Effectiveness\n  \n  2.1 Exercise 9.1 — Confusion Matrix and Threshold Tradeoff\n  \n  2.1.1 Part A — Reading the Confusion Matrix\n  2.1.2 Part B — Threshold Tradeoff\n  \n  2.2 Exercise 9.2 — ROC/AUC Interpretation and Custom metric_set()\n  \n  2.2.1 Part A — Interpreting AUC\n  2.2.2 Part B — Custom metric_set()\n  \n  2.3 Exercise 9.3 — Regression Metric Sensitivity to Outliers\n  2.4 Exercise 9.4 — Multiclass Averaging\n  \n  3 Chapter 10 Exercises — Resampling for Evaluating Performance\n  \n  3.1 Exercise 10.1 — Fold Count and Connecting Back to Part 1\n  \n  3.1.1 Part A — Change the Number of Folds\n  3.1.2 Part B — Bridge to Part 1\n  \n  3.2 Exercise 10.2 — Bootstrap vs. Cross-Validation\n  3.3 Exercise 10.3 — Diagnose a High-Variance Fold\n  3.4 Exercise 10.4 — Resubstitution Gap and Model Flexibility\n  \n  3.4.1 Part A — Observe the Gap\n  3.4.2 Part B — Explain the Gap\n  \n  \n  Summary of Key Takeaways"
-  },
-  {
-    "objectID": "answers/module3_answer_keys.html#exercise-9.1-confusion-matrix-and-threshold-tradeoff",
-    "href": "answers/module3_answer_keys.html#exercise-9.1-confusion-matrix-and-threshold-tradeoff",
-    "title": "Module 3 - Exercise Answer Keys",
-    "section": "2.1 Exercise 9.1 — Confusion Matrix and Threshold Tradeoff",
-    "text": "2.1 Exercise 9.1 — Confusion Matrix and Threshold Tradeoff\n\n2.1.1 Part A — Reading the Confusion Matrix\n\n\nCode\ncm &lt;- conf_mat(test_preds, truth = responded, estimate = .pred_class)\ncm\n\n\n          Truth\nPrediction yes  no\n       yes   0   0\n       no   31 569\n\n\nCode\nautoplot(cm, type = \"heatmap\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteReading Each Cell\n\n\n\nThe confusion matrix is a 2×2 table of predicted class (rows) vs. actual class (columns). Here is how to read each cell in the context of a direct-mail campaign:\n\n\n\n\n\n\n\n\nCell\nName\nWhat it means\n\n\n\n\nPredicted “yes”, Actual “yes”\nTrue Positive (TP)\nWe mailed them and they responded — a successful targeting decision\n\n\nPredicted “yes”, Actual “no”\nFalse Positive (FP)\nWe mailed them but they did not respond — wasted mailing cost\n\n\nPredicted “no”, Actual “yes”\nFalse Negative (FN)\nWe did not mail them but they would have responded — a missed opportunity\n\n\nPredicted “no”, Actual “no”\nTrue Negative (TN)\nWe correctly skipped them — money saved\n\n\n\n\n\nQ4 — Which error costs more?\nWith a $5 mailing cost and $50 average order value:\n\nA false positive costs $5 (we mailed someone who didn’t respond)\nA false negative costs the lost profit margin on a $50 order — potentially $20–$40 depending on margins\n\nIn most direct-mail settings, false negatives are more costly — missing a genuine responder loses more revenue than the small cost of an unnecessary mailing. This is why marketers often lower the classification threshold below 0.5 to catch more true responders, accepting more false positives in exchange.\n\n\n2.1.2 Part B — Threshold Tradeoff\n\n\nCode\n# At default threshold of 0.5\ndefault_metrics &lt;- test_preds |&gt;\n  metric_set(precision, sens)(truth = responded, estimate = .pred_class)\n\n# At lower threshold of 0.3\npreds_03 &lt;- test_preds |&gt;\n  mutate(\n    .pred_class_03 = factor(\n      if_else(.pred_yes &gt; 0.3, \"yes\", \"no\"),\n      levels = c(\"yes\", \"no\")\n    )\n  )\n\nlow_threshold_metrics &lt;- preds_03 |&gt;\n  metric_set(precision, sens)(truth = responded, estimate = .pred_class_03)\n\n# Compare\nbind_rows(\n  default_metrics |&gt; mutate(threshold = \"0.5 (default)\"),\n  low_threshold_metrics |&gt; mutate(threshold = \"0.3 (lower)\")\n) |&gt;\n  select(threshold, .metric, .estimate) |&gt;\n  pivot_wider(names_from = threshold, values_from = .estimate)\n\n\n\n  \n\n\n\n\n\n\n\n\n\nNoteWhy Lowering the Threshold Increases Sensitivity\n\n\n\nLowering the threshold from 0.5 to 0.3 means we classify more customers as “yes” — including customers the model is only moderately confident about.\n\nSensitivity increases because we are now catching more of the true responders we previously missed (fewer false negatives)\nPrecision decreases because we are also adding more non-responders to the “yes” pile (more false positives)\n\nThis is the fundamental precision-sensitivity tradeoff: you can always catch more true responders by being less selective, but you pay for it with more wasted mailings. The ROC curve visualizes this tradeoff across every possible threshold simultaneously."
-  },
-  {
-    "objectID": "answers/module3_answer_keys.html#exercise-9.2-rocauc-interpretation-and-custom-metric_set",
-    "href": "answers/module3_answer_keys.html#exercise-9.2-rocauc-interpretation-and-custom-metric_set",
-    "title": "Module 3 - Exercise Answer Keys",
-    "section": "2.2 Exercise 9.2 — ROC/AUC Interpretation and Custom metric_set()",
-    "text": "2.2 Exercise 9.2 — ROC/AUC Interpretation and Custom metric_set()\n\n2.2.1 Part A — Interpreting AUC\n\n\nCode\n# Retrieve the AUC value\nauc_val &lt;- test_preds |&gt;\n  roc_auc(truth = responded, .pred_yes) |&gt;\n  pull(.estimate)\n\ncat(\"AUC:\", round(auc_val, 3), \"\\n\")\n\n\nAUC: 0.473 \n\n\nCode\ncat(\n  \"In plain English: the model ranks a true responder above a true\",\n  \"non-responder\",\n  round(auc_val * 100, 1),\n  \"% of the time.\\n\"\n)\n\n\nIn plain English: the model ranks a true responder above a true non-responder 47.3 % of the time.\n\n\nCode\n# Plot the ROC curve to answer Q3\nroc_data &lt;- test_preds |&gt;\n  roc_curve(truth = responded, .pred_yes)\n\nautoplot(roc_data) +\n  annotate(\n    \"text\",\n    x = 0.6,\n    y = 0.2,\n    label = paste0(\"AUC = \", round(auc_val, 3)),\n    size = 5,\n    color = \"#2E5266\",\n    fontface = \"bold\"\n  ) +\n  geom_vline(\n    xintercept = 0.10,\n    linetype = \"dashed\",\n    color = \"tomato\",\n    linewidth = 0.8\n  ) +\n  annotate(\n    \"text\",\n    x = 0.13,\n    y = 0.05,\n    label = \"Top 10%\",\n    size = 3.5,\n    color = \"tomato\"\n  ) +\n  labs(\n    title = \"ROC Curve — Direct-Mail Response Model\",\n    subtitle = \"Red dashed line = operating at top 10% of prospects\"\n  ) +\n  theme_minimal(base_size = 12)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteReading the AUC\n\n\n\nAUC = 0.473 means that if we randomly pick one customer who responded and one who did not, the model assigns a higher predicted probability to the responder about 47.3% of the time. This is well above the 0.65 threshold described as “usable for targeting” — a solid result for direct-mail.\nQ3 — Operating at the top 10%: If your budget allows mailing only the top 10% of prospects (1 − specificity ≈ 0.10 on the x-axis), find that point on the ROC curve and read off the sensitivity — that tells you what fraction of all true responders you would reach with that budget.\n\n\n\n\n2.2.2 Part B — Custom metric_set()\n\n\nCode\ncustom_metrics &lt;- metric_set(accuracy, roc_auc, sens, spec, f_meas)\n\ntest_preds |&gt;\n  custom_metrics(\n    truth = responded,\n    estimate = .pred_class,\n    .pred_yes\n  )\n\n\n\n  \n\n\n\n\n\n\n\n\n\nNoteWhich Two Metrics for a VP of Marketing?\n\n\n\nThe best two metrics to report to a non-technical stakeholder are:\n\nroc_auc — it summarizes the model’s overall ability to rank responders above non-responders in a single number that doesn’t depend on any threshold choice. Easy to explain: “80% of the time the model correctly identifies who is more likely to respond.”\nsens (sensitivity) — it directly answers the business question: “Of all the customers who would have responded, what fraction did we successfully target?” This maps directly to revenue recovered vs. revenue missed.\n\nWhy not accuracy? With a ~4.7% response rate, accuracy is inflated and misleading — a model that predicts “no” for everyone scores 95%+ accuracy while being useless. Always pair accuracy with sensitivity/specificity when classes are imbalanced."
-  },
-  {
-    "objectID": "answers/module3_answer_keys.html#exercise-9.3-regression-metric-sensitivity-to-outliers",
-    "href": "answers/module3_answer_keys.html#exercise-9.3-regression-metric-sensitivity-to-outliers",
-    "title": "Module 3 - Exercise Answer Keys",
-    "section": "2.3 Exercise 9.3 — Regression Metric Sensitivity to Outliers",
-    "text": "2.3 Exercise 9.3 — Regression Metric Sensitivity to Outliers\n\n\nCode\n# Original metrics\noriginal_metrics &lt;- reg_preds |&gt;\n  metric_set(rmse, mae)(truth = order_value_next, estimate = .pred)\n\n# Add one \"whale\" customer\nwhale_row &lt;- tibble(\n  order_value_next = 5000,\n  .pred = 200\n)\n\nreg_preds_whale &lt;- bind_rows(\n  reg_preds |&gt; select(order_value_next, .pred),\n  whale_row\n)\n\n# Metrics with whale\nwhale_metrics &lt;- reg_preds_whale |&gt;\n  metric_set(rmse, mae)(truth = order_value_next, estimate = .pred)\n\n# Compare\nbind_rows(\n  original_metrics |&gt; mutate(data = \"without whale\"),\n  whale_metrics |&gt; mutate(data = \"with whale\")\n) |&gt;\n  select(data, .metric, .estimate) |&gt;\n  pivot_wider(names_from = data, values_from = .estimate) |&gt;\n  mutate(\n    pct_change = round(\n      (`with whale` - `without whale`) / `without whale` * 100,\n      1\n    )\n  )\n\n\n\n  \n\n\n\n\n\n\n\n\n\nNoteRMSE vs. MAE: Which is More Sensitive to Outliers?\n\n\n\nRMSE moves more in percentage terms because it squares the error before averaging — a $4,800 prediction error ($5,000 − $200) becomes a $23M squared error, which dominates the average. MAE only takes the absolute value, so the same whale contributes a $4,800 error that is large but proportional.\nMarketing implication: If your dataset contains occasional very large orders (“whales”), RMSE will be heavily influenced by how well the model predicts those customers. MAE gives a more representative picture of typical prediction accuracy for the average customer. In practice, it is worth reporting both and noting when they diverge significantly — a large RMSE/MAE gap signals the presence of influential outliers."
-  },
-  {
-    "objectID": "answers/module3_answer_keys.html#exercise-9.4-multiclass-averaging",
-    "href": "answers/module3_answer_keys.html#exercise-9.4-multiclass-averaging",
-    "title": "Module 3 - Exercise Answer Keys",
-    "section": "2.4 Exercise 9.4 — Multiclass Averaging",
-    "text": "2.4 Exercise 9.4 — Multiclass Averaging\n\n\nCode\n# Macro (default) — each class counts equally\nmacro_metrics &lt;- multi_preds |&gt;\n  metric_set(accuracy, sens)(\n    truth = loyalty_tier,\n    estimate = .pred_class,\n    estimator = \"macro\"\n  )\n\n# Macro-weighted — classes weighted by their frequency\nmacro_wt_metrics &lt;- multi_preds |&gt;\n  metric_set(accuracy, sens)(\n    truth = loyalty_tier,\n    estimate = .pred_class,\n    estimator = \"macro_weighted\"\n  )\n\n# Micro — treats all observations equally regardless of class\nmicro_metrics &lt;- multi_preds |&gt;\n  metric_set(accuracy, sens)(\n    truth = loyalty_tier,\n    estimate = .pred_class,\n    estimator = \"micro\"\n  )\n\n# Compare all three\nbind_rows(\n  macro_metrics |&gt; mutate(estimator = \"macro\"),\n  macro_wt_metrics |&gt; mutate(estimator = \"macro_weighted\"),\n  micro_metrics |&gt; mutate(estimator = \"micro\")\n) |&gt;\n  filter(.metric == \"sens\") |&gt;\n  select(estimator, .estimate) |&gt;\n  arrange(desc(.estimate))\n\n\n\n  \n\n\n\n\n\n\n\n\n\nNoteUnderstanding the Three Estimators\n\n\n\nQ1 — Why micro looks more favorable: Micro-averaging treats every observation equally — since Bronze customers make up ~40% of the data and are easiest to predict (the largest group tends to dominate), micro-averaging is pulled upward by correct Bronze predictions, masking poor performance on rarer tiers.\nQ2 — Protecting Platinum customers: Use macro-averaging — it gives Platinum customers the same weight as Bronze customers regardless of how few Platinum observations there are. This ensures the metric reflects model performance across all tiers equally, not just the most common ones.\nQ3 — Most misleading for marketing: Micro-averaging is the most likely to give an overly optimistic picture. In a loyalty program, Platinum customers are typically the most valuable — if the model performs poorly on them, micro-averaging will hide that by averaging it away with many correct Bronze predictions."
-  },
-  {
-    "objectID": "answers/module3_answer_keys.html#exercise-10.1-fold-count-and-connecting-back-to-part-1",
-    "href": "answers/module3_answer_keys.html#exercise-10.1-fold-count-and-connecting-back-to-part-1",
-    "title": "Module 3 - Exercise Answer Keys",
-    "section": "3.1 Exercise 10.1 — Fold Count and Connecting Back to Part 1",
-    "text": "3.1 Exercise 10.1 — Fold Count and Connecting Back to Part 1\n\n3.1.1 Part A — Change the Number of Folds\n\n\nCode\n# 5-fold CV\nset.seed(2024)\nfolds_5 &lt;- vfold_cv(mail_train, v = 5, strata = responded)\n\ncv_5fold &lt;- fit_resamples(\n  mail_wf,\n  resamples = folds_5,\n  metrics = metric_set(accuracy, roc_auc, sens, spec),\n  control = control_resamples(save_pred = TRUE)\n)\n\n# Compare 5-fold vs 10-fold\nbind_rows(\n  collect_metrics(cv_results) |&gt;\n    filter(.metric == \"roc_auc\") |&gt;\n    select(.metric, mean, std_err) |&gt;\n    mutate(method = \"10-fold CV\"),\n  collect_metrics(cv_5fold) |&gt;\n    filter(.metric == \"roc_auc\") |&gt;\n    select(.metric, mean, std_err) |&gt;\n    mutate(method = \"5-fold CV\")\n) |&gt;\n  select(method, mean, std_err)\n\n\n\n  \n\n\n\n\n\n\n\n\n\nNoteWhat Happens to Standard Error as v Decreases?\n\n\n\nWith fewer folds, the standard error of the mean roc_auc typically increases. Here is why:\n\nWith 10 folds, we get 10 different performance estimates and average them — more estimates means a more stable average\nWith 5 folds, each assessment set is twice as large (≈ 480 rows instead of ≈ 240), which reduces within-fold variance, but we have fewer folds to average over, which increases across-fold variance\n\nThe net effect is usually a slightly less stable estimate with fewer folds. The trade-off: 5-fold CV is faster to compute (5 model fits instead of 10) but produces a noisier performance estimate.\n\n\n\n\n3.1.2 Part B — Bridge to Part 1\n\n\nCode\n# Single test-set roc_auc from Part 1\nsingle_test_auc &lt;- test_preds |&gt;\n  roc_auc(truth = responded, .pred_yes)\n\n# 5-fold CV mean roc_auc\ncv5_auc &lt;- collect_metrics(cv_5fold) |&gt;\n  filter(.metric == \"roc_auc\") |&gt;\n  select(mean, std_err)\n\n# 10-fold CV mean roc_auc\ncv10_auc &lt;- collect_metrics(cv_results) |&gt;\n  filter(.metric == \"roc_auc\") |&gt;\n  select(mean, std_err)\n\ntibble(\n  source = c(\"Single test set\", \"5-fold CV\", \"10-fold CV\"),\n  roc_auc = c(single_test_auc$.estimate, cv5_auc$mean, cv10_auc$mean),\n  std_err = c(NA, cv5_auc$std_err, cv10_auc$std_err)\n)\n\n\n\n  \n\n\n\n\n\n\n\n\n\nNoteSingle Test Set vs. Cross-Validated Estimates\n\n\n\nQ1 — Are they close? All three numbers should be in a similar range. Small differences are expected — the single test-set number came from one particular 80/20 split, while CV numbers average over multiple different splits of the training data.\nQ2 — Which is more trustworthy? The cross-validated estimate is more trustworthy because:\n\nIt averages over multiple held-out sets rather than relying on one particular split that might be lucky or unlucky\nIt uses only the training data, keeping the test set completely untouched for a final honest evaluation\n\nQ3 — Why does CV have a standard error but the single test set does not? The standard error measures how much the AUC varies across folds. With one test set, we have exactly one number — there is nothing to measure variance across. The standard error is what makes CV estimates more informative: it tells you not just what the performance is, but how stable that estimate is."
-  },
-  {
-    "objectID": "answers/module3_answer_keys.html#exercise-10.2-bootstrap-vs.-cross-validation",
-    "href": "answers/module3_answer_keys.html#exercise-10.2-bootstrap-vs.-cross-validation",
-    "title": "Module 3 - Exercise Answer Keys",
-    "section": "3.2 Exercise 10.2 — Bootstrap vs. Cross-Validation",
-    "text": "3.2 Exercise 10.2 — Bootstrap vs. Cross-Validation\n\n\nCode\n# Run fit_resamples with bootstrap\nboot_results &lt;- fit_resamples(\n  mail_wf,\n  resamples = boot_resamples,\n  metrics = metric_set(accuracy, roc_auc, sens, spec)\n)\n\n# Compare bootstrap vs 10-fold CV\nbind_rows(\n  collect_metrics(cv_results) |&gt;\n    filter(.metric == \"roc_auc\") |&gt;\n    select(mean, std_err) |&gt;\n    mutate(method = \"10-fold CV\"),\n  collect_metrics(boot_results) |&gt;\n    filter(.metric == \"roc_auc\") |&gt;\n    select(mean, std_err) |&gt;\n    mutate(method = \"Bootstrap (25 resamples)\")\n) |&gt;\n  select(method, mean, std_err)\n\n\n\n  \n\n\n\n\n\n\n\n\n\nNoteBootstrap vs. Cross-Validation\n\n\n\nThe mean roc_auc from bootstrap and 10-fold CV should be close — both are estimating the same underlying population quantity. However, they typically differ in their standard errors:\n\nBootstrap tends to produce a smaller standard error because each bootstrap resample uses the full training data (sampled with replacement), giving each assessment more coverage of the data space\nCross-validation assessment sets are strictly held-out, so they are smaller and more variable\n\nThe trade-off: bootstrap estimates can be slightly optimistic because some training observations appear in both the analysis set and the assessment set of the same resample (about 63% of observations appear at least once in each bootstrap sample). Cross-validation avoids this — every assessment observation is completely held out from its fold’s training data."
-  },
-  {
-    "objectID": "answers/module3_answer_keys.html#exercise-10.3-diagnose-a-high-variance-fold",
-    "href": "answers/module3_answer_keys.html#exercise-10.3-diagnose-a-high-variance-fold",
-    "title": "Module 3 - Exercise Answer Keys",
-    "section": "3.3 Exercise 10.3 — Diagnose a High-Variance Fold",
-    "text": "3.3 Exercise 10.3 — Diagnose a High-Variance Fold\n\n\nCode\n# Identify the fold with the lowest AUC\nfold_aucs &lt;- collect_metrics(cv_results, summarize = FALSE) |&gt;\n  filter(.metric == \"roc_auc\") |&gt;\n  arrange(.estimate)\n\ncat(\n  \"Fold with lowest AUC:\",\n  fold_aucs$id[1],\n  \"| AUC =\",\n  round(fold_aucs$.estimate[1], 3),\n  \"\\n\"\n)\n\n\nFold with lowest AUC: Fold06 | AUC = 0.444 \n\n\nCode\nworst_fold &lt;- fold_aucs$id[1]\n\n# Pull that fold's predictions\nworst_fold_preds &lt;- cv_preds |&gt;\n  filter(id == worst_fold)\n\n# Confusion matrix for the worst fold\nconf_mat(worst_fold_preds, truth = responded, estimate = .pred_class)\n\n\n          Truth\nPrediction yes  no\n       yes   0   0\n       no    9 231\n\n\nCode\n# Compare to overall confusion matrix\ncat(\"\\n--- Overall confusion matrix (full test set) ---\\n\")\n\n\n\n--- Overall confusion matrix (full test set) ---\n\n\nCode\nconf_mat(test_preds, truth = responded, estimate = .pred_class)\n\n\n          Truth\nPrediction yes  no\n       yes   0   0\n       no   31 569\n\n\nCode\n# Compare sensitivity specifically\nbind_rows(\n  worst_fold_preds |&gt;\n    sens(truth = responded, estimate = .pred_class) |&gt;\n    mutate(source = paste(\"Worst fold:\", worst_fold)),\n  cv_preds |&gt;\n    sens(truth = responded, estimate = .pred_class) |&gt;\n    mutate(source = \"All folds combined\"),\n  test_preds |&gt;\n    sens(truth = responded, estimate = .pred_class) |&gt;\n    mutate(source = \"Single test set\")\n) |&gt;\n  select(source, .estimate)\n\n\n\n  \n\n\n\n\n\n\n\n\n\nNoteWhat to Look For in a High-Variance Fold\n\n\n\nThe fold with the lowest AUC often has one or more of these characteristics:\n\nFewer true responders in the assessment set — with only ~28 responders per fold on average (4.7% of 600 rows), random variation in who lands in a fold can meaningfully change metrics\nLower sensitivity — the model may have missed more responders in that fold than average\nSimilar specificity — the large non-responder group is stable across folds, so specificity tends to vary less\n\nThis is exactly why we use 10-fold CV rather than a single validation split: fold-to-fold variability reveals how sensitive our performance estimate is to which particular customers happen to be held out. A fold with unusually low AUC is a signal to investigate, not necessarily a reason to discard the model."
-  },
-  {
-    "objectID": "answers/module3_answer_keys.html#exercise-10.4-resubstitution-gap-and-model-flexibility",
-    "href": "answers/module3_answer_keys.html#exercise-10.4-resubstitution-gap-and-model-flexibility",
-    "title": "Module 3 - Exercise Answer Keys",
-    "section": "3.4 Exercise 10.4 — Resubstitution Gap and Model Flexibility",
-    "text": "3.4 Exercise 10.4 — Resubstitution Gap and Model Flexibility\n\n3.4.1 Part A — Observe the Gap\n\n\nCode\n# Fit a random forest\n#install.packages(\"ranger\")\nlibrary(ranger)\nrf_spec &lt;- rand_forest() |&gt;\n  set_engine(\"ranger\") |&gt;\n  set_mode(\"classification\")\n\nrf_wf &lt;- mail_wf |&gt; update_model(rf_spec)\nrf_fit &lt;- fit(rf_wf, data = mail_train)\n\nrf_train_preds &lt;- augment(rf_fit, new_data = mail_train)\nrf_test_preds &lt;- augment(rf_fit, new_data = mail_test)\n\n\n\n\nCode\n# Compare resubstitution vs. held-out for both models\nbind_rows(\n  rf_train_preds |&gt;\n    accuracy(truth = responded, estimate = .pred_class) |&gt;\n    mutate(model = \"Random Forest\", data = \"train (resubstitution)\"),\n  rf_test_preds |&gt;\n    accuracy(truth = responded, estimate = .pred_class) |&gt;\n    mutate(model = \"Random Forest\", data = \"test (held out)\"),\n  train_preds |&gt;\n    accuracy(truth = responded, estimate = .pred_class) |&gt;\n    mutate(model = \"Lasso LR\", data = \"train (resubstitution)\"),\n  test_preds |&gt;\n    accuracy(truth = responded, estimate = .pred_class) |&gt;\n    mutate(model = \"Lasso LR\", data = \"test (held out)\")\n) |&gt;\n  select(model, data, .estimate) |&gt;\n  pivot_wider(names_from = data, values_from = .estimate) |&gt;\n  mutate(\n    gap = round(\n      `train (resubstitution)` - `test (held out)`,\n      4\n    )\n  )\n\n\n\n  \n\n\n\n\n\n3.4.2 Part B — Explain the Gap\n\n\n\n\n\n\nNoteWhy the Random Forest Shows a Larger Gap\n\n\n\nQ1 — Is the gap larger for random forest? Yes — almost always. The random forest’s resubstitution accuracy is typically near 1.0 (it essentially memorizes the training data), while its test accuracy is closer to the Lasso’s test accuracy. The Lasso shows a much smaller gap.\nQ2 — Why does flexibility cause a larger gap? A random forest is a highly flexible model — it can grow very deep trees that carve the feature space into tiny regions, each fitted to a small group of training observations including their noise. This is called overfitting: the model learns the training data so well that it memorizes patterns that don’t generalize to new prospects.\nThe Lasso penalizes coefficient magnitude, forcing a simpler model that ignores noise. It deliberately accepts slightly worse training-set performance in exchange for better generalization — which is why its resubstitution gap is small.\nQ3 — Why is resubstitution unreliable for model comparison? If you compared Lasso and random forest on training-set accuracy alone, the random forest would always win (it fits training data almost perfectly by design). But that advantage vanishes on new data. This is exactly why we use cross-validation or a held-out test set to compare models — it forces both models to be evaluated on data they have not seen, giving an honest comparison of which generalizes better to new prospects."
-  },
-  {
-    "objectID": "we03_eval_resamp_slides.html",
-    "href": "we03_eval_resamp_slides.html",
-    "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "",
-    "text": "Where We Are\n  The Question Underneath Every Model\n  Two Chapters, One Throughline\n  Part 1 — Judging Model Effectiveness\n  \n  TMWR Chapter 9\n  Why Metrics, Not Vibes\n  Regression Metrics\n  The Confusion Matrix\n  Four Cells, Four Questions\n  The Accuracy Trap\n  ROC Curve & AUC\n  Multiclass: Same Idea, More Classes\n  \n  Part 2 — Resampling for Evaluating Performance\n  \n  TMWR Chapter 10\n  The Problem with One Measurement\n  Resubstitution: The Optimism Trap\n  Why Not Just Reuse the Test Set?\n  V-Fold Cross-Validation\n  The Other Resampling Schemes\n  Running It: fit_resamples()\n  One Test Set vs. Ten Folds\n  Reading Fold-to-Fold Variability\n  Parallel Processing — A Practical Note\n  Today, in One Line\n  Next Week"
-  },
-  {
     "objectID": "we03_eval_resamp_slides.html#where-we-are",
     "href": "we03_eval_resamp_slides.html#where-we-are",
     "title": "Module 3 Slides — Model Evaluation & Resampling",
@@ -217,158 +147,39 @@
     "text": "Next Week\n\n\n\n\nCh. 11 — Comparing Models with Resampling\n\n\nNow that we can measure one model honestly — how do we compare several models on equal footing?\n\n\nBring a model you’ve been curious about. We’ll resample it."
   },
   {
-    "objectID": "m03_slides.html",
-    "href": "m03_slides.html",
+    "objectID": "slides.html",
+    "href": "slides.html",
     "title": "Module 3 Slides — Model Evaluation & Resampling",
     "section": "",
-    "text": "Where We Are\n  The Question Underneath Every Model\n  Two Chapters, One Throughline\n  Part 1 — Judging Model Effectiveness\n  \n  TMWR Chapter 9\n  Why Metrics, Not Vibes\n  Regression Metrics\n  The Confusion Matrix\n  Four Cells, Four Questions\n  The Accuracy Trap\n  ROC Curve & AUC\n  Multiclass: Same Idea, More Classes\n  \n  Part 2 — Resampling for Evaluating Performance\n  \n  TMWR Chapter 10\n  The Problem with One Measurement\n  Resubstitution: The Optimism Trap\n  Why Not Just Reuse the Test Set?\n  V-Fold Cross-Validation\n  The Other Resampling Schemes\n  Running It: fit_resamples()\n  One Test Set vs. Ten Folds\n  Reading Fold-to-Fold Variability\n  Parallel Processing — A Practical Note\n  Today, in One Line\n  Next Week"
+    "text": "About These Slides\n  What the Slides Cover\n  Open the Slides\n  Key R Functions in the Slides"
   },
   {
-    "objectID": "m03_slides.html#where-we-are",
-    "href": "m03_slides.html#where-we-are",
+    "objectID": "slides.html#about-these-slides",
+    "href": "slides.html#about-these-slides",
     "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "Where We Are",
-    "text": "Where We Are\n\n\n\n\nCh. 4–8 — Data, splitting, recipes, workflows\n\n\nToday (Ch. 9–10) — How do we know if any of it worked?\n\n\nCh. 11+ — Comparing and tuning models\n\n\nFrame today as the hinge point of the course: everything before this was building a model; everything after this is improving a model. You can’t improve what you can’t measure."
+    "section": "About These Slides",
+    "text": "About These Slides\nThis deck gives you a big-picture overview of Module 3 before you work through the full codebook. Think of it as the map, not the territory — covering the two-chapter arc at a conceptual level with just enough code to orient you.\nWork through these slides before the Codebook. They take about 15–20 minutes at your own pace."
   },
   {
-    "objectID": "m03_slides.html#the-question-underneath-every-model",
-    "href": "m03_slides.html#the-question-underneath-every-model",
+    "objectID": "slides.html#what-the-slides-cover",
+    "href": "slides.html#what-the-slides-cover",
     "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "The Question Underneath Every Model",
-    "text": "The Question Underneath Every Model\n\n\n\n\n“Is this model actually good —\n\n\nor did it just get lucky?”\n\n\nThis is the thesis of both chapters. Ch 9 gives us the ruler. Ch 10 makes sure we’re not measuring on a surface that’s tilted in our favor."
+    "section": "What the Slides Cover",
+    "text": "What the Slides Cover\nPart 1 — Judging Model Effectiveness (Ch. 9)\n\nWhy metrics matter — there is no single “best” metric\nRegression metrics: RMSE, R², MAE and when to use each\nThe confusion matrix — reading TP, FP, FN, TN\nBinary classification: sensitivity, specificity, precision, accuracy\nThe accuracy trap with imbalanced classes\nROC curve and AUC — a threshold-free view of model discrimination\nMulticlass metrics and averaging strategies\n\nPart 2 — Resampling for Evaluating Performance (Ch. 10)\n\nThe resubstitution problem — why training-set metrics are optimistic\nWhy you should not reuse the test set repeatedly\nV-fold cross-validation — structure, stratification, fold visualization\nOther resampling methods: repeated CV, bootstrap, validation split\nfit_resamples() — fitting and scoring across all folds\nComparing single test-set vs. cross-validated estimates\nReading fold-to-fold variability in ROC AUC"
   },
   {
-    "objectID": "m03_slides.html#two-chapters-one-throughline",
-    "href": "m03_slides.html#two-chapters-one-throughline",
+    "objectID": "slides.html#open-the-slides",
+    "href": "slides.html#open-the-slides",
     "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "Two Chapters, One Throughline",
-    "text": "Two Chapters, One Throughline\n\n\n\n\n\n\nCh. 9\nHow do we measure it?\nMetrics: RMSE, sensitivity, ROC/AUC — the instruments.\n\n\n\n\n\nCh. 10\nHow do we measure it honestly?\nResampling: cross-validation — measure the same thing many times.\n\n\n\n\n\nYou need a ruler before you can ask whether it’s calibrated."
+    "section": "Open the Slides",
+    "text": "Open the Slides\n\n\n\n\n\n\nTip\n\n\n\nThe slides open in a new tab as a full-screen presentation. Use arrow keys to advance. Press F for full screen and Esc to exit.\n\n\n\n  ▶ Open Slide Deck in New Tab"
   },
   {
-    "objectID": "m03_slides.html#why-metrics-not-vibes",
-    "href": "m03_slides.html#why-metrics-not-vibes",
+    "objectID": "slides.html#key-r-functions-in-the-slides",
+    "href": "slides.html#key-r-functions-in-the-slides",
     "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "Why Metrics, Not Vibes",
-    "text": "Why Metrics, Not Vibes\n\n\n\n\nA fitted model produces predictions. Predictions need a number that says how good they are.\n\n\nThat number depends on the business question — there is no universal “best” metric.\n\n\nA churn model that misses real churners ≠ a churn model that over-flags loyal customers. Same accuracy. Very different cost."
-  },
-  {
-    "objectID": "m03_slides.html#regression-metrics",
-    "href": "m03_slides.html#regression-metrics",
-    "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "Regression Metrics",
-    "text": "Regression Metrics\n\n\n\nreg_metrics &lt;- metric_set(rmse, rsq, mae)\n\nreg_preds |&gt; reg_metrics(truth = order_value_next, estimate = .pred)\n\n\n\n\nmetric\nreads as\nin dollars?\n\n\n\n\nRMSE\ntypical error size\nyes — penalizes big misses\n\n\nR²\n% variance explained\nno — unitless, 0 to 1\n\n\nMAE\ntypical error size\nyes — robust to outliers\n\n\n\n\n\nEmphasize: RMSE and MAE answer “how far off, on average” but RMSE punishes large misses harder because of the square. If your data has occasional huge orders, RMSE and MAE will tell different stories — that’s exercise 9.3."
-  },
-  {
-    "objectID": "m03_slides.html#the-confusion-matrix",
-    "href": "m03_slides.html#the-confusion-matrix",
-    "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "The Confusion Matrix",
-    "text": "The Confusion Matrix\n\n\n\nconf_mat(test_preds, truth = responded, estimate = .pred_class)\n\n\n\n\n\n\nActual: Yes\n\n\nActual: No\n\n\nPred: Yes\n\n\nTP\n\n\nFP\n\n\nPred: No\n\n\nFN\n\n\nTN\n\n\n\n\nEvery classification metric is built from these four cells."
-  },
-  {
-    "objectID": "m03_slides.html#four-cells-four-questions",
-    "href": "m03_slides.html#four-cells-four-questions",
-    "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "Four Cells, Four Questions",
-    "text": "Four Cells, Four Questions\n\n\n\n\n\nSensitivity — of true responders, how many did we catch?\nSpecificity — of true non-responders, how many did we correctly skip?\nPrecision — of who we targeted, how many actually responded?\nAccuracy — overall, how often were we right? (careful — see next slide)"
-  },
-  {
-    "objectID": "m03_slides.html#the-accuracy-trap",
-    "href": "m03_slides.html#the-accuracy-trap",
-    "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "The Accuracy Trap",
-    "text": "The Accuracy Trap\n\n\n\n\nDirect-mail response rates: typically 3–8%.\n\n\nA model that predicts “no” for every single prospect still scores 92–97% accuracy.\n\n\nIt is also completely useless for targeting.\n\n\nAlways pair accuracy with sensitivity / specificity."
-  },
-  {
-    "objectID": "m03_slides.html#roc-curve-auc",
-    "href": "m03_slides.html#roc-curve-auc",
-    "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "ROC Curve & AUC",
-    "text": "ROC Curve & AUC\n\n\n\n\n\nroc_curve(test_preds, \n          truth = responded, \n          .pred_yes) |&gt; \n  autoplot()\nA single threshold (0.5) gives one sensitivity/specificity pair.\nThe ROC curve sweeps every threshold at once.\n\n\n\n0.5coin flip\n\n\n0.75quite good\n\n\n1.0perfect"
-  },
-  {
-    "objectID": "m03_slides.html#multiclass-same-idea-more-classes",
-    "href": "m03_slides.html#multiclass-same-idea-more-classes",
-    "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "Multiclass: Same Idea, More Classes",
-    "text": "Multiclass: Same Idea, More Classes\n\n\n\n\nloyalty_tier: Bronze / Silver / Gold / Platinum\n\n\nyardstick computes each metric per class (one-vs-rest), then averages.\n\n\nMacro-average (default): every class counts equally — Platinum isn’t drowned out by Bronze, even though Bronze has far more customers."
-  },
-  {
-    "objectID": "m03_slides.html#the-problem-with-one-measurement",
-    "href": "m03_slides.html#the-problem-with-one-measurement",
-    "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "The Problem with One Measurement",
-    "text": "The Problem with One Measurement\n\n\n\n\nSection 1 gave us a ROC AUC. One number, from one test set.\n\n\nWould that number change if we’d split the data differently?\n\n\nWe don’t know — unless we measure it more than once."
-  },
-  {
-    "objectID": "m03_slides.html#resubstitution-the-optimism-trap",
-    "href": "m03_slides.html#resubstitution-the-optimism-trap",
-    "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "Resubstitution: The Optimism Trap",
-    "text": "Resubstitution: The Optimism Trap\n\n\n\nWhat if we score the model on the data it was trained on?\ntrain_preds &lt;- augment(mail_fit, new_data = mail_train)\ntest_preds  &lt;- augment(mail_fit, new_data = mail_test)\n\n\n\ntraining (resubstitution)\n\n\ntest (held out)\n\n\ninflated — model has memorized noise\n\n\nhonest — genuinely unseen data\n\n\n\n\nThe gap between these two is the bias resampling exists to detect and avoid."
-  },
-  {
-    "objectID": "m03_slides.html#why-not-just-reuse-the-test-set",
-    "href": "m03_slides.html#why-not-just-reuse-the-test-set",
-    "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "Why Not Just Reuse the Test Set?",
-    "text": "Why Not Just Reuse the Test Set?\n\n\n\n\nThe test set should be touched once — at the very end.\n\n\nUse it repeatedly while comparing or tuning models, and you start fitting to it — same problem as resubstitution, one level up.\n\n\nResampling gets a trustworthy estimate using only training data."
-  },
-  {
-    "objectID": "m03_slides.html#v-fold-cross-validation",
-    "href": "m03_slides.html#v-fold-cross-validation",
-    "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "V-Fold Cross-Validation",
-    "text": "V-Fold Cross-Validation\n\n\n\nmail_folds &lt;- vfold_cv(mail_train, v = 10, strata = responded)\n\n\n\nFold 1\n\n\n\n\n\n\n\nFold 2\n\n\n\n\n\n\n\nFold 3\n\n\n\n\n\n\n\n⋮\n\n\n\n\n\nFold 10\n\n\n\n\n\n\n\n\n\nEvery row is held out exactly once. Train on 9 folds, score on the 10th, rotate."
-  },
-  {
-    "objectID": "m03_slides.html#the-other-resampling-schemes",
-    "href": "m03_slides.html#the-other-resampling-schemes",
-    "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "The Other Resampling Schemes",
-    "text": "The Other Resampling Schemes\n\n\n\n\n\n\nMethod\nUse it when…\n\n\n\n\nV-fold CV\ndefault choice, most marketing data\n\n\nRepeated CV\nsmall data, fold-to-fold noise is high\n\n\nBootstrap\nneed uncertainty estimates, very small data\n\n\nValidation split\ndata is huge and CV is too slow\n\n\nRolling origin\ntime-ordered data — campaign cohorts by month"
-  },
-  {
-    "objectID": "m03_slides.html#running-it-fit_resamples",
-    "href": "m03_slides.html#running-it-fit_resamples",
-    "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "Running It: fit_resamples()",
-    "text": "Running It: fit_resamples()\n\n\n\ncv_results &lt;- fit_resamples(\n  mail_wf,\n  resamples = mail_folds,\n  metrics = metric_set(accuracy, roc_auc, sens, spec),\n  control = control_resamples(save_pred = TRUE)\n)\n\ncollect_metrics(cv_results)\n\nFits the same workflow 10 times — once per fold — and averages the results."
-  },
-  {
-    "objectID": "m03_slides.html#one-test-set-vs.-ten-folds",
-    "href": "m03_slides.html#one-test-set-vs.-ten-folds",
-    "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "One Test Set vs. Ten Folds",
-    "text": "One Test Set vs. Ten Folds\n\n\n\n\n\nSingle test set\n\n\n10-fold CV mean\n\n\none draw from a distribution\n\n\naverages 10 draws\n\n\nno sense of stability\n\n\ncomes with a standard error\n\n\n\nThe standard error tells you how much that estimate might wobble on a different split."
-  },
-  {
-    "objectID": "m03_slides.html#reading-fold-to-fold-variability",
-    "href": "m03_slides.html#reading-fold-to-fold-variability",
-    "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "Reading Fold-to-Fold Variability",
-    "text": "Reading Fold-to-Fold Variability\n\n\n\ncollect_metrics(cv_results, summarize = FALSE) |&gt;\n  filter(.metric == \"roc_auc\") |&gt;\n  ggplot(aes(x = id, y = .estimate)) + geom_col()\n\nWide spread across folds → performance is sensitive to which prospects end up in the assessment set. Worth investigating before trusting the model."
-  },
-  {
-    "objectID": "m03_slides.html#parallel-processing-a-practical-note",
-    "href": "m03_slides.html#parallel-processing-a-practical-note",
-    "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "Parallel Processing — A Practical Note",
-    "text": "Parallel Processing — A Practical Note\n\n\n\n\nResampling fits the same workflow many times — an embarrassingly parallel task.\n\n\nlibrary(doParallel)\ncl &lt;- makePSOCKcluster(parallel::detectCores() - 1)\nregisterDoParallel(cl)\n\n\nfit_resamples(), tune_grid(), and friends pick this up automatically once a backend is registered."
-  },
-  {
-    "objectID": "m03_slides.html#today-in-one-line",
-    "href": "m03_slides.html#today-in-one-line",
-    "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "Today, in One Line",
-    "text": "Today, in One Line\n\n\n\n\nPick the right ruler.\n\n\nThen measure with it more than once."
-  },
-  {
-    "objectID": "m03_slides.html#next-week",
-    "href": "m03_slides.html#next-week",
-    "title": "Module 3 Slides — Model Evaluation & Resampling",
-    "section": "Next Week",
-    "text": "Next Week\n\n\n\n\nCh. 11 — Comparing Models with Resampling\n\n\nNow that we can measure one model honestly — how do we compare several models on equal footing?\n\n\nBring a model you’ve been curious about. We’ll resample it."
+    "section": "Key R Functions in the Slides",
+    "text": "Key R Functions in the Slides\n\n\n\n\n\n\n\n\nFunction\nPackage\nPurpose\n\n\n\n\nmetric_set()\nyardstick\nBundle multiple metrics together\n\n\nconf_mat()\nyardstick\nBuild a confusion matrix\n\n\nsens(), spec(), precision()\nyardstick\nClassification metrics\n\n\nroc_curve(), roc_auc()\nyardstick\nROC curve and AUC\n\n\nvfold_cv()\nrsample\nBuild cross-validation folds\n\n\nbootstraps()\nrsample\nBootstrap resampling\n\n\nfit_resamples()\ntune\nFit and score across resamples\n\n\ncollect_metrics()\ntune\nExtract averaged metrics\n\n\ncollect_predictions()\ntune\nExtract out-of-fold predictions"
   },
   {
     "objectID": "m03_codebook.html",
@@ -511,6 +322,223 @@
     "text": "6.8 ✏️ Exercise 10.4 — Resubstitution Gap and Model Flexibility\nPart A — Observe the Gap\nRefit mail_wf after changing lr_spec to a random forest:\n\n\nCode\nrf_spec &lt;- rand_forest() |&gt;\n  set_engine(\"ranger\") |&gt;\n  set_mode(\"classification\")\n\nrf_wf &lt;- mail_wf |&gt; update_model(rf_spec)\n\nrf_fit &lt;- fit(rf_wf, data = mail_train)\n\n\nCompare resubstitution accuracy (on mail_train) to held-out accuracy (on mail_test) for the random forest. Then do the same for the original Lasso logistic regression from the notebook.\n\n\nCode\n# Random forest: resubstitution vs. held-out\nrf_train_preds &lt;- augment(rf_fit, new_data = mail_train)\nrf_test_preds  &lt;- augment(rf_fit, new_data = mail_test)\n\nbind_rows(\n  rf_train_preds |&gt; accuracy(truth = responded, estimate = .pred_class) |&gt;\n    mutate(model = \"Random Forest\", data = \"train (resubstitution)\"),\n  rf_test_preds  |&gt; accuracy(truth = responded, estimate = .pred_class) |&gt;\n    mutate(model = \"Random Forest\", data = \"test (held out)\"),\n  train_preds    |&gt; accuracy(truth = responded, estimate = .pred_class) |&gt;\n    mutate(model = \"Lasso LR\",      data = \"train (resubstitution)\"),\n  test_preds     |&gt; accuracy(truth = responded, estimate = .pred_class) |&gt;\n    mutate(model = \"Lasso LR\",      data = \"test (held out)\")\n) |&gt;\n  select(model, data, .estimate) |&gt;\n  pivot_wider(names_from = data, values_from = .estimate) |&gt;\n  mutate(gap = `train (resubstitution)` - `test (held out)`)\n\n\nPart B — Explain the Gap\nAnswer the following in 3–5 sentences:\n\nIs the resubstitution gap larger or smaller for the random forest compared to the Lasso logistic regression?\nWhy does model flexibility affect the size of the resubstitution gap? What is the random forest doing during training that the Lasso is not?\nGiven what you know about resubstitution, why is it dangerous to use training-set performance to select between a Lasso model and a random forest — and what should you use instead?\n\n\n\nCode\n# Use this space for any supporting calculations"
   },
   {
+    "objectID": "answers/module3_answer_keys.html",
+    "href": "answers/module3_answer_keys.html",
+    "title": "Module 3 - Exercise Answer Keys",
+    "section": "",
+    "text": "Overview\n  1 Setup\n  2 Chapter 9 Exercises — Judging Model Effectiveness\n  \n  2.1 Exercise 9.1 — Confusion Matrix and Threshold Tradeoff\n  \n  2.1.1 Part A — Reading the Confusion Matrix\n  2.1.2 Part B — Threshold Tradeoff\n  \n  2.2 Exercise 9.2 — ROC/AUC Interpretation and Custom metric_set()\n  \n  2.2.1 Part A — Interpreting AUC\n  2.2.2 Part B — Custom metric_set()\n  \n  2.3 Exercise 9.3 — Regression Metric Sensitivity to Outliers\n  2.4 Exercise 9.4 — Multiclass Averaging\n  \n  3 Chapter 10 Exercises — Resampling for Evaluating Performance\n  \n  3.1 Exercise 10.1 — Fold Count and Connecting Back to Part 1\n  \n  3.1.1 Part A — Change the Number of Folds\n  3.1.2 Part B — Bridge to Part 1\n  \n  3.2 Exercise 10.2 — Bootstrap vs. Cross-Validation\n  3.3 Exercise 10.3 — Diagnose a High-Variance Fold\n  3.4 Exercise 10.4 — Resubstitution Gap and Model Flexibility\n  \n  3.4.1 Part A — Observe the Gap\n  3.4.2 Part B — Explain the Gap\n  \n  \n  Summary of Key Takeaways"
+  },
+  {
+    "objectID": "answers/module3_answer_keys.html#exercise-9.1-confusion-matrix-and-threshold-tradeoff",
+    "href": "answers/module3_answer_keys.html#exercise-9.1-confusion-matrix-and-threshold-tradeoff",
+    "title": "Module 3 - Exercise Answer Keys",
+    "section": "2.1 Exercise 9.1 — Confusion Matrix and Threshold Tradeoff",
+    "text": "2.1 Exercise 9.1 — Confusion Matrix and Threshold Tradeoff\n\n2.1.1 Part A — Reading the Confusion Matrix\n\n\nCode\ncm &lt;- conf_mat(test_preds, truth = responded, estimate = .pred_class)\ncm\n\n\n          Truth\nPrediction yes  no\n       yes   0   0\n       no   31 569\n\n\nCode\nautoplot(cm, type = \"heatmap\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteReading Each Cell\n\n\n\nThe confusion matrix is a 2×2 table of predicted class (rows) vs. actual class (columns). Here is how to read each cell in the context of a direct-mail campaign:\n\n\n\n\n\n\n\n\nCell\nName\nWhat it means\n\n\n\n\nPredicted “yes”, Actual “yes”\nTrue Positive (TP)\nWe mailed them and they responded — a successful targeting decision\n\n\nPredicted “yes”, Actual “no”\nFalse Positive (FP)\nWe mailed them but they did not respond — wasted mailing cost\n\n\nPredicted “no”, Actual “yes”\nFalse Negative (FN)\nWe did not mail them but they would have responded — a missed opportunity\n\n\nPredicted “no”, Actual “no”\nTrue Negative (TN)\nWe correctly skipped them — money saved\n\n\n\n\n\nQ4 — Which error costs more?\nWith a $5 mailing cost and $50 average order value:\n\nA false positive costs $5 (we mailed someone who didn’t respond)\nA false negative costs the lost profit margin on a $50 order — potentially $20–$40 depending on margins\n\nIn most direct-mail settings, false negatives are more costly — missing a genuine responder loses more revenue than the small cost of an unnecessary mailing. This is why marketers often lower the classification threshold below 0.5 to catch more true responders, accepting more false positives in exchange.\n\n\n2.1.2 Part B — Threshold Tradeoff\n\n\nCode\n# At default threshold of 0.5\ndefault_metrics &lt;- test_preds |&gt;\n  metric_set(precision, sens)(truth = responded, estimate = .pred_class)\n\n# At lower threshold of 0.3\npreds_03 &lt;- test_preds |&gt;\n  mutate(\n    .pred_class_03 = factor(\n      if_else(.pred_yes &gt; 0.3, \"yes\", \"no\"),\n      levels = c(\"yes\", \"no\")\n    )\n  )\n\nlow_threshold_metrics &lt;- preds_03 |&gt;\n  metric_set(precision, sens)(truth = responded, estimate = .pred_class_03)\n\n# Compare\nbind_rows(\n  default_metrics |&gt; mutate(threshold = \"0.5 (default)\"),\n  low_threshold_metrics |&gt; mutate(threshold = \"0.3 (lower)\")\n) |&gt;\n  select(threshold, .metric, .estimate) |&gt;\n  pivot_wider(names_from = threshold, values_from = .estimate)\n\n\n\n  \n\n\n\n\n\n\n\n\n\nNoteWhy Lowering the Threshold Increases Sensitivity\n\n\n\nLowering the threshold from 0.5 to 0.3 means we classify more customers as “yes” — including customers the model is only moderately confident about.\n\nSensitivity increases because we are now catching more of the true responders we previously missed (fewer false negatives)\nPrecision decreases because we are also adding more non-responders to the “yes” pile (more false positives)\n\nThis is the fundamental precision-sensitivity tradeoff: you can always catch more true responders by being less selective, but you pay for it with more wasted mailings. The ROC curve visualizes this tradeoff across every possible threshold simultaneously."
+  },
+  {
+    "objectID": "answers/module3_answer_keys.html#exercise-9.2-rocauc-interpretation-and-custom-metric_set",
+    "href": "answers/module3_answer_keys.html#exercise-9.2-rocauc-interpretation-and-custom-metric_set",
+    "title": "Module 3 - Exercise Answer Keys",
+    "section": "2.2 Exercise 9.2 — ROC/AUC Interpretation and Custom metric_set()",
+    "text": "2.2 Exercise 9.2 — ROC/AUC Interpretation and Custom metric_set()\n\n2.2.1 Part A — Interpreting AUC\n\n\nCode\n# Retrieve the AUC value\nauc_val &lt;- test_preds |&gt;\n  roc_auc(truth = responded, .pred_yes) |&gt;\n  pull(.estimate)\n\ncat(\"AUC:\", round(auc_val, 3), \"\\n\")\n\n\nAUC: 0.473 \n\n\nCode\ncat(\n  \"In plain English: the model ranks a true responder above a true\",\n  \"non-responder\",\n  round(auc_val * 100, 1),\n  \"% of the time.\\n\"\n)\n\n\nIn plain English: the model ranks a true responder above a true non-responder 47.3 % of the time.\n\n\nCode\n# Plot the ROC curve to answer Q3\nroc_data &lt;- test_preds |&gt;\n  roc_curve(truth = responded, .pred_yes)\n\nautoplot(roc_data) +\n  annotate(\n    \"text\",\n    x = 0.6,\n    y = 0.2,\n    label = paste0(\"AUC = \", round(auc_val, 3)),\n    size = 5,\n    color = \"#2E5266\",\n    fontface = \"bold\"\n  ) +\n  geom_vline(\n    xintercept = 0.10,\n    linetype = \"dashed\",\n    color = \"tomato\",\n    linewidth = 0.8\n  ) +\n  annotate(\n    \"text\",\n    x = 0.13,\n    y = 0.05,\n    label = \"Top 10%\",\n    size = 3.5,\n    color = \"tomato\"\n  ) +\n  labs(\n    title = \"ROC Curve — Direct-Mail Response Model\",\n    subtitle = \"Red dashed line = operating at top 10% of prospects\"\n  ) +\n  theme_minimal(base_size = 12)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteReading the AUC\n\n\n\nAUC = 0.473 means that if we randomly pick one customer who responded and one who did not, the model assigns a higher predicted probability to the responder about 47.3% of the time. This is well above the 0.65 threshold described as “usable for targeting” — a solid result for direct-mail.\nQ3 — Operating at the top 10%: If your budget allows mailing only the top 10% of prospects (1 − specificity ≈ 0.10 on the x-axis), find that point on the ROC curve and read off the sensitivity — that tells you what fraction of all true responders you would reach with that budget.\n\n\n\n\n2.2.2 Part B — Custom metric_set()\n\n\nCode\ncustom_metrics &lt;- metric_set(accuracy, roc_auc, sens, spec, f_meas)\n\ntest_preds |&gt;\n  custom_metrics(\n    truth = responded,\n    estimate = .pred_class,\n    .pred_yes\n  )\n\n\n\n  \n\n\n\n\n\n\n\n\n\nNoteWhich Two Metrics for a VP of Marketing?\n\n\n\nThe best two metrics to report to a non-technical stakeholder are:\n\nroc_auc — it summarizes the model’s overall ability to rank responders above non-responders in a single number that doesn’t depend on any threshold choice. Easy to explain: “80% of the time the model correctly identifies who is more likely to respond.”\nsens (sensitivity) — it directly answers the business question: “Of all the customers who would have responded, what fraction did we successfully target?” This maps directly to revenue recovered vs. revenue missed.\n\nWhy not accuracy? With a ~4.7% response rate, accuracy is inflated and misleading — a model that predicts “no” for everyone scores 95%+ accuracy while being useless. Always pair accuracy with sensitivity/specificity when classes are imbalanced."
+  },
+  {
+    "objectID": "answers/module3_answer_keys.html#exercise-9.3-regression-metric-sensitivity-to-outliers",
+    "href": "answers/module3_answer_keys.html#exercise-9.3-regression-metric-sensitivity-to-outliers",
+    "title": "Module 3 - Exercise Answer Keys",
+    "section": "2.3 Exercise 9.3 — Regression Metric Sensitivity to Outliers",
+    "text": "2.3 Exercise 9.3 — Regression Metric Sensitivity to Outliers\n\n\nCode\n# Original metrics\noriginal_metrics &lt;- reg_preds |&gt;\n  metric_set(rmse, mae)(truth = order_value_next, estimate = .pred)\n\n# Add one \"whale\" customer\nwhale_row &lt;- tibble(\n  order_value_next = 5000,\n  .pred = 200\n)\n\nreg_preds_whale &lt;- bind_rows(\n  reg_preds |&gt; select(order_value_next, .pred),\n  whale_row\n)\n\n# Metrics with whale\nwhale_metrics &lt;- reg_preds_whale |&gt;\n  metric_set(rmse, mae)(truth = order_value_next, estimate = .pred)\n\n# Compare\nbind_rows(\n  original_metrics |&gt; mutate(data = \"without whale\"),\n  whale_metrics |&gt; mutate(data = \"with whale\")\n) |&gt;\n  select(data, .metric, .estimate) |&gt;\n  pivot_wider(names_from = data, values_from = .estimate) |&gt;\n  mutate(\n    pct_change = round(\n      (`with whale` - `without whale`) / `without whale` * 100,\n      1\n    )\n  )\n\n\n\n  \n\n\n\n\n\n\n\n\n\nNoteRMSE vs. MAE: Which is More Sensitive to Outliers?\n\n\n\nRMSE moves more in percentage terms because it squares the error before averaging — a $4,800 prediction error ($5,000 − $200) becomes a $23M squared error, which dominates the average. MAE only takes the absolute value, so the same whale contributes a $4,800 error that is large but proportional.\nMarketing implication: If your dataset contains occasional very large orders (“whales”), RMSE will be heavily influenced by how well the model predicts those customers. MAE gives a more representative picture of typical prediction accuracy for the average customer. In practice, it is worth reporting both and noting when they diverge significantly — a large RMSE/MAE gap signals the presence of influential outliers."
+  },
+  {
+    "objectID": "answers/module3_answer_keys.html#exercise-9.4-multiclass-averaging",
+    "href": "answers/module3_answer_keys.html#exercise-9.4-multiclass-averaging",
+    "title": "Module 3 - Exercise Answer Keys",
+    "section": "2.4 Exercise 9.4 — Multiclass Averaging",
+    "text": "2.4 Exercise 9.4 — Multiclass Averaging\n\n\nCode\n# Macro (default) — each class counts equally\nmacro_metrics &lt;- multi_preds |&gt;\n  metric_set(accuracy, sens)(\n    truth = loyalty_tier,\n    estimate = .pred_class,\n    estimator = \"macro\"\n  )\n\n# Macro-weighted — classes weighted by their frequency\nmacro_wt_metrics &lt;- multi_preds |&gt;\n  metric_set(accuracy, sens)(\n    truth = loyalty_tier,\n    estimate = .pred_class,\n    estimator = \"macro_weighted\"\n  )\n\n# Micro — treats all observations equally regardless of class\nmicro_metrics &lt;- multi_preds |&gt;\n  metric_set(accuracy, sens)(\n    truth = loyalty_tier,\n    estimate = .pred_class,\n    estimator = \"micro\"\n  )\n\n# Compare all three\nbind_rows(\n  macro_metrics |&gt; mutate(estimator = \"macro\"),\n  macro_wt_metrics |&gt; mutate(estimator = \"macro_weighted\"),\n  micro_metrics |&gt; mutate(estimator = \"micro\")\n) |&gt;\n  filter(.metric == \"sens\") |&gt;\n  select(estimator, .estimate) |&gt;\n  arrange(desc(.estimate))\n\n\n\n  \n\n\n\n\n\n\n\n\n\nNoteUnderstanding the Three Estimators\n\n\n\nQ1 — Why micro looks more favorable: Micro-averaging treats every observation equally — since Bronze customers make up ~40% of the data and are easiest to predict (the largest group tends to dominate), micro-averaging is pulled upward by correct Bronze predictions, masking poor performance on rarer tiers.\nQ2 — Protecting Platinum customers: Use macro-averaging — it gives Platinum customers the same weight as Bronze customers regardless of how few Platinum observations there are. This ensures the metric reflects model performance across all tiers equally, not just the most common ones.\nQ3 — Most misleading for marketing: Micro-averaging is the most likely to give an overly optimistic picture. In a loyalty program, Platinum customers are typically the most valuable — if the model performs poorly on them, micro-averaging will hide that by averaging it away with many correct Bronze predictions."
+  },
+  {
+    "objectID": "answers/module3_answer_keys.html#exercise-10.1-fold-count-and-connecting-back-to-part-1",
+    "href": "answers/module3_answer_keys.html#exercise-10.1-fold-count-and-connecting-back-to-part-1",
+    "title": "Module 3 - Exercise Answer Keys",
+    "section": "3.1 Exercise 10.1 — Fold Count and Connecting Back to Part 1",
+    "text": "3.1 Exercise 10.1 — Fold Count and Connecting Back to Part 1\n\n3.1.1 Part A — Change the Number of Folds\n\n\nCode\n# 5-fold CV\nset.seed(2024)\nfolds_5 &lt;- vfold_cv(mail_train, v = 5, strata = responded)\n\ncv_5fold &lt;- fit_resamples(\n  mail_wf,\n  resamples = folds_5,\n  metrics = metric_set(accuracy, roc_auc, sens, spec),\n  control = control_resamples(save_pred = TRUE)\n)\n\n# Compare 5-fold vs 10-fold\nbind_rows(\n  collect_metrics(cv_results) |&gt;\n    filter(.metric == \"roc_auc\") |&gt;\n    select(.metric, mean, std_err) |&gt;\n    mutate(method = \"10-fold CV\"),\n  collect_metrics(cv_5fold) |&gt;\n    filter(.metric == \"roc_auc\") |&gt;\n    select(.metric, mean, std_err) |&gt;\n    mutate(method = \"5-fold CV\")\n) |&gt;\n  select(method, mean, std_err)\n\n\n\n  \n\n\n\n\n\n\n\n\n\nNoteWhat Happens to Standard Error as v Decreases?\n\n\n\nWith fewer folds, the standard error of the mean roc_auc typically increases. Here is why:\n\nWith 10 folds, we get 10 different performance estimates and average them — more estimates means a more stable average\nWith 5 folds, each assessment set is twice as large (≈ 480 rows instead of ≈ 240), which reduces within-fold variance, but we have fewer folds to average over, which increases across-fold variance\n\nThe net effect is usually a slightly less stable estimate with fewer folds. The trade-off: 5-fold CV is faster to compute (5 model fits instead of 10) but produces a noisier performance estimate.\n\n\n\n\n3.1.2 Part B — Bridge to Part 1\n\n\nCode\n# Single test-set roc_auc from Part 1\nsingle_test_auc &lt;- test_preds |&gt;\n  roc_auc(truth = responded, .pred_yes)\n\n# 5-fold CV mean roc_auc\ncv5_auc &lt;- collect_metrics(cv_5fold) |&gt;\n  filter(.metric == \"roc_auc\") |&gt;\n  select(mean, std_err)\n\n# 10-fold CV mean roc_auc\ncv10_auc &lt;- collect_metrics(cv_results) |&gt;\n  filter(.metric == \"roc_auc\") |&gt;\n  select(mean, std_err)\n\ntibble(\n  source = c(\"Single test set\", \"5-fold CV\", \"10-fold CV\"),\n  roc_auc = c(single_test_auc$.estimate, cv5_auc$mean, cv10_auc$mean),\n  std_err = c(NA, cv5_auc$std_err, cv10_auc$std_err)\n)\n\n\n\n  \n\n\n\n\n\n\n\n\n\nNoteSingle Test Set vs. Cross-Validated Estimates\n\n\n\nQ1 — Are they close? All three numbers should be in a similar range. Small differences are expected — the single test-set number came from one particular 80/20 split, while CV numbers average over multiple different splits of the training data.\nQ2 — Which is more trustworthy? The cross-validated estimate is more trustworthy because:\n\nIt averages over multiple held-out sets rather than relying on one particular split that might be lucky or unlucky\nIt uses only the training data, keeping the test set completely untouched for a final honest evaluation\n\nQ3 — Why does CV have a standard error but the single test set does not? The standard error measures how much the AUC varies across folds. With one test set, we have exactly one number — there is nothing to measure variance across. The standard error is what makes CV estimates more informative: it tells you not just what the performance is, but how stable that estimate is."
+  },
+  {
+    "objectID": "answers/module3_answer_keys.html#exercise-10.2-bootstrap-vs.-cross-validation",
+    "href": "answers/module3_answer_keys.html#exercise-10.2-bootstrap-vs.-cross-validation",
+    "title": "Module 3 - Exercise Answer Keys",
+    "section": "3.2 Exercise 10.2 — Bootstrap vs. Cross-Validation",
+    "text": "3.2 Exercise 10.2 — Bootstrap vs. Cross-Validation\n\n\nCode\n# Run fit_resamples with bootstrap\nboot_results &lt;- fit_resamples(\n  mail_wf,\n  resamples = boot_resamples,\n  metrics = metric_set(accuracy, roc_auc, sens, spec)\n)\n\n# Compare bootstrap vs 10-fold CV\nbind_rows(\n  collect_metrics(cv_results) |&gt;\n    filter(.metric == \"roc_auc\") |&gt;\n    select(mean, std_err) |&gt;\n    mutate(method = \"10-fold CV\"),\n  collect_metrics(boot_results) |&gt;\n    filter(.metric == \"roc_auc\") |&gt;\n    select(mean, std_err) |&gt;\n    mutate(method = \"Bootstrap (25 resamples)\")\n) |&gt;\n  select(method, mean, std_err)\n\n\n\n  \n\n\n\n\n\n\n\n\n\nNoteBootstrap vs. Cross-Validation\n\n\n\nThe mean roc_auc from bootstrap and 10-fold CV should be close — both are estimating the same underlying population quantity. However, they typically differ in their standard errors:\n\nBootstrap tends to produce a smaller standard error because each bootstrap resample uses the full training data (sampled with replacement), giving each assessment more coverage of the data space\nCross-validation assessment sets are strictly held-out, so they are smaller and more variable\n\nThe trade-off: bootstrap estimates can be slightly optimistic because some training observations appear in both the analysis set and the assessment set of the same resample (about 63% of observations appear at least once in each bootstrap sample). Cross-validation avoids this — every assessment observation is completely held out from its fold’s training data."
+  },
+  {
+    "objectID": "answers/module3_answer_keys.html#exercise-10.3-diagnose-a-high-variance-fold",
+    "href": "answers/module3_answer_keys.html#exercise-10.3-diagnose-a-high-variance-fold",
+    "title": "Module 3 - Exercise Answer Keys",
+    "section": "3.3 Exercise 10.3 — Diagnose a High-Variance Fold",
+    "text": "3.3 Exercise 10.3 — Diagnose a High-Variance Fold\n\n\nCode\n# Identify the fold with the lowest AUC\nfold_aucs &lt;- collect_metrics(cv_results, summarize = FALSE) |&gt;\n  filter(.metric == \"roc_auc\") |&gt;\n  arrange(.estimate)\n\ncat(\n  \"Fold with lowest AUC:\",\n  fold_aucs$id[1],\n  \"| AUC =\",\n  round(fold_aucs$.estimate[1], 3),\n  \"\\n\"\n)\n\n\nFold with lowest AUC: Fold06 | AUC = 0.444 \n\n\nCode\nworst_fold &lt;- fold_aucs$id[1]\n\n# Pull that fold's predictions\nworst_fold_preds &lt;- cv_preds |&gt;\n  filter(id == worst_fold)\n\n# Confusion matrix for the worst fold\nconf_mat(worst_fold_preds, truth = responded, estimate = .pred_class)\n\n\n          Truth\nPrediction yes  no\n       yes   0   0\n       no    9 231\n\n\nCode\n# Compare to overall confusion matrix\ncat(\"\\n--- Overall confusion matrix (full test set) ---\\n\")\n\n\n\n--- Overall confusion matrix (full test set) ---\n\n\nCode\nconf_mat(test_preds, truth = responded, estimate = .pred_class)\n\n\n          Truth\nPrediction yes  no\n       yes   0   0\n       no   31 569\n\n\nCode\n# Compare sensitivity specifically\nbind_rows(\n  worst_fold_preds |&gt;\n    sens(truth = responded, estimate = .pred_class) |&gt;\n    mutate(source = paste(\"Worst fold:\", worst_fold)),\n  cv_preds |&gt;\n    sens(truth = responded, estimate = .pred_class) |&gt;\n    mutate(source = \"All folds combined\"),\n  test_preds |&gt;\n    sens(truth = responded, estimate = .pred_class) |&gt;\n    mutate(source = \"Single test set\")\n) |&gt;\n  select(source, .estimate)\n\n\n\n  \n\n\n\n\n\n\n\n\n\nNoteWhat to Look For in a High-Variance Fold\n\n\n\nThe fold with the lowest AUC often has one or more of these characteristics:\n\nFewer true responders in the assessment set — with only ~28 responders per fold on average (4.7% of 600 rows), random variation in who lands in a fold can meaningfully change metrics\nLower sensitivity — the model may have missed more responders in that fold than average\nSimilar specificity — the large non-responder group is stable across folds, so specificity tends to vary less\n\nThis is exactly why we use 10-fold CV rather than a single validation split: fold-to-fold variability reveals how sensitive our performance estimate is to which particular customers happen to be held out. A fold with unusually low AUC is a signal to investigate, not necessarily a reason to discard the model."
+  },
+  {
+    "objectID": "answers/module3_answer_keys.html#exercise-10.4-resubstitution-gap-and-model-flexibility",
+    "href": "answers/module3_answer_keys.html#exercise-10.4-resubstitution-gap-and-model-flexibility",
+    "title": "Module 3 - Exercise Answer Keys",
+    "section": "3.4 Exercise 10.4 — Resubstitution Gap and Model Flexibility",
+    "text": "3.4 Exercise 10.4 — Resubstitution Gap and Model Flexibility\n\n3.4.1 Part A — Observe the Gap\n\n\nCode\n# Fit a random forest\n#install.packages(\"ranger\")\nlibrary(ranger)\nrf_spec &lt;- rand_forest() |&gt;\n  set_engine(\"ranger\") |&gt;\n  set_mode(\"classification\")\n\nrf_wf &lt;- mail_wf |&gt; update_model(rf_spec)\nrf_fit &lt;- fit(rf_wf, data = mail_train)\n\nrf_train_preds &lt;- augment(rf_fit, new_data = mail_train)\nrf_test_preds &lt;- augment(rf_fit, new_data = mail_test)\n\n\n\n\nCode\n# Compare resubstitution vs. held-out for both models\nbind_rows(\n  rf_train_preds |&gt;\n    accuracy(truth = responded, estimate = .pred_class) |&gt;\n    mutate(model = \"Random Forest\", data = \"train (resubstitution)\"),\n  rf_test_preds |&gt;\n    accuracy(truth = responded, estimate = .pred_class) |&gt;\n    mutate(model = \"Random Forest\", data = \"test (held out)\"),\n  train_preds |&gt;\n    accuracy(truth = responded, estimate = .pred_class) |&gt;\n    mutate(model = \"Lasso LR\", data = \"train (resubstitution)\"),\n  test_preds |&gt;\n    accuracy(truth = responded, estimate = .pred_class) |&gt;\n    mutate(model = \"Lasso LR\", data = \"test (held out)\")\n) |&gt;\n  select(model, data, .estimate) |&gt;\n  pivot_wider(names_from = data, values_from = .estimate) |&gt;\n  mutate(\n    gap = round(\n      `train (resubstitution)` - `test (held out)`,\n      4\n    )\n  )\n\n\n\n  \n\n\n\n\n\n3.4.2 Part B — Explain the Gap\n\n\n\n\n\n\nNoteWhy the Random Forest Shows a Larger Gap\n\n\n\nQ1 — Is the gap larger for random forest? Yes — almost always. The random forest’s resubstitution accuracy is typically near 1.0 (it essentially memorizes the training data), while its test accuracy is closer to the Lasso’s test accuracy. The Lasso shows a much smaller gap.\nQ2 — Why does flexibility cause a larger gap? A random forest is a highly flexible model — it can grow very deep trees that carve the feature space into tiny regions, each fitted to a small group of training observations including their noise. This is called overfitting: the model learns the training data so well that it memorizes patterns that don’t generalize to new prospects.\nThe Lasso penalizes coefficient magnitude, forcing a simpler model that ignores noise. It deliberately accepts slightly worse training-set performance in exchange for better generalization — which is why its resubstitution gap is small.\nQ3 — Why is resubstitution unreliable for model comparison? If you compared Lasso and random forest on training-set accuracy alone, the random forest would always win (it fits training data almost perfectly by design). But that advantage vanishes on new data. This is exactly why we use cross-validation or a held-out test set to compare models — it forces both models to be evaluated on data they have not seen, giving an honest comparison of which generalizes better to new prospects."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Machine Learning Model Evaluation and Resampling",
+    "section": "",
+    "text": "This module covers the two essential questions every machine learning model must answer: how good is it? and how do we know that estimate is trustworthy?\nChapter 9 gives you the measurement instruments — regression metrics (RMSE, R², MAE) and classification metrics (confusion matrix, sensitivity, specificity, ROC/AUC) — using the yardstick package.\nChapter 10 explains why a single measurement isn’t enough, and introduces resampling (cross-validation, bootstrap) via the rsample package to get stable, honest performance estimates from the training data alone.\nWork through the materials in the order listed below.\n\n\n\n\n\n\n\n\n\n\n\n\n\nModule 3 Slides — Model Evaluation & Resampling\n\n2 min\n\nA visual overview of Ch. 9–10 — metrics, cross-validation, and why resampling gives more trustworthy performance estimates than a single test set.\n\n\n\n\n\n\n\n\n\nModule 3 Codebook — Model Evaluation and Resampling\n\n25 min\n\nHands-on R notebook covering regression and classification metrics with yardstick, cross-validation with rsample, and fit_resamples() for trustworthy model performance…\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "m03_slides.html#where-we-are",
+    "href": "m03_slides.html#where-we-are",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "Where We Are",
+    "text": "Where We Are\n\n\n\n\nCh. 4–8 — Data, splitting, recipes, workflows\n\n\nToday (Ch. 9–10) — How do we know if any of it worked?\n\n\nCh. 11+ — Comparing and tuning models\n\n\nFrame today as the hinge point of the course: everything before this was building a model; everything after this is improving a model. You can’t improve what you can’t measure."
+  },
+  {
+    "objectID": "m03_slides.html#the-question-underneath-every-model",
+    "href": "m03_slides.html#the-question-underneath-every-model",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "The Question Underneath Every Model",
+    "text": "The Question Underneath Every Model\n\n\n\n\n“Is this model actually good —\n\n\nor did it just get lucky?”\n\n\nThis is the thesis of both chapters. Ch 9 gives us the ruler. Ch 10 makes sure we’re not measuring on a surface that’s tilted in our favor."
+  },
+  {
+    "objectID": "m03_slides.html#two-chapters-one-throughline",
+    "href": "m03_slides.html#two-chapters-one-throughline",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "Two Chapters, One Throughline",
+    "text": "Two Chapters, One Throughline\n\n\n\n\n\nCh. 9\nHow do we measure it?\nMetrics: RMSE, sensitivity, ROC/AUC — the instruments.\n\n\n\nCh. 10\nHow do we measure it honestly?\nResampling: cross-validation — measure the same thing many times.\n\n\n\nYou need a ruler before you can ask whether it’s calibrated."
+  },
+  {
+    "objectID": "m03_slides.html#why-metrics-not-vibes",
+    "href": "m03_slides.html#why-metrics-not-vibes",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "Why Metrics, Not Vibes",
+    "text": "Why Metrics, Not Vibes\n\n\n\n\nA fitted model produces predictions. Predictions need a number that says how good they are.\n\n\nThat number depends on the business question — there is no universal “best” metric.\n\n\nA churn model that misses real churners ≠ a churn model that over-flags loyal customers. Same accuracy. Very different cost."
+  },
+  {
+    "objectID": "m03_slides.html#regression-metrics",
+    "href": "m03_slides.html#regression-metrics",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "Regression Metrics",
+    "text": "Regression Metrics\n\n\n\nreg_metrics &lt;- metric_set(rmse, rsq, mae)\n\nreg_preds |&gt; reg_metrics(truth = order_value_next, estimate = .pred)\n\n\n\n\nmetric\nreads as\nin dollars?\n\n\n\n\nRMSE\ntypical error size\nyes — penalizes big misses\n\n\nR²\n% variance explained\nno — unitless, 0 to 1\n\n\nMAE\ntypical error size\nyes — robust to outliers\n\n\n\n\n\nEmphasize: RMSE and MAE answer “how far off, on average” but RMSE punishes large misses harder because of the square. If your data has occasional huge orders, RMSE and MAE will tell different stories — that’s exercise 9.3."
+  },
+  {
+    "objectID": "m03_slides.html#the-confusion-matrix",
+    "href": "m03_slides.html#the-confusion-matrix",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "The Confusion Matrix",
+    "text": "The Confusion Matrix\n\n\n\nconf_mat(test_preds, truth = responded, estimate = .pred_class)\n\n\n\n\n\n\nActual: Yes\n\n\nActual: No\n\n\nPred: Yes\n\n\nTP\n\n\nFP\n\n\nPred: No\n\n\nFN\n\n\nTN\n\n\n\n\nEvery classification metric is built from these four cells."
+  },
+  {
+    "objectID": "m03_slides.html#four-cells-four-questions",
+    "href": "m03_slides.html#four-cells-four-questions",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "Four Cells, Four Questions",
+    "text": "Four Cells, Four Questions\n\n\n\n\nSensitivity — of true responders, how many did we catch?\nSpecificity — of true non-responders, how many did we correctly skip?\nPrecision — of who we targeted, how many actually responded?\nAccuracy — overall, how often were we right? (careful — see next slide)"
+  },
+  {
+    "objectID": "m03_slides.html#the-accuracy-trap",
+    "href": "m03_slides.html#the-accuracy-trap",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "The Accuracy Trap",
+    "text": "The Accuracy Trap\n\n\n\n\nDirect-mail response rates: typically 3–8%.\n\n\nA model that predicts “no” for every single prospect still scores 92–97% accuracy.\n\n\nIt is also completely useless for targeting.\n\n\nAlways pair accuracy with sensitivity / specificity."
+  },
+  {
+    "objectID": "m03_slides.html#roc-curve-auc",
+    "href": "m03_slides.html#roc-curve-auc",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "ROC Curve & AUC",
+    "text": "ROC Curve & AUC\n\n\n\n\n\nroc_curve(test_preds, \n          truth = responded, \n          .pred_yes) |&gt; \n  autoplot()\nA single threshold (0.5) gives one sensitivity/specificity pair.\nThe ROC curve sweeps every threshold at once.\n\n\n\n0.5coin flip\n\n\n0.75quite good\n\n\n1.0perfect"
+  },
+  {
+    "objectID": "m03_slides.html#multiclass-same-idea-more-classes",
+    "href": "m03_slides.html#multiclass-same-idea-more-classes",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "Multiclass: Same Idea, More Classes",
+    "text": "Multiclass: Same Idea, More Classes\n\n\n\n\nloyalty_tier: Bronze / Silver / Gold / Platinum\n\n\nyardstick computes each metric per class (one-vs-rest), then averages.\n\n\nMacro-average (default): every class counts equally — Platinum isn’t drowned out by Bronze, even though Bronze has far more customers."
+  },
+  {
+    "objectID": "m03_slides.html#the-problem-with-one-measurement",
+    "href": "m03_slides.html#the-problem-with-one-measurement",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "The Problem with One Measurement",
+    "text": "The Problem with One Measurement\n\n\n\n\nSection 1 gave us a ROC AUC. One number, from one test set.\n\n\nWould that number change if we’d split the data differently?\n\n\nWe don’t know — unless we measure it more than once."
+  },
+  {
+    "objectID": "m03_slides.html#resubstitution-the-optimism-trap",
+    "href": "m03_slides.html#resubstitution-the-optimism-trap",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "Resubstitution: The Optimism Trap",
+    "text": "Resubstitution: The Optimism Trap\n\n\n\nWhat if we score the model on the data it was trained on?\ntrain_preds &lt;- augment(mail_fit, new_data = mail_train)\ntest_preds  &lt;- augment(mail_fit, new_data = mail_test)\n\n\n\ntraining (resubstitution)\n\n\ntest (held out)\n\n\ninflated — model has memorized noise\n\n\nhonest — genuinely unseen data\n\n\n\n\nThe gap between these two is the bias resampling exists to detect and avoid."
+  },
+  {
+    "objectID": "m03_slides.html#why-not-just-reuse-the-test-set",
+    "href": "m03_slides.html#why-not-just-reuse-the-test-set",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "Why Not Just Reuse the Test Set?",
+    "text": "Why Not Just Reuse the Test Set?\n\n\n\n\nThe test set should be touched once — at the very end.\n\n\nUse it repeatedly while comparing or tuning models, and you start fitting to it — same problem as resubstitution, one level up.\n\n\nResampling gets a trustworthy estimate using only training data."
+  },
+  {
+    "objectID": "m03_slides.html#v-fold-cross-validation",
+    "href": "m03_slides.html#v-fold-cross-validation",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "V-Fold Cross-Validation",
+    "text": "V-Fold Cross-Validation\n\n\n\nmail_folds &lt;- vfold_cv(mail_train, v = 10, strata = responded)\n\n\n\nFold 1\n\n\n\n\n\n\n\nFold 2\n\n\n\n\n\n\n\nFold 3\n\n\n\n\n\n\n\n⋮\n\n\n\n\n\nFold 10\n\n\n\n\n\n\n\n\n\nEvery row is held out exactly once. Train on 9 folds, score on the 10th, rotate."
+  },
+  {
+    "objectID": "m03_slides.html#the-other-resampling-schemes",
+    "href": "m03_slides.html#the-other-resampling-schemes",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "The Other Resampling Schemes",
+    "text": "The Other Resampling Schemes\n\n\n\n\n\n\nMethod\nUse it when…\n\n\n\n\nV-fold CV\ndefault choice, most marketing data\n\n\nRepeated CV\nsmall data, fold-to-fold noise is high\n\n\nBootstrap\nneed uncertainty estimates, very small data\n\n\nValidation split\ndata is huge and CV is too slow\n\n\nRolling origin\ntime-ordered data — campaign cohorts by month"
+  },
+  {
+    "objectID": "m03_slides.html#running-it-fit_resamples",
+    "href": "m03_slides.html#running-it-fit_resamples",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "Running It: fit_resamples()",
+    "text": "Running It: fit_resamples()\n\n\n\ncv_results &lt;- fit_resamples(\n  mail_wf,\n  resamples = mail_folds,\n  metrics = metric_set(accuracy, roc_auc, sens, spec),\n  control = control_resamples(save_pred = TRUE)\n)\n\ncollect_metrics(cv_results)\n\nFits the same workflow 10 times — once per fold — and averages the results."
+  },
+  {
+    "objectID": "m03_slides.html#one-test-set-vs.-ten-folds",
+    "href": "m03_slides.html#one-test-set-vs.-ten-folds",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "One Test Set vs. Ten Folds",
+    "text": "One Test Set vs. Ten Folds\n\n\n\n\n\nSingle test set\n\n\n10-fold CV mean\n\n\none draw from a distribution\n\n\naverages 10 draws\n\n\nno sense of stability\n\n\ncomes with a standard error\n\n\n\nThe standard error tells you how much that estimate might wobble on a different split."
+  },
+  {
+    "objectID": "m03_slides.html#reading-fold-to-fold-variability",
+    "href": "m03_slides.html#reading-fold-to-fold-variability",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "Reading Fold-to-Fold Variability",
+    "text": "Reading Fold-to-Fold Variability\n\n\n\ncollect_metrics(cv_results, summarize = FALSE) |&gt;\n  filter(.metric == \"roc_auc\") |&gt;\n  ggplot(aes(x = id, y = .estimate)) + geom_col()\n\nWide spread across folds → performance is sensitive to which prospects end up in the assessment set. Worth investigating before trusting the model."
+  },
+  {
+    "objectID": "m03_slides.html#parallel-processing-a-practical-note",
+    "href": "m03_slides.html#parallel-processing-a-practical-note",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "Parallel Processing — A Practical Note",
+    "text": "Parallel Processing — A Practical Note\n\n\n\n\nResampling fits the same workflow many times — an embarrassingly parallel task.\n\n\nlibrary(doParallel)\ncl &lt;- makePSOCKcluster(parallel::detectCores() - 1)\nregisterDoParallel(cl)\n\n\nfit_resamples(), tune_grid(), and friends pick this up automatically once a backend is registered."
+  },
+  {
+    "objectID": "m03_slides.html#today-in-one-line",
+    "href": "m03_slides.html#today-in-one-line",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "Today, in One Line",
+    "text": "Today, in One Line\n\n\n\n\nPick the right ruler.\n\n\nThen measure with it more than once."
+  },
+  {
+    "objectID": "m03_slides.html#next-week",
+    "href": "m03_slides.html#next-week",
+    "title": "Module 3 Slides — Model Evaluation & Resampling",
+    "section": "Next Week",
+    "text": "Next Week\n\n\n\n\nCh. 11 — Comparing Models with Resampling\n\n\nNow that we can measure one model honestly — how do we compare several models on equal footing?\n\n\nBring a model you’ve been curious about. We’ll resample it."
+  },
+  {
     "objectID": "we03_eval_resamp_codebook.html",
     "href": "we03_eval_resamp_codebook.html",
     "title": "Module 3 Codebook — Model Evaluation and Resampling",
@@ -649,12 +677,5 @@
     "title": "Module 3 Codebook — Model Evaluation and Resampling",
     "section": "6.8 ✏️ Exercise 10.4 — Resubstitution Gap and Model Flexibility",
     "text": "6.8 ✏️ Exercise 10.4 — Resubstitution Gap and Model Flexibility\nPart A — Observe the Gap\nRefit mail_wf after changing lr_spec to a random forest:\n\n\nCode\nrf_spec &lt;- rand_forest() |&gt;\n  set_engine(\"ranger\") |&gt;\n  set_mode(\"classification\")\n\nrf_wf &lt;- mail_wf |&gt; update_model(rf_spec)\n\nrf_fit &lt;- fit(rf_wf, data = mail_train)\n\n\nCompare resubstitution accuracy (on mail_train) to held-out accuracy (on mail_test) for the random forest. Then do the same for the original Lasso logistic regression from the notebook.\n\n\nCode\n# Random forest: resubstitution vs. held-out\nrf_train_preds &lt;- augment(rf_fit, new_data = mail_train)\nrf_test_preds  &lt;- augment(rf_fit, new_data = mail_test)\n\nbind_rows(\n  rf_train_preds |&gt; accuracy(truth = responded, estimate = .pred_class) |&gt;\n    mutate(model = \"Random Forest\", data = \"train (resubstitution)\"),\n  rf_test_preds  |&gt; accuracy(truth = responded, estimate = .pred_class) |&gt;\n    mutate(model = \"Random Forest\", data = \"test (held out)\"),\n  train_preds    |&gt; accuracy(truth = responded, estimate = .pred_class) |&gt;\n    mutate(model = \"Lasso LR\",      data = \"train (resubstitution)\"),\n  test_preds     |&gt; accuracy(truth = responded, estimate = .pred_class) |&gt;\n    mutate(model = \"Lasso LR\",      data = \"test (held out)\")\n) |&gt;\n  select(model, data, .estimate) |&gt;\n  pivot_wider(names_from = data, values_from = .estimate) |&gt;\n  mutate(gap = `train (resubstitution)` - `test (held out)`)\n\n\nPart B — Explain the Gap\nAnswer the following in 3–5 sentences:\n\nIs the resubstitution gap larger or smaller for the random forest compared to the Lasso logistic regression?\nWhy does model flexibility affect the size of the resubstitution gap? What is the random forest doing during training that the Lasso is not?\nGiven what you know about resubstitution, why is it dangerous to use training-set performance to select between a Lasso model and a random forest — and what should you use instead?\n\n\n\nCode\n# Use this space for any supporting calculations"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Machine Learning Model Evaluation and Resampling",
-    "section": "",
-    "text": "This module covers the two essential questions every machine learning model must answer: how good is it? and how do we know that estimate is trustworthy?\nChapter 9 gives you the measurement instruments — regression metrics (RMSE, R², MAE) and classification metrics (confusion matrix, sensitivity, specificity, ROC/AUC) — using the yardstick package.\nChapter 10 explains why a single measurement isn’t enough, and introduces resampling (cross-validation, bootstrap) via the rsample package to get stable, honest performance estimates from the training data alone.\nWork through the materials in the order listed below.\n\n\n\n\n\n\n\n\n\n\n\n\n\nModule 3 Slides — Model Evaluation & Resampling\n\n6 min\n\nA visual overview of Ch. 9–10 — metrics, cross-validation, and why resampling gives more trustworthy performance estimates than a single test set.\n\n\n\n\n\n\n\n\n\nModule 3 Codebook — Model Evaluation and Resampling\n\n25 min\n\nHands-on R notebook covering regression and classification metrics with yardstick, cross-validation with rsample, and fit_resamples() for trustworthy model performance…\n\n\n\n\n\nNo matching items"
   }
 ]

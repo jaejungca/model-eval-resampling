@@ -1,0 +1,86 @@
+---
+title: "Module 3 Slides — Model Evaluation & Resampling"
+subtitle: "Measuring what actually generalizes"
+description: "A visual overview of Ch. 9–10 — metrics, cross-validation, and why resampling gives more trustworthy performance estimates than a single test set."
+author: "Jae Jung"
+date: today
+---
+
+## About These Slides
+
+This deck gives you a big-picture overview of Module 3 before you work
+through the full codebook. Think of it as the map, not the territory —
+covering the two-chapter arc at a conceptual level with just enough code
+to orient you.
+
+Work through these slides **before** the Codebook. They take about
+15–20 minutes at your own pace.
+
+---
+
+## What the Slides Cover
+
+**Part 1 — Judging Model Effectiveness (Ch. 9)**
+
+- Why metrics matter — there is no single "best" metric
+- Regression metrics: RMSE, R², MAE and when to use each
+- The confusion matrix — reading TP, FP, FN, TN
+- Binary classification: sensitivity, specificity, precision, accuracy
+- The accuracy trap with imbalanced classes
+- ROC curve and AUC — a threshold-free view of model discrimination
+- Multiclass metrics and averaging strategies
+
+**Part 2 — Resampling for Evaluating Performance (Ch. 10)**
+
+- The resubstitution problem — why training-set metrics are optimistic
+- Why you should not reuse the test set repeatedly
+- V-fold cross-validation — structure, stratification, fold visualization
+- Other resampling methods: repeated CV, bootstrap, validation split
+- `fit_resamples()` — fitting and scoring across all folds
+- Comparing single test-set vs. cross-validated estimates
+- Reading fold-to-fold variability in ROC AUC
+
+---
+
+## Open the Slides
+
+::: {.callout-tip}
+The slides open in a **new tab** as a full-screen presentation.
+Use arrow keys to advance. Press **F** for full screen and **Esc** to exit.
+:::
+
+```{=html}
+<a href="we03_eval_resamp_slides.html"
+   target="_blank"
+   rel="noopener noreferrer"
+   style="
+     display: inline-block;
+     margin-top: 0.5rem;
+     padding: 0.65rem 1.4rem;
+     background-color: #B8860B;
+     color: white;
+     font-weight: 600;
+     font-size: 1rem;
+     border-radius: 6px;
+     text-decoration: none;
+   "
+>
+  ▶ Open Slide Deck in New Tab
+</a>
+```
+
+---
+
+## Key R Functions in the Slides
+
+| Function | Package | Purpose |
+|---|---|---|
+| `metric_set()` | `yardstick` | Bundle multiple metrics together |
+| `conf_mat()` | `yardstick` | Build a confusion matrix |
+| `sens()`, `spec()`, `precision()` | `yardstick` | Classification metrics |
+| `roc_curve()`, `roc_auc()` | `yardstick` | ROC curve and AUC |
+| `vfold_cv()` | `rsample` | Build cross-validation folds |
+| `bootstraps()` | `rsample` | Bootstrap resampling |
+| `fit_resamples()` | `tune` | Fit and score across resamples |
+| `collect_metrics()` | `tune` | Extract averaged metrics |
+| `collect_predictions()` | `tune` | Extract out-of-fold predictions |
