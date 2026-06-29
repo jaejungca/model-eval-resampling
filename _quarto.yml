@@ -15,7 +15,7 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: we03_eval_resamp_slides.qmd
+      - href: slides.qmd
         text: Slides
       - href: we03_eval_resamp_codebook.qmd
         text: Codebook
