@@ -1,0 +1,52 @@
+---
+title: "Cheat Sheet — Evaluation Toolkit Recap"
+subtitle: "Applied Machine Learning for Marketing"
+description: "A one-page quick reference for yardstick metrics and rsample resampling — the same toolkit from the codebook, condensed for fast lookup during Module 4 and beyond."
+date: today
+---
+
+## Quick Reference
+
+This one-page cheat sheet condenses the metrics and resampling toolkit from
+the codebook into a fast lookup you can return to anytime — useful when
+you're applying the same workflow to a new model in a later module and just
+need a reminder of the right function call.
+
+::: {.callout-tip}
+The PDF below is embedded directly in the page. If it doesn't display
+properly in your browser, use the **Download PDF** button underneath to
+open or save it directly.
+:::
+
+```{=html}
+<iframe
+  src="eval_toolkit_recap.pdf"
+  width="100%"
+  height="850"
+  style="border: 1px solid #ddd; border-radius: 6px;"
+>
+  <p>Your browser does not support embedded PDFs.
+  <a href="eval_toolkit_recap.pdf">Download the PDF instead</a>.</p>
+</iframe>
+```
+
+```{=html}
+<div style="margin-top: 1rem;">
+  <a href="eval_toolkit_recap.pdf"
+     target="_blank"
+     rel="noopener noreferrer"
+     style="
+       display: inline-block;
+       padding: 0.65rem 1.4rem;
+       background-color: #B8860B;
+       color: white;
+       font-weight: 600;
+       font-size: 1rem;
+       border-radius: 6px;
+       text-decoration: none;
+     "
+  >
+    ⬇ Download PDF
+  </a>
+</div>
+```

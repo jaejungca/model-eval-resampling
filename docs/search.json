@@ -182,6 +182,20 @@
     "text": "Key R Functions in the Slides\n\n\n\n\n\n\n\n\nFunction\nPackage\nPurpose\n\n\n\n\nmetric_set()\nyardstick\nBundle multiple metrics together\n\n\nconf_mat()\nyardstick\nBuild a confusion matrix\n\n\nsens(), spec(), precision()\nyardstick\nClassification metrics\n\n\nroc_curve(), roc_auc()\nyardstick\nROC curve and AUC\n\n\nvfold_cv()\nrsample\nBuild cross-validation folds\n\n\nbootstraps()\nrsample\nBootstrap resampling\n\n\nfit_resamples()\ntune\nFit and score across resamples\n\n\ncollect_metrics()\ntune\nExtract averaged metrics\n\n\ncollect_predictions()\ntune\nExtract out-of-fold predictions"
   },
   {
+    "objectID": "cheat_sheet.html",
+    "href": "cheat_sheet.html",
+    "title": "Cheat Sheet — Evaluation Toolkit Recap",
+    "section": "",
+    "text": "Quick Reference"
+  },
+  {
+    "objectID": "cheat_sheet.html#quick-reference",
+    "href": "cheat_sheet.html#quick-reference",
+    "title": "Cheat Sheet — Evaluation Toolkit Recap",
+    "section": "Quick Reference",
+    "text": "Quick Reference\nThis one-page cheat sheet condenses the metrics and resampling toolkit from the codebook into a fast lookup you can return to anytime — useful when you’re applying the same workflow to a new model in a later module and just need a reminder of the right function call.\n\n\n\n\n\n\nTip\n\n\n\nThe PDF below is embedded directly in the page. If it doesn’t display properly in your browser, use the Download PDF button underneath to open or save it directly.\n\n\n\n  &lt;p&gt;Your browser does not support embedded PDFs.\n  &lt;a href=\"eval_toolkit_recap.pdf\"&gt;Download the PDF instead&lt;/a&gt;.&lt;/p&gt;\n\n\n  \n    ⬇ Download PDF"
+  },
+  {
     "objectID": "answers/module3_answer_keys.html",
     "href": "answers/module3_answer_keys.html",
     "title": "Module 3 - Exercise Answer Keys",
@@ -249,7 +263,7 @@
     "href": "index.html",
     "title": "Machine Learning Model Evaluation and Resampling",
     "section": "",
-    "text": "This module covers the two essential questions every machine learning model must answer: how good is it? and how do we know that estimate is trustworthy?\nChapter 9 gives you the measurement instruments — regression metrics (RMSE, R², MAE) and classification metrics (confusion matrix, sensitivity, specificity, ROC/AUC) — using the yardstick package.\nChapter 10 explains why a single measurement isn’t enough, and introduces resampling (cross-validation, bootstrap) via the rsample package to get stable, honest performance estimates from the training data alone.\nWork through the materials in the order listed below.\n\n\n\n\n\n\n\n\n\n\n\n\n\nModule 3 Slides — Model Evaluation & Resampling\n\n2 min\n\nA visual overview of Ch. 9–10 — metrics, cross-validation, and why resampling gives more trustworthy performance estimates than a single test set.\n\n\n\n\n\n\n\n\n\nModule 3 Codebook — Model Evaluation and Resampling\n\n25 min\n\nHands-on R notebook covering regression and classification metrics with yardstick, cross-validation with rsample, and fit_resamples() for trustworthy model performance…\n\n\n\n\n\nNo matching items"
+    "text": "This module covers the two essential questions every machine learning model must answer: how good is it? and how do we know that estimate is trustworthy?\nChapter 9 gives you the measurement instruments — regression metrics (RMSE, R², MAE) and classification metrics (confusion matrix, sensitivity, specificity, ROC/AUC) — using the yardstick package.\nChapter 10 explains why a single measurement isn’t enough, and introduces resampling (cross-validation, bootstrap) via the rsample package to get stable, honest performance estimates from the training data alone.\nWork through the materials in the order listed below.\n\n\n\n\n\n\n\n\n\n\n\n\n\nModule 3 Slides — Model Evaluation & Resampling\n\n2 min\n\nA visual overview of Ch. 9–10 — metrics, cross-validation, and why resampling gives more trustworthy performance estimates than a single test set.\n\n\n\n\n\n\n\n\n\nModule 3 Codebook — Model Evaluation and Resampling\n\n25 min\n\nHands-on R notebook covering regression and classification metrics with yardstick, cross-validation with rsample, and fit_resamples() for trustworthy model performance…\n\n\n\n\n\n\n\n\n\nCheat Sheet — Evaluation Toolkit Recap\n\n1 min\n\nA one-page quick reference for yardstick metrics and rsample resampling — the same toolkit from the codebook, condensed for fast lookup during Module 4 and beyond.\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "we03_eval_resamp_codebook.html",

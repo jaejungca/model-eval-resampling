@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - eval_toolkit_recap.pdf
 
 website:
   title: "Machine Learning Model Evaluation and Resampling"
@@ -19,6 +21,8 @@ website:
         text: Slides
       - href: we03_eval_resamp_codebook.qmd
         text: Codebook
+      - href: cheat_sheet.qmd
+        text: Cheat Sheet
 
 format:
   html:

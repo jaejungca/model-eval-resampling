@@ -3,7 +3,8 @@
     "listing": "/index.html",
     "items": [
       "/slides.html",
-      "/we03_eval_resamp_codebook.html"
+      "/we03_eval_resamp_codebook.html",
+      "/cheat_sheet.html"
     ]
   }
 ]
